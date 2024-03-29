@@ -25,12 +25,29 @@ public class PlayerInputHandler : GameBehaviour
             _GM.playerGameObjList.Add(go);
             playerControls.playerNum = _GM.playerGameObjList.IndexOf(go);
 
+            ChangePlayerColour();
+
             transform.parent = playerControls.transform;
             transform.position = playerControls.transform.position;
 
         }
 
 
+    }
+
+    void ChangePlayerColour()
+    {
+        switch(playerControls.playerNum)
+        {
+            case 0:
+                _GM.playerGameObjList[0].GetComponent<Renderer>().material.color = Color.red; break;
+            case 1:
+                _GM.playerGameObjList[1].GetComponent<Renderer>().material.color = Color.blue; break;
+            case 2:
+                _GM.playerGameObjList[2].GetComponent<Renderer>().material.color = Color.green; break;
+            case 3:
+                _GM.playerGameObjList[3].GetComponent<Renderer>().material.color = Color.yellow; break;
+        }
     }
 
     public void OnMove(InputAction.CallbackContext context)

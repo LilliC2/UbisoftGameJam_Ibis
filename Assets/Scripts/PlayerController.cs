@@ -14,6 +14,7 @@ public class PlayerController : GameBehaviour
     CharacterController controller;
     GameObject groundCheck;
     Vector3 movement;
+    Vector3 direction;
 
     // Start is called before the first frame update
     void Start()
@@ -38,6 +39,8 @@ public class PlayerController : GameBehaviour
         }
 
         controller.Move(movement * movementSpeed * Time.deltaTime);
+        if (transform.localEulerAngles != Vector3.zero) direction = transform.localEulerAngles;
+        if (controller.velocity.magnitude < 1) transform.localEulerAngles = direction;
 
     }
 
