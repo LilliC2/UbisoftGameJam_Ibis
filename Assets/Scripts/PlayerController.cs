@@ -11,19 +11,29 @@ public class PlayerController : GameBehaviour
     float movementSpeed;
 
     PlayerControls controls; 
-    CharacterController controller;
+    CharacterController controllerBody;
+    CharacterController controllerHead;
     GameObject groundCheck;
-    Vector3 movement;
-    Vector3 direction;
+    Vector3 movementBody;
+    Vector3 directionBody;
+    Vector3 movementHead;
+    Vector3 directionHead;
+
+    [SerializeField] float headRadius;
+
+    public GameObject ibisHead;
+    public GameObject ibisNeck;
 
     // Start is called before the first frame update
     void Start()
     {
-        controller = GetComponent<CharacterController>();
+        ibisHead = transform.Find("Head").gameObject;
+        ibisNeck = transform.Find("Neck").gameObject;
+
+        controllerBody = GetComponent<CharacterController>();
+        controllerHead = ibisHead.GetComponent<CharacterController>();
 
         controls = new PlayerControls();
-
-        if (controls == null) print("it null");
 
         groundCheck = transform.Find("GroundCheck").gameObject;
     }
@@ -34,16 +44,25 @@ public class PlayerController : GameBehaviour
         //gravity check
         if (!Physics.CheckSphere(groundCheck.transform.position, 1, _GM.groundMask))
         {
-            movement += Physics.gravity;
+            movementBody += Physics.gravity;
 
         }
 
-        controller.Move(movement * movementSpeed * Time.deltaTime);
-        if (transform.localEulerAngles != Vector3.zero) direction = transform.localEulerAngles;
-        if (controller.velocity.magnitude < 1) transform.localEulerAngles = direction;
+        //move body
+        controllerBody.Move(movementBody * movementSpeed * Time.deltaTime);
+        if (transform.localEulerAngles != Vector3.zero) directionBody = transform.localEulerAngles;
+        if (controllerBody.velocity.magnitude < 1) transform.localEulerAngles = directionBody;
 
+
+        //move ibis head
+        controllerHead.Move(movementHead * movementSpeed * Time.deltaTime);
+        if (Vector3.Distance(ibisNeck.transform.position, ibisHead.transform.position) > headRadius)
+        {
+            Vector3 r = ibisHead.transform.localPosition.normalized * headRadius;
+            ibisHead.transform.localPosition = new Vector3(r.x, ibisHead.transform.localPosition.y, r.z);
+
+        }
     }
-
     private void OnEnable()
     {
         //transform.position = _GM.spawnPoints[playerNum].transform.position;
@@ -60,8 +79,15 @@ public class PlayerController : GameBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 move = context.ReadValue<Vector2>();
-        movement = new Vector3(move.x, 0, move.y);
-        transform.rotation = Quaternion.LookRotation(movement);
+        movementBody = new Vector3(move.x, 0, move.y);
+        transform.rotation = Quaternion.LookRotation(movementBody);
 
+    }
+
+    public void OnMoveHead(InputAction.CallbackContext context)
+    {
+        Vector2 move = context.ReadValue<Vector2>();
+        movementHead = move;
+        ibisHead.transform.rotation = Quaternion.LookRotation(movementHead);
     }
 }

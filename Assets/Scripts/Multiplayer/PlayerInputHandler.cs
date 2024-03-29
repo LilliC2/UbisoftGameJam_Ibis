@@ -54,4 +54,9 @@ public class PlayerInputHandler : GameBehaviour
     {
         playerControls.OnMove(context);
     }
+    
+    public void OnMoveHead(InputAction.CallbackContext context)
+    {
+        playerControls.OnMoveHead(context);
+    }
 }
