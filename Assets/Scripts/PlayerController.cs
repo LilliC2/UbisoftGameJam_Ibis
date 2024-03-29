@@ -41,6 +41,18 @@ public class PlayerController : GameBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+        //move ibis head
+
+        //controllerHead.Move(movementHead * movementSpeed * Time.deltaTime);
+        //if (Vector3.Distance(ibisNeck.transform.position, ibisHead.transform.position) > headRadius)
+        //{
+        //    Vector3 r = ibisHead.transform.localPosition.normalized * headRadius;
+        //    ibisHead.transform.localPosition = new Vector3(0, r.y, r.z);
+
+        //}
+
         //gravity check
         if (!Physics.CheckSphere(groundCheck.transform.position, 1, _GM.groundMask))
         {
@@ -54,14 +66,6 @@ public class PlayerController : GameBehaviour
         if (controllerBody.velocity.magnitude < 1) transform.localEulerAngles = directionBody;
 
 
-        //move ibis head
-        controllerHead.Move(movementHead * movementSpeed * Time.deltaTime);
-        if (Vector3.Distance(ibisNeck.transform.position, ibisHead.transform.position) > headRadius)
-        {
-            Vector3 r = ibisHead.transform.localPosition.normalized * headRadius;
-            ibisHead.transform.localPosition = new Vector3(r.x, ibisHead.transform.localPosition.y, r.z);
-
-        }
     }
     private void OnEnable()
     {
@@ -87,7 +91,16 @@ public class PlayerController : GameBehaviour
     public void OnMoveHead(InputAction.CallbackContext context)
     {
         Vector2 move = context.ReadValue<Vector2>();
+
         movementHead = move;
-        ibisHead.transform.rotation = Quaternion.LookRotation(movementHead);
+
+        
+
+        //if(ibisHead.transform.forward.z > 0f) movementHead = new Vector3(0, move.y, move.x);
+        //if(ibisHead.transform.forward.x > 0f) movementHead = new Vector3(move.x, move.y, 0);
+
+        print(ibisHead.transform.forward);
+
+        //ibisHead.transform.rotation = Quaternion.LookRotation(movementHead);
     }
 }
