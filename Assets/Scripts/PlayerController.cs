@@ -24,7 +24,10 @@ public class PlayerController : GameBehaviour
     Vector3 movementNeck;
     Vector3 defaultNeckRotation = new Vector3(-71.566f,0,0); 
 
-    [SerializeField] float headRadius;
+    float Xrotation;
+    float Yrotation;
+
+    bool resetingRotations;
 
     [SerializeField]
     Animator anim;
@@ -37,14 +40,14 @@ public class PlayerController : GameBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
-        //anim.enabled = false;
-        //ExecuteAfterFrames(5, () => anim.enabled = true);
+
         controls = new PlayerControls();
 
         groundCheck = transform.Find("GroundCheck").gameObject;
+        OnResetHeadRotations();
+
     }
 
     // Update is called once per frame
@@ -75,22 +78,20 @@ public class PlayerController : GameBehaviour
     {
         #region Neck/Head Movement
 
-        //neck movement
-        /*
-         * up/down on joystick moves head on rotation X axis
-         * 
-         * left/right on joystick moves head on rotation y axis
-        */
-        print(movementNeck);
-        ibisNeck.transform.Rotate(movementNeck * headSpeed, Space.Self);
+        if(!resetingRotations)
+        {
+            float xAxisRot = movementNeck.x * headSpeed;
+            float yAxisRot = movementNeck.y * headSpeed;
 
-        //Mathf.Clamp(ibisNeck.transform.localEulerAngles.x, -105f, 35f);
+            //clamp head rotations
+            Xrotation -= yAxisRot;
+            Xrotation = Mathf.Clamp(Xrotation, -105, 35);
+            Yrotation -= xAxisRot;
+            Yrotation = Mathf.Clamp(Yrotation, -90, 90);
+            //apply rotations
+            ibisNeck.transform.localRotation = Quaternion.Euler(Xrotation, Yrotation, 0f);
 
-        //head movement
-
-        /*if head is head object that can be picked up, (use ovrelap sphere find closests)
-         * then look at it
-         */
+        }
 
         #endregion
     }
@@ -109,7 +110,11 @@ public class PlayerController : GameBehaviour
 
     public void OnResetHeadRotations()
     {
+        resetingRotations = true;
+        Xrotation = defaultNeckRotation.x;
+        Yrotation = defaultNeckRotation.y;
         ibisNeck.transform.DOLocalRotate(defaultNeckRotation, 0.5f);
+        ExecuteAfterSeconds(0.5f,()=> resetingRotations = false);
     }
     public void OnMove(InputAction.CallbackContext context)
     {
@@ -122,7 +127,7 @@ public class PlayerController : GameBehaviour
     public void OnMoveHead(InputAction.CallbackContext context)
     {
         Vector2 move = context.ReadValue<Vector2>();
-        movementNeck = new Vector3(move.y,move.x, 0);
+        movementNeck = move;
         
 
     }
