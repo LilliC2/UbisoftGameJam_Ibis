@@ -17,7 +17,7 @@ public class PlayerController : GameBehaviour
     Vector3 movementBody;
     Vector3 directionBody;
     Vector3 movementHead;
-    Vector3 directionHead;
+    Vector3 headCamplVec3;
             Vector3 tempPos = new Vector3();
 
     [SerializeField] float headRadius;
@@ -54,13 +54,24 @@ public class PlayerController : GameBehaviour
         //var posY = Mathf.Clamp(ibisHead.transform.localPosition.y, -2, 2);
         //ibisHead.transform.localPosition = new Vector3(ibisHead.transform.position.x, posY, ibisHead.transform.position.z);
 
+        //var tempPos = ibisHead.transform.position;
+
+        //if (movementHead.y > 0) tempPos += transform.up * Time.deltaTime * movementSpeed;
+        //if (movementHead.y < 0) tempPos -= transform.up * Time.deltaTime * movementSpeed;
+        //if (movementHead.x < 0) tempPos += transform.forward * Time.deltaTime * movementSpeed;
+        //if(movementHead.x > 0) tempPos -= transform.forward * Time.deltaTime * movementSpeed;
+
+        //tempPos.x = Mathf.Clamp(tempPos.x, -1.5f, 1.5f);
+        //tempPos.y = Mathf.Clamp(tempPos.y, -1.5f, 1.5f);
+        //tempPos.z = Mathf.Clamp(tempPos.z, -1.5f, 1.5f);
+
+        //ibisHead.transform.position = tempPos;
 
         if (movementHead.y > 0) ibisHead.transform.position += transform.up * Time.deltaTime * movementSpeed;
         if (movementHead.y < 0) ibisHead.transform.position -= transform.up * Time.deltaTime * movementSpeed;
         if (movementHead.x < 0) ibisHead.transform.position += transform.forward * Time.deltaTime * movementSpeed;
-        if(movementHead.x > 0) ibisHead.transform.position -= transform.forward * Time.deltaTime * movementSpeed;
-        var posX = Mathf.Clamp(ibisHead.transform.localPosition.x, -2, 2);
-        var posZ = Mathf.Clamp(ibisHead.transform.localPosition.z, -2, 2);
+        if (movementHead.x > 0) ibisHead.transform.position -= transform.forward * Time.deltaTime * movementSpeed;
+
 
 
 
