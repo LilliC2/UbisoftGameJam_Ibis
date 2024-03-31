@@ -37,16 +37,35 @@ public class PlayerInputHandler : GameBehaviour
 
     void ChangePlayerColour()
     {
-        switch(playerControls.playerNum)
+        var renderChild = _GM.playerGameObjList[playerControls.playerNum].GetComponentsInChildren<Renderer>();
+
+        switch (playerControls.playerNum)
         {
             case 0:
-                _GM.playerGameObjList[0].GetComponent<Renderer>().material.color = Color.red; break;
+
+                foreach (var item in renderChild)
+                {
+                    item.material.color = Color.red; 
+                }
+                break;
             case 1:
-                _GM.playerGameObjList[1].GetComponent<Renderer>().material.color = Color.blue; break;
+                foreach (var item in renderChild)
+                {
+                    item.material.color = Color.blue;
+                }
+                break;
             case 2:
-                _GM.playerGameObjList[2].GetComponent<Renderer>().material.color = Color.green; break;
+                foreach (var item in renderChild)
+                {
+                    item.material.color = Color.yellow;
+                }
+                break;
             case 3:
-                _GM.playerGameObjList[3].GetComponent<Renderer>().material.color = Color.yellow; break;
+                foreach(var item in renderChild)
+                {
+                    item.material.color = Color.green;
+                }
+                break;
         }
     }
 
@@ -58,5 +77,10 @@ public class PlayerInputHandler : GameBehaviour
     public void OnMoveHead(InputAction.CallbackContext context)
     {
         playerControls.OnMoveHead(context);
+    }
+
+    public void OnResetHeadRotations()
+    {
+        playerControls.OnResetHeadRotations();
     }
 }

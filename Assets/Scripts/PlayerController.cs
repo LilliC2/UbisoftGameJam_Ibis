@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class PlayerController : GameBehaviour
 {
@@ -13,29 +14,34 @@ public class PlayerController : GameBehaviour
     float headSpeed;
 
     PlayerControls controls; 
-    CharacterController controllerBody;
+    CharacterController controller;
     CharacterController controllerHead;
     GameObject groundCheck;
     Vector3 movementBody;
     Vector3 directionBody;
-    Vector3 movementHead;
-    Vector3 headCamplVec3;
-            Vector3 tempPos = new Vector3();
+
+    //ibis head controlls
+    Vector3 movementNeck;
+    Vector3 defaultNeckRotation = new Vector3(-71.566f,0,0); 
 
     [SerializeField] float headRadius;
 
+    [SerializeField]
+    Animator anim;
+
+    [SerializeField]
     public GameObject ibisHead;
+    [SerializeField]
     public GameObject ibisNeck;
 
     // Start is called before the first frame update
     void Start()
     {
-        ibisHead = transform.Find("Head").gameObject;
-        ibisNeck = transform.Find("Neck").gameObject;
 
-        controllerBody = GetComponent<CharacterController>();
-        controllerHead = ibisHead.GetComponent<CharacterController>();
-
+        controller = GetComponent<CharacterController>();
+        anim = GetComponentInChildren<Animator>();
+        //anim.enabled = false;
+        //ExecuteAfterFrames(5, () => anim.enabled = true);
         controls = new PlayerControls();
 
         groundCheck = transform.Find("GroundCheck").gameObject;
@@ -46,47 +52,9 @@ public class PlayerController : GameBehaviour
     {
 
 
-        //move ibis head
-
-
-
-        //move ibis head up & down, clamp movement
-        //var movementHeadY = new Vector3(0, movementHead.y, 0);
-        //controllerHead.Move(movementHead * movementSpeed * Time.deltaTime);
-        //var posY = Mathf.Clamp(ibisHead.transform.localPosition.y, -2, 2);
-        //ibisHead.transform.localPosition = new Vector3(ibisHead.transform.position.x, posY, ibisHead.transform.position.z);
-
-
-
-
-        //var tempPos = ibisHead.transform.position;
-
-        //if (movementHead.y > 0) tempPos += transform.up * Time.deltaTime * movementSpeed;
-        //if (movementHead.y < 0) tempPos -= transform.up * Time.deltaTime * movementSpeed;
-        //if (movementHead.x < 0) tempPos += transform.forward * Time.deltaTime * movementSpeed;
-        //if(movementHead.x > 0) tempPos -= transform.forward * Time.deltaTime * movementSpeed;
-
-        //tempPos.x = Mathf.Clamp(tempPos.x, -1.5f, 1.5f);
-        //tempPos.y = Mathf.Clamp(tempPos.y, -1.5f, 1.5f);
-        //tempPos.z = Mathf.Clamp(tempPos.z, -1.5f, 1.5f);
-
-        //ibisHead.transform.position = tempPos;
-
-        float horizontalMove = Input.GetAxis("Horizontal");
-
-        if (movementHead.y > 0) transform.Translate(transform.up * Time.deltaTime * headSpeed);
-        if (movementHead.y < 0) transform.Translate(transform.up * Time.deltaTime * headSpeed);
-        if (movementHead.x < 0) transform.Translate(transform.forward * Time.deltaTime * headSpeed);
-        if (movementHead.x > 0) transform.Translate(transform.forward * Time.deltaTime * headSpeed);
-
-
-        //     if (movementHead.y > 0) ibisHead.transform.position += transform.up * Time.deltaTime * headSpeed;
-        //if (movementHead.y < 0) ibisHead.transform.position -= transform.up * Time.deltaTime * headSpeed;
-        //if (movementHead.x < 0) ibisHead.transform.position += transform.forward * Time.deltaTime * headSpeed;
-        //if (movementHead.x > 0) ibisHead.transform.position -= transform.forward * Time.deltaTime * headSpeed;
-         
-
-
+        #region Body Movement
+        //apply animation
+        anim.SetFloat("WalkSpeed", controller.velocity.magnitude);
 
         //gravity check
         if (!Physics.CheckSphere(groundCheck.transform.position, 1, _GM.groundMask))
@@ -96,17 +64,41 @@ public class PlayerController : GameBehaviour
         }
 
         //move body
-        controllerBody.Move(movementBody * movementSpeed * Time.deltaTime);
+        controller.Move(movementBody * movementSpeed * Time.deltaTime);
         if (transform.localEulerAngles != Vector3.zero) directionBody = transform.localEulerAngles;
-        if (controllerBody.velocity.magnitude < 1) transform.localEulerAngles = directionBody;
+        if (controller.velocity.magnitude < 1) transform.localEulerAngles = directionBody;
+        #endregion
 
+    }
 
+    private void LateUpdate()
+    {
+        #region Neck/Head Movement
+
+        //neck movement
+        /*
+         * up/down on joystick moves head on rotation X axis
+         * 
+         * left/right on joystick moves head on rotation y axis
+        */
+        print(movementNeck);
+        ibisNeck.transform.Rotate(movementNeck * headSpeed, Space.Self);
+
+        //Mathf.Clamp(ibisNeck.transform.localEulerAngles.x, -105f, 35f);
+
+        //head movement
+
+        /*if head is head object that can be picked up, (use ovrelap sphere find closests)
+         * then look at it
+         */
+
+        #endregion
     }
     private void OnEnable()
     {
         //transform.position = _GM.spawnPoints[playerNum].transform.position;
 
-       controls.Gameplay.Enable();
+        controls.Gameplay.Enable();
     }
 
     private void OnDisable()
@@ -115,6 +107,10 @@ public class PlayerController : GameBehaviour
 
     }
 
+    public void OnResetHeadRotations()
+    {
+        ibisNeck.transform.DOLocalRotate(defaultNeckRotation, 0.5f);
+    }
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 move = context.ReadValue<Vector2>();
@@ -126,18 +122,8 @@ public class PlayerController : GameBehaviour
     public void OnMoveHead(InputAction.CallbackContext context)
     {
         Vector2 move = context.ReadValue<Vector2>();
-
-        print("X" + move.x);
-        print("Y" + move.y);
-        movementHead = new Vector3(move.x,move.y,move.x);
-
+        movementNeck = new Vector3(move.y,move.x, 0);
         
 
-        //if(ibisHead.transform.forward.z > 0f) movementHead = new Vector3(0, move.y, move.x);
-        //if(ibisHead.transform.forward.x > 0f) movementHead = new Vector3(move.x, move.y, 0);
-
-        //print(ibisHead.transform.forward);
-
-        //ibisHead.transform.rotation = Quaternion.LookRotation(movementHead);
     }
 }
