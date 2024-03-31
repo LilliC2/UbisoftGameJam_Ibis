@@ -9,6 +9,8 @@ public class PlayerController : GameBehaviour
 
     [SerializeField]
     float movementSpeed;
+    [SerializeField]
+    float headSpeed;
 
     PlayerControls controls; 
     CharacterController controllerBody;
@@ -54,6 +56,9 @@ public class PlayerController : GameBehaviour
         //var posY = Mathf.Clamp(ibisHead.transform.localPosition.y, -2, 2);
         //ibisHead.transform.localPosition = new Vector3(ibisHead.transform.position.x, posY, ibisHead.transform.position.z);
 
+
+
+
         //var tempPos = ibisHead.transform.position;
 
         //if (movementHead.y > 0) tempPos += transform.up * Time.deltaTime * movementSpeed;
@@ -67,11 +72,19 @@ public class PlayerController : GameBehaviour
 
         //ibisHead.transform.position = tempPos;
 
-        if (movementHead.y > 0) ibisHead.transform.position += transform.up * Time.deltaTime * movementSpeed;
-        if (movementHead.y < 0) ibisHead.transform.position -= transform.up * Time.deltaTime * movementSpeed;
-        if (movementHead.x < 0) ibisHead.transform.position += transform.forward * Time.deltaTime * movementSpeed;
-        if (movementHead.x > 0) ibisHead.transform.position -= transform.forward * Time.deltaTime * movementSpeed;
+        float horizontalMove = Input.GetAxis("Horizontal");
 
+        if (movementHead.y > 0) transform.Translate(transform.up * Time.deltaTime * headSpeed);
+        if (movementHead.y < 0) transform.Translate(transform.up * Time.deltaTime * headSpeed);
+        if (movementHead.x < 0) transform.Translate(transform.forward * Time.deltaTime * headSpeed);
+        if (movementHead.x > 0) transform.Translate(transform.forward * Time.deltaTime * headSpeed);
+
+
+        //     if (movementHead.y > 0) ibisHead.transform.position += transform.up * Time.deltaTime * headSpeed;
+        //if (movementHead.y < 0) ibisHead.transform.position -= transform.up * Time.deltaTime * headSpeed;
+        //if (movementHead.x < 0) ibisHead.transform.position += transform.forward * Time.deltaTime * headSpeed;
+        //if (movementHead.x > 0) ibisHead.transform.position -= transform.forward * Time.deltaTime * headSpeed;
+         
 
 
 
