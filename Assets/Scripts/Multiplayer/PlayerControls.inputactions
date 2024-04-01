@@ -16,8 +16,17 @@
                 },
                 {
                     "name": "Move Ibis Head",
-                    "type": "Button",
+                    "type": "Value",
                     "id": "3388aa6d-b775-4348-8369-5aba944c6001",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "ResetIbisHeadRotations",
+                    "type": "Button",
+                    "id": "50fb276d-3bcc-4fd0-a5bc-52ac9072d35e",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -44,6 +53,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Move Ibis Head",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "161911c9-29b4-48ae-842c-8e9c992e4ca6",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ResetIbisHeadRotations",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
