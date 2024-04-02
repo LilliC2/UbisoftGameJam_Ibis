@@ -25,6 +25,8 @@ public class PlayerInputHandler : GameBehaviour
             _GM.playerGameObjList.Add(go);
             playerControls.playerNum = _GM.playerGameObjList.IndexOf(go);
 
+            ChangePlayerColour();
+
             transform.parent = playerControls.transform;
             transform.position = playerControls.transform.position;
 
@@ -33,8 +35,52 @@ public class PlayerInputHandler : GameBehaviour
 
     }
 
+    void ChangePlayerColour()
+    {
+        var renderChild = _GM.playerGameObjList[playerControls.playerNum].GetComponentsInChildren<Renderer>();
+
+        switch (playerControls.playerNum)
+        {
+            case 0:
+
+                foreach (var item in renderChild)
+                {
+                    item.material.color = Color.red; 
+                }
+                break;
+            case 1:
+                foreach (var item in renderChild)
+                {
+                    item.material.color = Color.blue;
+                }
+                break;
+            case 2:
+                foreach (var item in renderChild)
+                {
+                    item.material.color = Color.yellow;
+                }
+                break;
+            case 3:
+                foreach(var item in renderChild)
+                {
+                    item.material.color = Color.green;
+                }
+                break;
+        }
+    }
+
     public void OnMove(InputAction.CallbackContext context)
     {
         playerControls.OnMove(context);
+    }
+    
+    public void OnMoveHead(InputAction.CallbackContext context)
+    {
+        playerControls.OnMoveHead(context);
+    }
+
+    public void OnResetHeadRotations()
+    {
+        playerControls.OnResetHeadRotations();
     }
 }
