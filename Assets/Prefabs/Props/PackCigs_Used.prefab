@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 3330465650547211595}
   - component: {fileID: 5260495806170784515}
   - component: {fileID: 345280509913188087}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PackCigs_Used
-  m_TagString: Untagged
+  m_TagString: SmallTrash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6225852746887212635}
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+  m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 1.69948, y: 1.69948, z: 1.69948}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &5260495806170784515
 MeshFilter:
   m_ObjectHideFlags: 0

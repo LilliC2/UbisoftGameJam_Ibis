@@ -37,6 +37,12 @@ public class PlayerController : GameBehaviour
     [SerializeField]
     public GameObject ibisNeck;
 
+    //picking up trash controls
+    public GameObject targetTrash;
+    [SerializeField] float ibisHeadTrashRange;
+    bool isHoldingTrash = false;
+    [SerializeField] GameObject holdTrashPos; //GO inside ibis mouth
+
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +78,7 @@ public class PlayerController : GameBehaviour
         if (controller.velocity.magnitude < 1) transform.localEulerAngles = directionBody;
         #endregion
 
+ 
     }
 
     private void LateUpdate()
@@ -92,6 +99,35 @@ public class PlayerController : GameBehaviour
             ibisNeck.transform.localRotation = Quaternion.Euler(Xrotation, Yrotation, 0f);
 
         }
+
+        #endregion
+
+        #region Find Target Trash
+
+        if (!isHoldingTrash)
+        {
+
+            var trashInRange = Physics.OverlapSphere(ibisHead.transform.position, ibisHeadTrashRange, _GM.pickUpPropsMask);
+
+            print("trash range = " + trashInRange.Length);
+
+            //get closest trash item
+            foreach (var prop in trashInRange)
+            {
+                if (targetTrash == null) targetTrash = prop.gameObject;
+                else if (Vector3.Distance(prop.transform.position, ibisHead.transform.position) < Vector3.Distance(targetTrash.transform.position, ibisHead.transform.position))
+                    targetTrash = prop.gameObject;
+            }
+            if (targetTrash != null && Vector3.Distance(targetTrash.transform.position, ibisHead.transform.position) <= ibisHeadTrashRange)
+            {
+                print("look at object ");
+                
+                ibisHead.transform.LookAt(targetTrash.transform.position);
+
+            }
+
+        }
+
 
         #endregion
     }

@@ -18,6 +18,7 @@ public class GameManager : Singleton<GameManager>
     public int totalPlayerCount; //number of players currently in game
 
     public LayerMask groundMask;
+    public LayerMask pickUpPropsMask;
 
     public event System.Action<PlayerInput> PlayerJoinedGame;
     public event System.Action<PlayerInput> PlayerLeftGame;
