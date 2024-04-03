@@ -153,7 +153,7 @@ public class PlayerController : GameBehaviour
         else
         {
             ibisHead.transform.eulerAngles = new Vector3(120, ibisHead.transform.eulerAngles.y, ibisHead.transform.eulerAngles.z);
-            if (!isHoldingTrigger) DropHeldItem();
+            //if (!isHoldingTrigger) DropHeldItem();
         }
 
 
@@ -175,41 +175,41 @@ public class PlayerController : GameBehaviour
     public void PickUpTargetItem(InputAction.CallbackContext context)
     {
 
-        //print("press trig");
-        //if (!isHoldingTrash && targetTrash != null)
-        //{
-        //    print("in");
-        //    if (Vector3.Distance(holdTrashPos.transform.position, targetTrash.transform.position) < 1)
-        //    {
-        //        isHoldingTrash = true;
-        //        print("pick up");
-        //        targetTrash.GetComponent<TrashItem>().PickedUp(holdTrashPos);
+        if (targetTrash != null && !isHoldingTrash)
+        {
+            print("www");
+            if (Vector3.Distance(holdTrashPos.transform.position, targetTrash.transform.position) < 0.5f && !isHoldingTrash)
+            {
+                isHoldingTrash = true;
+                print("pick up");
+                targetTrash.GetComponent<TrashItem>().PickedUp(holdTrashPos);
 
+            }
+
+        }
+
+        else if (isHoldingTrash)
+        {
+            DropHeldItem();
+        }
+        //var value = context.ReadValue<float>();
+        //print(value);
+        //if (value == 0) isHoldingTrigger = false;
+        //else if (value == 1)
+        //{
+        //    isHoldingTrigger = true;
+
+        //    if (targetTrash != null)
+        //    {
+        //        if (Vector3.Distance(holdTrashPos.transform.position, targetTrash.transform.position) < ibisHeadTrashRange && !isHoldingTrash)
+        //        {
+        //            isHoldingTrash = true;
+        //            print("pick up");
+        //            targetTrash.GetComponent<TrashItem>().PickedUp(holdTrashPos);
+
+        //        }
         //    }
         //}
-        //else
-        //{
-        //    if(targetTrash != null) DropHeldItem();
-        //}
-
-        var value = context.ReadValue<float>();
-        print(value);
-        if (value == 0) isHoldingTrigger = false;
-        else if (value == 1)
-        {
-            isHoldingTrigger = true;
-
-            if (targetTrash != null)
-            {
-                if (Vector3.Distance(holdTrashPos.transform.position, targetTrash.transform.position) < ibisHeadTrashRange && !isHoldingTrash)
-                {
-                    isHoldingTrash = true;
-                    print("pick up");
-                    targetTrash.GetComponent<TrashItem>().PickedUp(holdTrashPos);
-
-                }
-            }
-        }
 
 
 
@@ -219,9 +219,9 @@ public class PlayerController : GameBehaviour
     {
         if(targetTrash != null)
         {
-            isHoldingTrash = false;
             targetTrash.GetComponent<TrashItem>().Dropped();
             targetTrash = null;
+           // ExecuteAfterSeconds(1, () => isHoldingTrash = false);
         }
     }
 

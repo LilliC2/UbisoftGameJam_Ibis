@@ -56,21 +56,21 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""DropItem"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""73e527e8-29e9-4ec4-86e1-e52a9bfc6eae"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 },
                 {
                     ""name"": ""PickUpItem"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""a893eb2b-620c-4483-948b-fb0251a45b3b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -253,7 +253,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""bee242b4-619e-46d0-8e3c-29f4383507bc"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
