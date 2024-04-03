@@ -33,16 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "DropItem",
-                    "type": "Button",
-                    "id": "73e527e8-29e9-4ec4-86e1-e52a9bfc6eae",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "PickUpItem",
+                    "name": "Pick Up and Drop Item",
                     "type": "Button",
                     "id": "a893eb2b-620c-4483-948b-fb0251a45b3b",
                     "expectedControlType": "Button",
@@ -197,45 +188,23 @@
                 },
                 {
                     "name": "",
-                    "id": "f4b25258-0152-404b-b707-5f7e366a9f3f",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "DropItem",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6c903a01-1ecd-4c8a-aafd-5d97e36bcb00",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "DropItem",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "08142e33-ec82-49e8-ae89-5e5430574b63",
                     "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PickUpItem",
+                    "action": "Pick Up and Drop Item",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "bee242b4-619e-46d0-8e3c-29f4383507bc",
-                    "path": "<Gamepad>/leftTrigger",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "PickUpItem",
+                    "action": "Pick Up and Drop Item",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

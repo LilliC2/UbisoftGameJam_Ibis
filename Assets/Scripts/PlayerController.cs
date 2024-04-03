@@ -48,7 +48,7 @@ public class PlayerController : GameBehaviour
     //picking up trash controls
     public GameObject targetTrash;
     [SerializeField] float ibisHeadTrashRange;
-    bool isHoldingTrash = false;
+    [SerializeField] bool isHoldingTrash = false;
     [SerializeField] GameObject holdTrashPos; //GO inside ibis mouth
 
     // Start is called before the first frame update
@@ -177,14 +177,14 @@ public class PlayerController : GameBehaviour
 
         if (targetTrash != null && !isHoldingTrash)
         {
-            print("www");
             if (Vector3.Distance(holdTrashPos.transform.position, targetTrash.transform.position) < 0.5f && !isHoldingTrash)
             {
-                isHoldingTrash = true;
+                ExecuteAfterSeconds(2, () => isHoldingTrash = true);
+                
                 print("pick up");
                 targetTrash.GetComponent<TrashItem>().PickedUp(holdTrashPos);
-
             }
+            return;
 
         }
 
@@ -219,6 +219,7 @@ public class PlayerController : GameBehaviour
     {
         if(targetTrash != null)
         {
+            print("drop");
             targetTrash.GetComponent<TrashItem>().Dropped();
             targetTrash = null;
            // ExecuteAfterSeconds(1, () => isHoldingTrash = false);

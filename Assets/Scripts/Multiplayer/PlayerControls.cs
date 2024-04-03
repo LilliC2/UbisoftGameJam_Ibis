@@ -55,16 +55,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""DropItem"",
-                    ""type"": ""Button"",
-                    ""id"": ""73e527e8-29e9-4ec4-86e1-e52a9bfc6eae"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PickUpItem"",
+                    ""name"": ""Pick Up and Drop Item"",
                     ""type"": ""Button"",
                     ""id"": ""a893eb2b-620c-4483-948b-fb0251a45b3b"",
                     ""expectedControlType"": ""Button"",
@@ -219,45 +210,23 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""f4b25258-0152-404b-b707-5f7e366a9f3f"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DropItem"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""6c903a01-1ecd-4c8a-aafd-5d97e36bcb00"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""DropItem"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""08142e33-ec82-49e8-ae89-5e5430574b63"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""PickUpItem"",
+                    ""action"": ""Pick Up and Drop Item"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""bee242b4-619e-46d0-8e3c-29f4383507bc"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""PickUpItem"",
+                    ""action"": ""Pick Up and Drop Item"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -271,8 +240,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
         m_Gameplay_MoveIbisHead = m_Gameplay.FindAction("Move Ibis Head", throwIfNotFound: true);
         m_Gameplay_ResetIbisHeadRotations = m_Gameplay.FindAction("ResetIbisHeadRotations", throwIfNotFound: true);
-        m_Gameplay_DropItem = m_Gameplay.FindAction("DropItem", throwIfNotFound: true);
-        m_Gameplay_PickUpItem = m_Gameplay.FindAction("PickUpItem", throwIfNotFound: true);
+        m_Gameplay_PickUpandDropItem = m_Gameplay.FindAction("Pick Up and Drop Item", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -337,8 +305,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Movement;
     private readonly InputAction m_Gameplay_MoveIbisHead;
     private readonly InputAction m_Gameplay_ResetIbisHeadRotations;
-    private readonly InputAction m_Gameplay_DropItem;
-    private readonly InputAction m_Gameplay_PickUpItem;
+    private readonly InputAction m_Gameplay_PickUpandDropItem;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -346,8 +313,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
         public InputAction @MoveIbisHead => m_Wrapper.m_Gameplay_MoveIbisHead;
         public InputAction @ResetIbisHeadRotations => m_Wrapper.m_Gameplay_ResetIbisHeadRotations;
-        public InputAction @DropItem => m_Wrapper.m_Gameplay_DropItem;
-        public InputAction @PickUpItem => m_Wrapper.m_Gameplay_PickUpItem;
+        public InputAction @PickUpandDropItem => m_Wrapper.m_Gameplay_PickUpandDropItem;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -366,12 +332,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ResetIbisHeadRotations.started += instance.OnResetIbisHeadRotations;
             @ResetIbisHeadRotations.performed += instance.OnResetIbisHeadRotations;
             @ResetIbisHeadRotations.canceled += instance.OnResetIbisHeadRotations;
-            @DropItem.started += instance.OnDropItem;
-            @DropItem.performed += instance.OnDropItem;
-            @DropItem.canceled += instance.OnDropItem;
-            @PickUpItem.started += instance.OnPickUpItem;
-            @PickUpItem.performed += instance.OnPickUpItem;
-            @PickUpItem.canceled += instance.OnPickUpItem;
+            @PickUpandDropItem.started += instance.OnPickUpandDropItem;
+            @PickUpandDropItem.performed += instance.OnPickUpandDropItem;
+            @PickUpandDropItem.canceled += instance.OnPickUpandDropItem;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -385,12 +348,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ResetIbisHeadRotations.started -= instance.OnResetIbisHeadRotations;
             @ResetIbisHeadRotations.performed -= instance.OnResetIbisHeadRotations;
             @ResetIbisHeadRotations.canceled -= instance.OnResetIbisHeadRotations;
-            @DropItem.started -= instance.OnDropItem;
-            @DropItem.performed -= instance.OnDropItem;
-            @DropItem.canceled -= instance.OnDropItem;
-            @PickUpItem.started -= instance.OnPickUpItem;
-            @PickUpItem.performed -= instance.OnPickUpItem;
-            @PickUpItem.canceled -= instance.OnPickUpItem;
+            @PickUpandDropItem.started -= instance.OnPickUpandDropItem;
+            @PickUpandDropItem.performed -= instance.OnPickUpandDropItem;
+            @PickUpandDropItem.canceled -= instance.OnPickUpandDropItem;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -413,7 +373,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnMoveIbisHead(InputAction.CallbackContext context);
         void OnResetIbisHeadRotations(InputAction.CallbackContext context);
-        void OnDropItem(InputAction.CallbackContext context);
-        void OnPickUpItem(InputAction.CallbackContext context);
+        void OnPickUpandDropItem(InputAction.CallbackContext context);
     }
 }
