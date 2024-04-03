@@ -39,6 +39,9 @@ public class PlayerController : GameBehaviour
     Animator anim;
 
     [SerializeField]
+    bool isNeckMoving;
+
+    [SerializeField]
     public GameObject ibisHead;
     [SerializeField]
     public GameObject ibisNeck;
@@ -66,7 +69,8 @@ public class PlayerController : GameBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(movementNeck != Vector3.zero) isNeckMoving = true;
+        else isHoldingTrash = false;
 
         #region Body Movement
         //apply animation
@@ -107,6 +111,10 @@ public class PlayerController : GameBehaviour
 
             //print("Neck has moved on X axis by " + (de);
         }
+        if(!isNeckMoving)
+        {
+            OnResetHeadRotations();
+        }
 
         #endregion
 
@@ -133,8 +141,8 @@ public class PlayerController : GameBehaviour
 
 
 
-            Vector3 rotationV3 = Vector3.Lerp(new Vector3(defaultHeadRotation.x +10, defaultHeadRotation.y, defaultHeadRotation.z)
-                , new Vector3(defaultHeadRotation.x - 90, defaultHeadRotation.y, defaultHeadRotation.z), a);
+            Vector3 rotationV3 = Vector3.Lerp(new Vector3(defaultHeadRotation.x + 10, defaultHeadRotation.y, defaultHeadRotation.z)
+                , new Vector3(defaultHeadRotation.x - 90, defaultHeadRotation.y, defaultHeadRotation.z), 0.5f);
 
             print(rotationV3);
             ibisHead.transform.localEulerAngles = rotationV3;
