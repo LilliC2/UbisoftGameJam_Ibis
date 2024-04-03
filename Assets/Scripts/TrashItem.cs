@@ -24,7 +24,7 @@ public class TrashItem : GameBehaviour
     public void PickedUp(GameObject player_holdPos)
     {
         holdPos = player_holdPos;
-        rb.constraints = RigidbodyConstraints.FreezePosition;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
 
     }
 

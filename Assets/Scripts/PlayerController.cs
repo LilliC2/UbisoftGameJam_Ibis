@@ -29,9 +29,8 @@ public class PlayerController : GameBehaviour
     float neckXrotation;
     float neckYrotation;
 
-    float headXrotation;
-    float headYrotation;
-    float headZrotation;
+    [SerializeField]
+    bool isHoldingTrigger;
 
     bool resetingRotations;
 
@@ -70,14 +69,14 @@ public class PlayerController : GameBehaviour
     void Update()
     {
         if(movementNeck != Vector3.zero) isNeckMoving = true;
-        else isHoldingTrash = false;
+        else isNeckMoving = false;
 
         #region Body Movement
         //apply animation
         anim.SetFloat("WalkSpeed", controller.velocity.magnitude);
 
         //gravity check
-        if (!Physics.CheckSphere(groundCheck.transform.position, 0.5f, _GM.groundMask))
+        if (!Physics.CheckSphere(groundCheck.transform.position, 0.3f, _GM.groundMask))
         {
             movementBody += Physics.gravity;
 
@@ -125,7 +124,7 @@ public class PlayerController : GameBehaviour
 
             var trashInRange = Physics.OverlapSphere(ibisHead.transform.position, ibisHeadTrashRange, _GM.pickUpPropsMask);
 
-            print("trash range = " + trashInRange.Length);
+            //print("trash range = " + trashInRange.Length);
 
             //get closest trash item
             foreach (var prop in trashInRange)
@@ -135,10 +134,8 @@ public class PlayerController : GameBehaviour
                     targetTrash = prop.gameObject;
             }
 
-            //get relative percentage
-            float sumOfMinAndMax = -105 + 35;
 
-
+            // ibisHead.transform.LookAt(targetTrash.transform.position, Vector3.back);
 
 
             Vector3 rotationV3 = Vector3.Lerp(new Vector3(defaultHeadRotation.x + 10, defaultHeadRotation.y, defaultHeadRotation.z)
@@ -148,13 +145,15 @@ public class PlayerController : GameBehaviour
             ibisHead.transform.localEulerAngles = rotationV3;
 
 
-            //}
+        
+
+
 
         }
         else
         {
             ibisHead.transform.eulerAngles = new Vector3(120, ibisHead.transform.eulerAngles.y, ibisHead.transform.eulerAngles.z);
-
+            if (!isHoldingTrigger) DropHeldItem();
         }
 
 
@@ -173,18 +172,46 @@ public class PlayerController : GameBehaviour
 
     }
 
-    public void PickUpTargetItem()
+    public void PickUpTargetItem(InputAction.CallbackContext context)
     {
-        if(targetTrash != null)
-        {
-            if (Vector3.Distance(holdTrashPos.transform.position, targetTrash.transform.position) < 0.5f && !isHoldingTrash)
-            {
-                isHoldingTrash = true;
-                print("pick up");
-                targetTrash.GetComponent<TrashItem>().PickedUp(holdTrashPos);
 
+        //print("press trig");
+        //if (!isHoldingTrash && targetTrash != null)
+        //{
+        //    print("in");
+        //    if (Vector3.Distance(holdTrashPos.transform.position, targetTrash.transform.position) < 1)
+        //    {
+        //        isHoldingTrash = true;
+        //        print("pick up");
+        //        targetTrash.GetComponent<TrashItem>().PickedUp(holdTrashPos);
+
+        //    }
+        //}
+        //else
+        //{
+        //    if(targetTrash != null) DropHeldItem();
+        //}
+
+        var value = context.ReadValue<float>();
+        print(value);
+        if (value == 0) isHoldingTrigger = false;
+        else if (value == 1)
+        {
+            isHoldingTrigger = true;
+
+            if (targetTrash != null)
+            {
+                if (Vector3.Distance(holdTrashPos.transform.position, targetTrash.transform.position) < ibisHeadTrashRange && !isHoldingTrash)
+                {
+                    isHoldingTrash = true;
+                    print("pick up");
+                    targetTrash.GetComponent<TrashItem>().PickedUp(holdTrashPos);
+
+                }
             }
         }
+
+
 
     }    
 
@@ -208,6 +235,7 @@ public class PlayerController : GameBehaviour
     }
     public void OnMove(InputAction.CallbackContext context)
     {
+
         Vector2 move = context.ReadValue<Vector2>();
         movementBody = new Vector3(move.x, 0, move.y);
         transform.rotation = Quaternion.LookRotation(movementBody);
