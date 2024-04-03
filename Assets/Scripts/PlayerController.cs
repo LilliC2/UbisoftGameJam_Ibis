@@ -23,7 +23,8 @@ public class PlayerController : GameBehaviour
 
     //ibis head controlls
     Vector3 movementNeck;
-    Vector3 defaultNeckRotation = new Vector3(-71.566f,0,0); 
+    Vector3 defaultNeckRotation = new Vector3(-71.566f,0,0);
+    Vector3 defaultHeadRotation = new Vector3(90, 0, 0);
 
     float neckXrotation;
     float neckYrotation;
@@ -51,6 +52,7 @@ public class PlayerController : GameBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //defaultHeadRotation = ibisHead.transform.localRotation.eulerAngles;
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
 
@@ -98,11 +100,12 @@ public class PlayerController : GameBehaviour
             //clamp head rotations
             neckXrotation -= yAxisRot;
             neckXrotation = Mathf.Clamp(neckXrotation, -105, 35);
-            neckYrotation -= xAxisRot;
+            neckYrotation -= xAxisRot;  
             neckYrotation = Mathf.Clamp(neckYrotation, -90, 90);
             //apply rotations
             ibisNeck.transform.localRotation = Quaternion.Euler(neckXrotation, neckYrotation, 0f);
 
+            //print("Neck has moved on X axis by " + (de);
         }
 
         #endregion
@@ -123,23 +126,26 @@ public class PlayerController : GameBehaviour
                 else if (Vector3.Distance(prop.transform.position, ibisHead.transform.position) < Vector3.Distance(targetTrash.transform.position, ibisHead.transform.position))
                     targetTrash = prop.gameObject;
             }
-            if (targetTrash != null && Vector3.Distance(targetTrash.transform.position, ibisHead.transform.position) <= ibisHeadTrashRange)
-            {
-                print("look at object ");   
 
-                //  ibisHead.transform.LookAt(targetTrash.transform.position);
-                ibisHead.transform.LookAt(targetTrash.transform.position);
-                ibisHead.transform.RotateAround(ibisHead.transform.position, transform.right, 90);
-                
+            //get relative percentage
+            float sumOfMinAndMax = -105 + 35;
 
 
-            }
-                
+
+
+            Vector3 rotationV3 = Vector3.Lerp(new Vector3(defaultHeadRotation.x +10, defaultHeadRotation.y, defaultHeadRotation.z)
+                , new Vector3(defaultHeadRotation.x - 90, defaultHeadRotation.y, defaultHeadRotation.z), a);
+
+            print(rotationV3);
+            ibisHead.transform.localEulerAngles = rotationV3;
+
+
+            //}
+
         }
         else
         {
             ibisHead.transform.eulerAngles = new Vector3(120, ibisHead.transform.eulerAngles.y, ibisHead.transform.eulerAngles.z);
-            print(ibisHead.transform.eulerAngles);
 
         }
 
