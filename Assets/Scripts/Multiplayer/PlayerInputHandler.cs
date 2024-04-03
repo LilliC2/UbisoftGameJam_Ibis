@@ -83,4 +83,14 @@ public class PlayerInputHandler : GameBehaviour
     {
         playerControls.OnResetHeadRotations();
     }
+
+    public void OnPickUpItem()
+    {
+        playerControls.PickUpTargetItem();
+    }
+
+    public void OnDropItem()
+    {
+        playerControls.DropHeldItem();
+    }
 }

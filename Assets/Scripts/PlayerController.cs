@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
+using System;
 
 public class PlayerController : GameBehaviour
 {
@@ -24,8 +25,12 @@ public class PlayerController : GameBehaviour
     Vector3 movementNeck;
     Vector3 defaultNeckRotation = new Vector3(-71.566f,0,0); 
 
-    float Xrotation;
-    float Yrotation;
+    float neckXrotation;
+    float neckYrotation;
+
+    float headXrotation;
+    float headYrotation;
+    float headZrotation;
 
     bool resetingRotations;
 
@@ -66,7 +71,7 @@ public class PlayerController : GameBehaviour
         anim.SetFloat("WalkSpeed", controller.velocity.magnitude);
 
         //gravity check
-        if (!Physics.CheckSphere(groundCheck.transform.position, 1, _GM.groundMask))
+        if (!Physics.CheckSphere(groundCheck.transform.position, 0.5f, _GM.groundMask))
         {
             movementBody += Physics.gravity;
 
@@ -91,12 +96,12 @@ public class PlayerController : GameBehaviour
             float yAxisRot = movementNeck.y * headSpeed;
 
             //clamp head rotations
-            Xrotation -= yAxisRot;
-            Xrotation = Mathf.Clamp(Xrotation, -105, 35);
-            Yrotation -= xAxisRot;
-            Yrotation = Mathf.Clamp(Yrotation, -90, 90);
+            neckXrotation -= yAxisRot;
+            neckXrotation = Mathf.Clamp(neckXrotation, -105, 35);
+            neckYrotation -= xAxisRot;
+            neckYrotation = Mathf.Clamp(neckYrotation, -90, 90);
             //apply rotations
-            ibisNeck.transform.localRotation = Quaternion.Euler(Xrotation, Yrotation, 0f);
+            ibisNeck.transform.localRotation = Quaternion.Euler(neckXrotation, neckYrotation, 0f);
 
         }
 
@@ -120,11 +125,21 @@ public class PlayerController : GameBehaviour
             }
             if (targetTrash != null && Vector3.Distance(targetTrash.transform.position, ibisHead.transform.position) <= ibisHeadTrashRange)
             {
-                print("look at object ");
-                
+                print("look at object ");   
+
+                //  ibisHead.transform.LookAt(targetTrash.transform.position);
                 ibisHead.transform.LookAt(targetTrash.transform.position);
+                ibisHead.transform.RotateAround(ibisHead.transform.position, transform.right, 90);
+                
+
 
             }
+                
+        }
+        else
+        {
+            ibisHead.transform.eulerAngles = new Vector3(120, ibisHead.transform.eulerAngles.y, ibisHead.transform.eulerAngles.z);
+            print(ibisHead.transform.eulerAngles);
 
         }
 
@@ -144,11 +159,36 @@ public class PlayerController : GameBehaviour
 
     }
 
+    public void PickUpTargetItem()
+    {
+        if(targetTrash != null)
+        {
+            if (Vector3.Distance(holdTrashPos.transform.position, targetTrash.transform.position) < 0.5f && !isHoldingTrash)
+            {
+                isHoldingTrash = true;
+                print("pick up");
+                targetTrash.GetComponent<TrashItem>().PickedUp(holdTrashPos);
+
+            }
+        }
+
+    }    
+
+    public void DropHeldItem()
+    {
+        if(targetTrash != null)
+        {
+            isHoldingTrash = false;
+            targetTrash.GetComponent<TrashItem>().Dropped();
+            targetTrash = null;
+        }
+    }
+
     public void OnResetHeadRotations()
     {
         resetingRotations = true;
-        Xrotation = defaultNeckRotation.x;
-        Yrotation = defaultNeckRotation.y;
+        neckXrotation = defaultNeckRotation.x;
+        neckYrotation = defaultNeckRotation.y;
         ibisNeck.transform.DOLocalRotate(defaultNeckRotation, 0.5f);
         ExecuteAfterSeconds(0.5f,()=> resetingRotations = false);
     }
