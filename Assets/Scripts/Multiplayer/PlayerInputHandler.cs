@@ -93,4 +93,14 @@ public class PlayerInputHandler : GameBehaviour
     {
         playerControls.OnHonk(context);
     }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+
+    }
+    
+    public void OnThrow()
+    {
+
+    }
 }

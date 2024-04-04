@@ -71,6 +71,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Attack"",
+                    ""type"": ""Button"",
+                    ""id"": ""4923c020-e7e9-49fd-a89d-17e57ad00644"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Throw"",
+                    ""type"": ""Button"",
+                    ""id"": ""7f2dafb3-df8f-4fba-9f6b-28ed01063fb4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -260,6 +278,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Honk"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ca6433e-5e8f-41f4-aef1-6b05888d2519"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f46c1814-61b3-449b-96b3-51cfbb122cd9"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Attack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6a13594a-18a1-492d-a4d4-839fbb7293c2"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""881e4772-ab17-4387-a7f1-37cbe0d11acd"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Throw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -273,6 +335,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay_ResetIbisHeadRotations = m_Gameplay.FindAction("ResetIbisHeadRotations", throwIfNotFound: true);
         m_Gameplay_PickUpandDropItem = m_Gameplay.FindAction("Pick Up and Drop Item", throwIfNotFound: true);
         m_Gameplay_Honk = m_Gameplay.FindAction("Honk", throwIfNotFound: true);
+        m_Gameplay_Attack = m_Gameplay.FindAction("Attack", throwIfNotFound: true);
+        m_Gameplay_Throw = m_Gameplay.FindAction("Throw", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -339,6 +403,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_ResetIbisHeadRotations;
     private readonly InputAction m_Gameplay_PickUpandDropItem;
     private readonly InputAction m_Gameplay_Honk;
+    private readonly InputAction m_Gameplay_Attack;
+    private readonly InputAction m_Gameplay_Throw;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -348,6 +414,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @ResetIbisHeadRotations => m_Wrapper.m_Gameplay_ResetIbisHeadRotations;
         public InputAction @PickUpandDropItem => m_Wrapper.m_Gameplay_PickUpandDropItem;
         public InputAction @Honk => m_Wrapper.m_Gameplay_Honk;
+        public InputAction @Attack => m_Wrapper.m_Gameplay_Attack;
+        public InputAction @Throw => m_Wrapper.m_Gameplay_Throw;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -372,6 +440,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Honk.started += instance.OnHonk;
             @Honk.performed += instance.OnHonk;
             @Honk.canceled += instance.OnHonk;
+            @Attack.started += instance.OnAttack;
+            @Attack.performed += instance.OnAttack;
+            @Attack.canceled += instance.OnAttack;
+            @Throw.started += instance.OnThrow;
+            @Throw.performed += instance.OnThrow;
+            @Throw.canceled += instance.OnThrow;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -391,6 +465,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Honk.started -= instance.OnHonk;
             @Honk.performed -= instance.OnHonk;
             @Honk.canceled -= instance.OnHonk;
+            @Attack.started -= instance.OnAttack;
+            @Attack.performed -= instance.OnAttack;
+            @Attack.canceled -= instance.OnAttack;
+            @Throw.started -= instance.OnThrow;
+            @Throw.performed -= instance.OnThrow;
+            @Throw.canceled -= instance.OnThrow;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -415,5 +495,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnResetIbisHeadRotations(InputAction.CallbackContext context);
         void OnPickUpandDropItem(InputAction.CallbackContext context);
         void OnHonk(InputAction.CallbackContext context);
+        void OnAttack(InputAction.CallbackContext context);
+        void OnThrow(InputAction.CallbackContext context);
     }
 }

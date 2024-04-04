@@ -69,6 +69,14 @@ public class PlayerController : GameBehaviour
     [SerializeField] float dropForce;
     [SerializeField] float dropForce_Honking;
 
+    [Header("Throw")]
+    [SerializeField] float throwForce;
+
+    [Header("Attack")]
+    bool hasAttacked;
+    [SerializeField] float attackRate;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -253,6 +261,39 @@ public class PlayerController : GameBehaviour
 
     }
 
+    public void OnThrow()
+    {
+        if (targetTrash != null)
+        {
+            ExecuteAfterSeconds(1f, () => isHoldingTrash = false);
+
+            var tempTrashHolder = targetTrash;
+            targetTrash = null;
+
+            print("drop");
+
+            //apply a little bit of force forwards
+            tempTrashHolder.layer = LayerMask.NameToLayer("PickUpProps"); ;
+
+            tempTrashHolder.GetComponent<TrashItem>().Dropped();
+            if (isHonking) tempTrashHolder.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce, ForceMode.Force);
+
+
+        }
+    }
+
+    public void OnAttack()
+    {
+        if(!hasAttacked)
+        {
+            hasAttacked = true;
+
+            //attack animation here
+
+            ExecuteAfterSeconds(attackRate,()=> hasAttacked = false);
+        }
+    }
+
     void HonkCoolDown()
     {
         //over heat goes down
@@ -287,6 +328,16 @@ public class PlayerController : GameBehaviour
 
     }
 
+    public void OnHonk(InputAction.CallbackContext context)
+    {
+        var value = context.ReadValue<float>();
+        if (value == 0) isHonking = false;
+        else if (value == 1) isHonking = true;
+        print(isHonking);
+
+
+    }
+
     public void PickUpTargetItem(InputAction.CallbackContext context)
     {
 
@@ -311,16 +362,6 @@ public class PlayerController : GameBehaviour
         }
 
     }    
-
-    public void OnHonk(InputAction.CallbackContext context)
-    {
-        var value = context.ReadValue<float>();
-        if (value == 0) isHonking = false;
-        else if (value == 1) isHonking = true;
-        print(isHonking);
-
-
-    }
 
     public void DropHeldItem()
     {
@@ -357,6 +398,7 @@ public class PlayerController : GameBehaviour
         }
 
     }
+
     public void OnMove(InputAction.CallbackContext context)
     {
 
