@@ -96,11 +96,11 @@ public class PlayerInputHandler : GameBehaviour
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-
+        playerControls.OnAttack();
     }
     
     public void OnThrow()
     {
-
+        playerControls.OnThrow();
     }
 }

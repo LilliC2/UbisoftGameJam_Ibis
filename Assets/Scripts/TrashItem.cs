@@ -6,6 +6,7 @@ public class TrashItem : GameBehaviour
 {
     public GameObject holdPos;
     Rigidbody rb;
+    public float forceApplied = 500;
 
     // Start is called before the first frame update
     void Start()
@@ -25,13 +26,27 @@ public class TrashItem : GameBehaviour
     {
         holdPos = player_holdPos;
         rb.constraints = RigidbodyConstraints.FreezeAll;
-
+        //rb.Sleep();
     }
 
     public void Dropped()
     {
         holdPos = null;
+       // rb.WakeUp();
+
         rb.constraints = RigidbodyConstraints.None;
 
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (rb.velocity.magnitude > 2f && collision.gameObject.CompareTag("Player"))
+        {            
+            //apply force
+            print("hit");
+            var rb = collision.gameObject.GetComponent<Rigidbody>();
+            rb.AddForce(0, forceApplied, 0);
+
+        }
     }
 }

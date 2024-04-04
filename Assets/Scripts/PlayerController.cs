@@ -9,8 +9,10 @@ public class PlayerController : GameBehaviour
 {
     public int playerNum; //are they player 1 - 4?
 
-    [Header("Player Controls")]
 
+    public enum Action { Walking, Throwing, Honking, Attacking};
+    public Action currentAction;
+    [Header("Player Controls")]
 
     [SerializeField] float movementSpeed;
     [SerializeField] float movementSpeed_smallTrash;
@@ -71,6 +73,7 @@ public class PlayerController : GameBehaviour
 
     [Header("Throw")]
     [SerializeField] float throwForce;
+    bool hasThrown = false;
 
     [Header("Attack")]
     bool hasAttacked;
@@ -94,11 +97,30 @@ public class PlayerController : GameBehaviour
     // Update is called once per frame
     void Update()
     {
+        //change states
+        switch(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name)
+        {
+            case "IbisHonk":
+                currentAction = Action.Honking;
+                break;
+            
+            case "IbisAttack":
+                currentAction = Action.Attacking;
+                break;
+            case "IbisThrow":
+                currentAction = Action.Throwing;
+                break;
+            default:
+                currentAction = Action.Walking; break;
+        }
+
+
+
         if(movementNeck != Vector3.zero) isNeckMoving = true;
         else isNeckMoving = false;
 
         //change speed based on current held item
-        if (isHoldingTrash)
+        if (isHoldingTrash && targetTrash != null)
         {
             var tag = targetTrash.tag;
             print("change speed");
@@ -121,6 +143,7 @@ public class PlayerController : GameBehaviour
                     break;
             }
         }
+        else movementSpeed = movementSpeed_smallTrash;
 
         #region Body Movement
         //apply animation
@@ -133,10 +156,15 @@ public class PlayerController : GameBehaviour
 
         }
 
-        //move body
-        controller.Move(movementBody * movementSpeed * Time.deltaTime);
-        if (transform.localEulerAngles != Vector3.zero) directionBody = transform.localEulerAngles;
-        if (controller.velocity.magnitude < 1) transform.localEulerAngles = directionBody;
+        //do not move if throwing or attacking
+        if(Action.Attacking != currentAction && Action.Throwing != currentAction)
+        {
+            //move body
+            controller.Move(movementBody * movementSpeed * Time.deltaTime);
+            if (transform.localEulerAngles != Vector3.zero) directionBody = transform.localEulerAngles;
+            if (controller.velocity.magnitude < 1) transform.localEulerAngles = directionBody;
+        }
+
         #endregion
 
 
@@ -145,88 +173,92 @@ public class PlayerController : GameBehaviour
 
     private void LateUpdate()
     {
-        #region Neck/Head Movement
-
-        if (anim.GetCurrentAnimatorClipInfo(0)[0].clip.name != "IbisHonk")
+        if(currentAction == Action.Walking)
         {
-            if (!resetingRotations)
+            #region Neck/Head Movement
+
+            if (anim.GetCurrentAnimatorClipInfo(0)[0].clip.name != "IbisHonk")
             {
-                float xAxisRot = movementNeck.x * headSpeed;
-                float yAxisRot = movementNeck.y * headSpeed;
-
-                //clamp head rotations
-                neckXrotation -= yAxisRot;
-                neckXrotation = Mathf.Clamp(neckXrotation, -105, 35);
-                neckYrotation -= xAxisRot;
-                neckYrotation = Mathf.Clamp(neckYrotation, -90, 90);
-                //apply rotations
-                //if it hasn't changed, dont change it
-                var euler = Quaternion.Euler(neckXrotation, neckYrotation, 0f);
-                if (euler != Quaternion.Euler(defaultNeckRotation)) ibisNeck.transform.localRotation = Quaternion.Euler(neckXrotation, neckYrotation, 0f);
-
-
-
-                //print("Neck has moved on X axis by " + (de);
-            }
-            if (!isNeckMoving)
-            {
-                OnResetHeadRotations();
-            }
-
-
-
-
-
-        }
-        #endregion
-
-        #region Find Target Trash
-
-        if(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name != "IbisHonk" && !isHonking)
-        {
-            if (!isHoldingTrash)
-            {
-
-                var trashInRange = Physics.OverlapSphere(ibisHead.transform.position, ibisHeadTrashRange, _GM.pickUpPropsMask);
-
-                //print("trash range = " + trashInRange.Length);
-
-                //get closest trash item
-                foreach (var prop in trashInRange)
+                if (!resetingRotations)
                 {
-                    if (targetTrash == null) targetTrash = prop.gameObject;
-                    else if (Vector3.Distance(prop.transform.position, ibisHead.transform.position) < Vector3.Distance(targetTrash.transform.position, ibisHead.transform.position))
-                        targetTrash = prop.gameObject;
+                    float xAxisRot = movementNeck.x * headSpeed;
+                    float yAxisRot = movementNeck.y * headSpeed;
+
+                    //clamp head rotations
+                    neckXrotation -= yAxisRot;
+                    neckXrotation = Mathf.Clamp(neckXrotation, -105, 35);
+                    neckYrotation -= xAxisRot;
+                    neckYrotation = Mathf.Clamp(neckYrotation, -90, 90);
+                    //apply rotations
+                    //if it hasn't changed, dont change it
+                    var euler = Quaternion.Euler(neckXrotation, neckYrotation, 0f);
+                    if (euler != Quaternion.Euler(defaultNeckRotation)) ibisNeck.transform.localRotation = Quaternion.Euler(neckXrotation, neckYrotation, 0f);
+
+
+
+                    //print("Neck has moved on X axis by " + (de);
+                }
+                if (!isNeckMoving)
+                {
+                    OnResetHeadRotations();
                 }
 
 
-                //ibisHead.transform.LookAt(targetTrash.transform.position, Vector3.back);
-
-                
-                //Vector3 rotationV3 = Vector3.Lerp(new Vector3(defaultHeadRotation.x + 10, defaultHeadRotation.y, defaultHeadRotation.z)
-                //    , new Vector3(defaultHeadRotation.x - 90, defaultHeadRotation.y, defaultHeadRotation.z), 0.5f);
-
-                //print(rotationV3);
-                //ibisHead.transform.localEulerAngles = rotationV3;
-
-
-
-
 
 
 
             }
-            else
+            #endregion
+
+            #region Find Target Trash
+
+            if (anim.GetCurrentAnimatorClipInfo(0)[0].clip.name != "IbisHonk" && !isHonking)
             {
-                print("turn head");
-                Vector3 rotation120 = new Vector3(120, ibisHead.transform.eulerAngles.y, ibisHead.transform.eulerAngles.z);
-                ibisHead.transform.eulerAngles = rotation120;
+                if (!isHoldingTrash)
+                {
 
-                //if (!isHoldingTrigger) DropHeldItem();
+                    var trashInRange = Physics.OverlapSphere(ibisHead.transform.position, ibisHeadTrashRange, _GM.pickUpPropsMask);
+
+                    //print("trash range = " + trashInRange.Length);
+
+                    //get closest trash item
+                    foreach (var prop in trashInRange)
+                    {
+                        if (targetTrash == null) targetTrash = prop.gameObject;
+                        else if (Vector3.Distance(prop.transform.position, ibisHead.transform.position) < Vector3.Distance(targetTrash.transform.position, ibisHead.transform.position))
+                            targetTrash = prop.gameObject;
+                    }
+
+
+                    //ibisHead.transform.LookAt(targetTrash.transform.position, Vector3.back);
+
+
+                    //Vector3 rotationV3 = Vector3.Lerp(new Vector3(defaultHeadRotation.x + 10, defaultHeadRotation.y, defaultHeadRotation.z)
+                    //    , new Vector3(defaultHeadRotation.x - 90, defaultHeadRotation.y, defaultHeadRotation.z), 0.5f);
+
+                    //print(rotationV3);
+                    //ibisHead.transform.localEulerAngles = rotationV3;
+
+
+
+
+
+
+
+                }
+                else
+                {
+                    print("turn head");
+                    Vector3 rotation120 = new Vector3(120, ibisHead.transform.eulerAngles.y, ibisHead.transform.eulerAngles.z);
+                    ibisHead.transform.eulerAngles = rotation120;
+
+                    //if (!isHoldingTrigger) DropHeldItem();
+                }
             }
+
+            #endregion
+
         }
-        
-        #endregion
 
 
         #region Honk
@@ -263,6 +295,17 @@ public class PlayerController : GameBehaviour
 
     public void OnThrow()
     {
+        if (targetTrash != null && !hasThrown && isHoldingTrash)
+        {
+            hasThrown = true;
+            anim.SetTrigger("Throw");
+
+        }
+
+    }
+
+    public void Throw()
+    {
         if (targetTrash != null)
         {
             ExecuteAfterSeconds(1f, () => isHoldingTrash = false);
@@ -270,18 +313,18 @@ public class PlayerController : GameBehaviour
             var tempTrashHolder = targetTrash;
             targetTrash = null;
 
-            print("drop");
+            print("throw");
+
+            tempTrashHolder.GetComponent<TrashItem>().Dropped();
 
             //apply a little bit of force forwards
             tempTrashHolder.layer = LayerMask.NameToLayer("PickUpProps"); ;
 
-            tempTrashHolder.GetComponent<TrashItem>().Dropped();
-            if (isHonking) tempTrashHolder.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce, ForceMode.Force);
+            tempTrashHolder.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce, ForceMode.Force);
 
-
+            hasThrown = false;
         }
     }
-
     public void OnAttack()
     {
         if(!hasAttacked)
@@ -289,6 +332,7 @@ public class PlayerController : GameBehaviour
             hasAttacked = true;
 
             //attack animation here
+            anim.SetTrigger("Attack");
 
             ExecuteAfterSeconds(attackRate,()=> hasAttacked = false);
         }
