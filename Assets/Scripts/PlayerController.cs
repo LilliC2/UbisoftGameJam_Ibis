@@ -11,8 +11,11 @@ public class PlayerController : GameBehaviour
 
     [Header("Player Controls")]
 
-    [SerializeField]
-    float movementSpeed;
+
+    [SerializeField] float movementSpeed;
+    [SerializeField] float movementSpeed_smallTrash;
+    [SerializeField] float movementSpeed_mediumTrash;
+    [SerializeField] float movementSpeed_LargeTrash;
     [SerializeField]
     float headSpeed;
 
@@ -85,6 +88,31 @@ public class PlayerController : GameBehaviour
     {
         if(movementNeck != Vector3.zero) isNeckMoving = true;
         else isNeckMoving = false;
+
+        //change speed based on current held item
+        if (isHoldingTrash)
+        {
+            var tag = targetTrash.tag;
+            print("change speed");
+            switch (tag)
+            {
+                case "SmallTrash":
+                    //speed stay same
+                    movementSpeed = movementSpeed_smallTrash;
+                    break;
+                case "MediumTrash":
+                    movementSpeed = movementSpeed_mediumTrash;
+                    break;
+                case "BigTrash":
+                    movementSpeed = movementSpeed_LargeTrash;
+
+                    break;
+                default:
+                    movementSpeed = movementSpeed_smallTrash;
+
+                    break;
+            }
+        }
 
         #region Body Movement
         //apply animation

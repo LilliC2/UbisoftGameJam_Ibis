@@ -114,6 +114,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNum: 0
   movementSpeed: 3
+  movementSpeed_smallTrash: 3
+  movementSpeed_mediumTrash: 2
+  movementSpeed_LargeTrash: 1
   headSpeed: 1
   anim: {fileID: 676810144833270906}
   isHonking: 0
