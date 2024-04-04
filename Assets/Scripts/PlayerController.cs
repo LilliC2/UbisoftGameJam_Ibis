@@ -298,33 +298,43 @@ public class PlayerController : GameBehaviour
         if (targetTrash != null && !hasThrown && isHoldingTrash)
         {
             hasThrown = true;
-            anim.SetTrigger("Throw");
 
+            Throw();
         }
 
     }
 
     public void Throw()
     {
+
+        var tempTrashHolder = targetTrash;
+
         if (targetTrash != null)
         {
+            anim.SetTrigger("Throw");
+
+            hasThrown = false;
+
             ExecuteAfterSeconds(1f, () => isHoldingTrash = false);
 
-            var tempTrashHolder = targetTrash;
             targetTrash = null;
 
-            print("throw");
+            print(tempTrashHolder);
 
-            tempTrashHolder.GetComponent<TrashItem>().Dropped();
+            //tempTrashHolder.GetComponent<TrashItem>().Dropped();
+            tempTrashHolder.GetComponent<TrashItem>().Thrown(gameObject);
+
+
+            if (tempTrashHolder.GetComponent<TrashItem>().holdPos != null) print("Error");
 
             //apply a little bit of force forwards
             tempTrashHolder.layer = LayerMask.NameToLayer("PickUpProps"); ;
 
             tempTrashHolder.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce, ForceMode.Force);
 
-            hasThrown = false;
         }
     }
+
     public void OnAttack()
     {
         if(!hasAttacked)
