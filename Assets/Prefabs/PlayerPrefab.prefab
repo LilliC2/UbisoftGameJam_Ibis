@@ -115,13 +115,19 @@ MonoBehaviour:
   playerNum: 0
   movementSpeed: 3
   headSpeed: 1
-  isHoldingTrigger: 0
   anim: {fileID: 676810144833270906}
+  isHonking: 0
+  isOnHonkCooldown: 0
+  currentHonkOverheat: 0
+  maxHonkOverheat: 5
+  honkResetTime: 0.5
+  honkFirerate: 1
   isNeckMoving: 0
   ibisHead: {fileID: 3303847329216947380}
   ibisNeck: {fileID: 8114669823369966393}
   targetTrash: {fileID: 0}
   ibisHeadTrashRange: 1
+  isHoldingTrash: 0
   holdTrashPos: {fileID: 4403681248474989621}
 --- !u!33 &1517317574236690676
 MeshFilter:
@@ -303,6 +309,10 @@ PrefabInstance:
     - target: {fileID: 3690395227597629202, guid: 928938db4e4fd5449a5a227312ea12f3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -8.763
+      objectReference: {fileID: 0}
+    - target: {fileID: 3717794752347328144, guid: 928938db4e4fd5449a5a227312ea12f3, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7311715446712210666, guid: 928938db4e4fd5449a5a227312ea12f3, type: 3}
       propertyPath: m_RootOrder

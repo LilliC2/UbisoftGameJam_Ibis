@@ -62,6 +62,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Honk"",
+                    ""type"": ""Button"",
+                    ""id"": ""dd09bd39-557a-48dc-8df1-2e4165fff7a5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -229,6 +238,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Pick Up and Drop Item"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""44e74467-58a5-4426-8a5c-2785d7ab1ccb"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Honk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d521a3e-6b48-4e73-87fe-7ca0e216f047"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Honk"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -241,6 +272,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay_MoveIbisHead = m_Gameplay.FindAction("Move Ibis Head", throwIfNotFound: true);
         m_Gameplay_ResetIbisHeadRotations = m_Gameplay.FindAction("ResetIbisHeadRotations", throwIfNotFound: true);
         m_Gameplay_PickUpandDropItem = m_Gameplay.FindAction("Pick Up and Drop Item", throwIfNotFound: true);
+        m_Gameplay_Honk = m_Gameplay.FindAction("Honk", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -306,6 +338,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_MoveIbisHead;
     private readonly InputAction m_Gameplay_ResetIbisHeadRotations;
     private readonly InputAction m_Gameplay_PickUpandDropItem;
+    private readonly InputAction m_Gameplay_Honk;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -314,6 +347,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @MoveIbisHead => m_Wrapper.m_Gameplay_MoveIbisHead;
         public InputAction @ResetIbisHeadRotations => m_Wrapper.m_Gameplay_ResetIbisHeadRotations;
         public InputAction @PickUpandDropItem => m_Wrapper.m_Gameplay_PickUpandDropItem;
+        public InputAction @Honk => m_Wrapper.m_Gameplay_Honk;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -335,6 +369,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PickUpandDropItem.started += instance.OnPickUpandDropItem;
             @PickUpandDropItem.performed += instance.OnPickUpandDropItem;
             @PickUpandDropItem.canceled += instance.OnPickUpandDropItem;
+            @Honk.started += instance.OnHonk;
+            @Honk.performed += instance.OnHonk;
+            @Honk.canceled += instance.OnHonk;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -351,6 +388,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @PickUpandDropItem.started -= instance.OnPickUpandDropItem;
             @PickUpandDropItem.performed -= instance.OnPickUpandDropItem;
             @PickUpandDropItem.canceled -= instance.OnPickUpandDropItem;
+            @Honk.started -= instance.OnHonk;
+            @Honk.performed -= instance.OnHonk;
+            @Honk.canceled -= instance.OnHonk;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -374,5 +414,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnMoveIbisHead(InputAction.CallbackContext context);
         void OnResetIbisHeadRotations(InputAction.CallbackContext context);
         void OnPickUpandDropItem(InputAction.CallbackContext context);
+        void OnHonk(InputAction.CallbackContext context);
     }
 }

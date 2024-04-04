@@ -89,8 +89,8 @@ public class PlayerInputHandler : GameBehaviour
         playerControls.PickUpTargetItem(context);
     }
 
-    public void OnDropItem()
+    public void OnHonk(InputAction.CallbackContext context)
     {
-        playerControls.DropHeldItem();
+        playerControls.OnHonk(context);
     }
 }

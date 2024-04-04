@@ -9,6 +9,8 @@ public class PlayerController : GameBehaviour
 {
     public int playerNum; //are they player 1 - 4?
 
+    [Header("Player Controls")]
+
     [SerializeField]
     float movementSpeed;
     [SerializeField]
@@ -21,29 +23,40 @@ public class PlayerController : GameBehaviour
     Vector3 movementBody;
     Vector3 directionBody;
 
-    //ibis head controlls
-    Vector3 movementNeck;
-    Vector3 defaultNeckRotation = new Vector3(-71.566f,0,0);
-    Vector3 defaultHeadRotation = new Vector3(90, 0, 0);
 
-    float neckXrotation;
-    float neckYrotation;
-
-    [SerializeField]
-    bool isHoldingTrigger;
-
-    bool resetingRotations;
 
     [SerializeField]
     Animator anim;
 
+
+    [Header("Honk")]
+    [SerializeField]
+    bool isHonking;
+    [SerializeField] bool isOnHonkCooldown;
+    [SerializeField] float currentHonkOverheat;
+    [SerializeField] float maxHonkOverheat;
+    [SerializeField] float honkResetTime;
+    bool hasHonked;
+    [SerializeField] float honkFirerate;
+
+
+    [Header("Head and Neck Movement")]
     [SerializeField]
     bool isNeckMoving;
-
     [SerializeField]
     public GameObject ibisHead;
     [SerializeField]
     public GameObject ibisNeck;
+    //ibis head controlls
+    Vector3 movementNeck;
+    Vector3 defaultNeckRotation = new Vector3(-71.566f, 0, 0);
+    Vector3 defaultHeadRotation = new Vector3(90, 0, 0);
+    bool resetingRotations;
+
+    float neckXrotation;
+    float neckYrotation;
+
+    [Header("Pick Up/Drop Items")]
 
     //picking up trash controls
     public GameObject targetTrash;
@@ -88,7 +101,8 @@ public class PlayerController : GameBehaviour
         if (controller.velocity.magnitude < 1) transform.localEulerAngles = directionBody;
         #endregion
 
- 
+
+
     }
 
     private void LateUpdate()
@@ -135,7 +149,7 @@ public class PlayerController : GameBehaviour
             }
 
 
-            // ibisHead.transform.LookAt(targetTrash.transform.position, Vector3.back);
+            //ibisHead.transform.LookAt(targetTrash.transform.position, Vector3.back);
 
 
             Vector3 rotationV3 = Vector3.Lerp(new Vector3(defaultHeadRotation.x + 10, defaultHeadRotation.y, defaultHeadRotation.z)
@@ -145,17 +159,38 @@ public class PlayerController : GameBehaviour
             ibisHead.transform.localEulerAngles = rotationV3;
 
 
-        
+
 
 
 
         }
-        else
+        else if(!isHonking)
         {
+            print("turn head");
             ibisHead.transform.eulerAngles = new Vector3(120, ibisHead.transform.eulerAngles.y, ibisHead.transform.eulerAngles.z);
             //if (!isHoldingTrigger) DropHeldItem();
         }
 
+
+        #endregion
+
+        #region Honk
+
+        if (currentHonkOverheat <= maxHonkOverheat && !isOnHonkCooldown && isHonking)
+        {
+           // ibisHead.transform.eulerAngles = new Vector3(0, ibisHead.transform.eulerAngles.y, ibisHead.transform.eulerAngles.z);
+
+            anim.SetBool("Honking", isHonking);
+            //honk
+            Honk();
+        }
+        else anim.SetBool("Honking", false);
+
+        //passive cooldowm
+        if(!isHonking && !isOnHonkCooldown)
+        {
+            if (currentHonkOverheat > maxHonkOverheat) currentHonkOverheat -= 0.5f;
+        }
 
         #endregion
     }
@@ -165,10 +200,43 @@ public class PlayerController : GameBehaviour
 
         controls.Gameplay.Enable();
     }
-
     private void OnDisable()
     {
         controls.Gameplay.Disable();
+
+    }
+
+    void HonkCoolDown()
+    {
+        //over heat goes down
+        if(currentHonkOverheat >=0) 
+        {
+            isOnHonkCooldown = true;
+            currentHonkOverheat -= 0.5f;
+
+            //make sure it doesnt go into negative numbers
+            if (currentHonkOverheat <= 0)
+            {
+                isOnHonkCooldown = false;
+                currentHonkOverheat = 0;
+            }
+            else ExecuteAfterSeconds(honkResetTime, () => HonkCoolDown());
+        }
+        
+    }
+
+    void Honk()
+    {
+
+        if(isHoldingTrash) DropHeldItem();
+        if(!hasHonked)
+        {
+            hasHonked = true;
+            currentHonkOverheat += 0.5f;
+
+            if (currentHonkOverheat > maxHonkOverheat) HonkCoolDown();
+            ExecuteAfterSeconds(honkFirerate, () => hasHonked = false);
+        }
 
     }
 
@@ -192,33 +260,24 @@ public class PlayerController : GameBehaviour
         {
             DropHeldItem();
         }
-        //var value = context.ReadValue<float>();
-        //print(value);
-        //if (value == 0) isHoldingTrigger = false;
-        //else if (value == 1)
-        //{
-        //    isHoldingTrigger = true;
-
-        //    if (targetTrash != null)
-        //    {
-        //        if (Vector3.Distance(holdTrashPos.transform.position, targetTrash.transform.position) < ibisHeadTrashRange && !isHoldingTrash)
-        //        {
-        //            isHoldingTrash = true;
-        //            print("pick up");
-        //            targetTrash.GetComponent<TrashItem>().PickedUp(holdTrashPos);
-
-        //        }
-        //    }
-        //}
-
-
 
     }    
+
+    public void OnHonk(InputAction.CallbackContext context)
+    {
+        var value = context.ReadValue<float>();
+        if (value == 0) isHonking = false;
+        else if (value == 1) isHonking = true;
+        print(isHonking);
+
+
+    }
 
     public void DropHeldItem()
     {
         if(targetTrash != null)
         {
+            isHoldingTrash = false;
             print("drop");
             targetTrash.GetComponent<TrashItem>().Dropped();
             targetTrash = null;
