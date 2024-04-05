@@ -387,7 +387,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -883,8 +883,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142707705}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 1.3182, y: -0, z: 1.9924}
+  m_LocalScale: {x: 3.144225, y: 1, z: 2.7345812}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -946,10 +946,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Soda_Full
       objectReference: {fileID: 0}
-    - target: {fileID: 5837408464934348996, guid: 1a51bca42860cc641ac70eb4f0d8eb27, type: 3}
-      propertyPath: forceApplied
-      value: 800
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -966,10 +962,6 @@ PrefabInstance:
     - target: {fileID: 804772206295995772, guid: 3ca93eebfbdd6874dab1c24bf364dc92, type: 3}
       propertyPath: m_Name
       value: BottleCap_Bent_PP
-      objectReference: {fileID: 0}
-    - target: {fileID: 1625252521657222550, guid: 3ca93eebfbdd6874dab1c24bf364dc92, type: 3}
-      propertyPath: forceApplied
-      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 6386039997733316772, guid: 3ca93eebfbdd6874dab1c24bf364dc92, type: 3}
       propertyPath: m_RootOrder
@@ -1032,10 +1024,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PackCigs_Full
       objectReference: {fileID: 0}
-    - target: {fileID: 2020575639899832127, guid: c96d8e399cf58c04fad014d9cb4c5696, type: 3}
-      propertyPath: forceApplied
-      value: 800
-      objectReference: {fileID: 0}
     - target: {fileID: 4900343873019163993, guid: c96d8e399cf58c04fad014d9cb4c5696, type: 3}
       propertyPath: m_RootOrder
       value: 19
@@ -1093,10 +1081,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 76004571454046690, guid: ddd439f951a5e9d43ae3b2fa63242fb0, type: 3}
-      propertyPath: forceApplied
-      value: 800
-      objectReference: {fileID: 0}
     - target: {fileID: 5077887928474083804, guid: ddd439f951a5e9d43ae3b2fa63242fb0, type: 3}
       propertyPath: m_Name
       value: PackCigs_Empty
@@ -1206,10 +1190,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8745819368469869381, guid: e0ffd57cec6132a43ab2793743d32c07, type: 3}
-      propertyPath: forceApplied
-      value: 800
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1223,10 +1203,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 460616541416643495, guid: cd6e9b660ac52664fa7e51c0e78c1187, type: 3}
-      propertyPath: forceApplied
-      value: 800
-      objectReference: {fileID: 0}
     - target: {fileID: 2334391532157091930, guid: cd6e9b660ac52664fa7e51c0e78c1187, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -1288,10 +1264,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3468623151264250572, guid: 3ff574e364134574da6399fe5e79f59a, type: 3}
-      propertyPath: forceApplied
-      value: 800
-      objectReference: {fileID: 0}
     - target: {fileID: 4069923005347266080, guid: 3ff574e364134574da6399fe5e79f59a, type: 3}
       propertyPath: m_RootOrder
       value: 21
@@ -1357,10 +1329,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Vegimite_Used
       objectReference: {fileID: 0}
-    - target: {fileID: 3097169231306630913, guid: 8d37e4420aa0e2946ade526adb03f9fa, type: 3}
-      propertyPath: forceApplied
-      value: 800
-      objectReference: {fileID: 0}
     - target: {fileID: 3233515209279851731, guid: 8d37e4420aa0e2946ade526adb03f9fa, type: 3}
       propertyPath: m_RootOrder
       value: 25
@@ -1418,10 +1386,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3145302862583945615, guid: 15f0f5f17ef626a47b988c7d6c4d9392, type: 3}
-      propertyPath: forceApplied
-      value: 800
-      objectReference: {fileID: 0}
     - target: {fileID: 3330465650547211595, guid: 15f0f5f17ef626a47b988c7d6c4d9392, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -1483,10 +1447,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4647937873179171669, guid: f748d985bcf19cd48890e481cdf14f3f, type: 3}
-      propertyPath: forceApplied
-      value: 800
-      objectReference: {fileID: 0}
     - target: {fileID: 7220752308553402751, guid: f748d985bcf19cd48890e481cdf14f3f, type: 3}
       propertyPath: m_Name
       value: Chicken_Leg
@@ -1596,10 +1556,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BottleCap_Bent_CC
       objectReference: {fileID: 0}
-    - target: {fileID: 6986548521213468064, guid: 4277679f64435614796a2fabbbc87157, type: 3}
-      propertyPath: forceApplied
-      value: 800
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1661,10 +1617,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bannana_Full
       objectReference: {fileID: 0}
-    - target: {fileID: 6808069177603664744, guid: 2578d5206d0975547adf739f0e518a26, type: 3}
-      propertyPath: forceApplied
-      value: 800
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1678,13 +1630,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2024646549606067774, guid: 0ba44ad84953cf14f95d658fa3591b76, type: 3}
-      propertyPath: forceApplied
-      value: 800
-      objectReference: {fileID: 0}
     - target: {fileID: 2636563316479433425, guid: 0ba44ad84953cf14f95d658fa3591b76, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2636563316479433425, guid: 0ba44ad84953cf14f95d658fa3591b76, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1743,10 +1691,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2888559251949878356, guid: 858f8088af68aad498075f056369db02, type: 3}
-      propertyPath: forceApplied
-      value: 800
-      objectReference: {fileID: 0}
     - target: {fileID: 5616227454101299337, guid: 858f8088af68aad498075f056369db02, type: 3}
       propertyPath: m_RootOrder
       value: 24
@@ -1808,10 +1752,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4800429006925054832, guid: 84dfa186d1db1ec4db4fd22754f0cb0f, type: 3}
-      propertyPath: forceApplied
-      value: 800
-      objectReference: {fileID: 0}
     - target: {fileID: 5835494114184064655, guid: 84dfa186d1db1ec4db4fd22754f0cb0f, type: 3}
       propertyPath: m_Name
       value: Chicken_Bone
@@ -1921,10 +1861,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chicken_HalfEaten
       objectReference: {fileID: 0}
-    - target: {fileID: 4636605812310724701, guid: 35d9efa9903276b4fa02704fd525c090, type: 3}
-      propertyPath: forceApplied
-      value: 800
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1938,10 +1874,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 702797911627987141, guid: 25aa188daaf31a34892ba6de695aa3f1, type: 3}
-      propertyPath: forceApplied
-      value: 800
-      objectReference: {fileID: 0}
     - target: {fileID: 5506696143678436339, guid: 25aa188daaf31a34892ba6de695aa3f1, type: 3}
       propertyPath: m_RootOrder
       value: 14

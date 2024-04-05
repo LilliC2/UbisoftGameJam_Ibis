@@ -12,7 +12,7 @@ public class ThrowAnimEvent : GameBehaviour
     public void ThrowEvent()
     {
         print("Throw event");
-        //playerController.Throw();
+        playerController.Throw();
     
     
     }

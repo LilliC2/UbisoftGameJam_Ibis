@@ -10,9 +10,11 @@ public class PlayerController : GameBehaviour
     public int playerNum; //are they player 1 - 4?
 
 
-    public enum Action { Walking, Throwing, Honking, Attacking};
+    public enum Action { Walking, Throwing, Honking, Attacking, Hit};
     public Action currentAction;
     [Header("Player Controls")]
+
+    Rigidbody rb;
 
     [SerializeField] float movementSpeed;
     [SerializeField] float movementSpeed_smallTrash;
@@ -31,7 +33,7 @@ public class PlayerController : GameBehaviour
 
 
     [SerializeField]
-    Animator anim;
+    public Animator anim;
 
 
     [Header("Honk")]
@@ -67,6 +69,8 @@ public class PlayerController : GameBehaviour
     public GameObject targetTrash;
     [SerializeField] float ibisHeadTrashRange;
     [SerializeField] bool isHoldingTrash = false;
+    bool pickUpCoolDown;
+    bool dropCoolDown;
     [SerializeField] GameObject holdTrashPos; //GO inside ibis mouth
     [SerializeField] float dropForce;
     [SerializeField] float dropForce_Honking;
@@ -78,6 +82,7 @@ public class PlayerController : GameBehaviour
     [Header("Attack")]
     bool hasAttacked;
     [SerializeField] float attackRate;
+    bool hasBeenHit = false;
 
 
     // Start is called before the first frame update
@@ -86,7 +91,7 @@ public class PlayerController : GameBehaviour
         //defaultHeadRotation = ibisHead.transform.localRotation.eulerAngles;
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
-
+        rb = GetComponent<Rigidbody>();
         controls = new PlayerControls();
 
         groundCheck = transform.Find("GroundCheck").gameObject;
@@ -109,6 +114,9 @@ public class PlayerController : GameBehaviour
                 break;
             case "IbisThrow":
                 currentAction = Action.Throwing;
+                break;
+            case "IbisHit":
+                currentAction = Action.Hit;
                 break;
             default:
                 currentAction = Action.Walking; break;
@@ -157,7 +165,7 @@ public class PlayerController : GameBehaviour
         }
 
         //do not move if throwing or attacking
-        if(Action.Attacking != currentAction && Action.Throwing != currentAction)
+        if(currentAction != Action.Attacking&& currentAction != Action.Throwing && currentAction != Action.Hit)
         {
             //move body
             controller.Move(movementBody * movementSpeed * Time.deltaTime);
@@ -263,7 +271,7 @@ public class PlayerController : GameBehaviour
 
         #region Honk
 
-        if (currentHonkOverheat <= maxHonkOverheat && !isOnHonkCooldown && isHonking)
+        if (currentHonkOverheat <= maxHonkOverheat && !isOnHonkCooldown && isHonking && currentAction != Action.Hit)
         {
            // ibisHead.transform.eulerAngles = new Vector3(0, ibisHead.transform.eulerAngles.y, ibisHead.transform.eulerAngles.z);
 
@@ -293,13 +301,37 @@ public class PlayerController : GameBehaviour
 
     }
 
+    public void GotHit(Vector3 direction, float forceApplied)
+    {
+        print("GOT HIT FUNCTION");
+        if(!hasBeenHit) //so animation doesnt run more than once
+        {
+            hasBeenHit = true;
+            anim.SetTrigger("Hit");
+
+        }
+
+        rb.isKinematic = false;
+        controller.enabled = false;
+        rb.AddForce(direction * forceApplied, ForceMode.Force);
+
+        ExecuteAfterSeconds(1, () => ResetRB(rb, controller));
+    }
+
+    void ResetRB(Rigidbody rb, CharacterController controller)
+    {
+        controller.enabled = true;
+        hasBeenHit = false;
+        rb.isKinematic = true;
+    }
     public void OnThrow()
     {
-        if (targetTrash != null && !hasThrown && isHoldingTrash)
+        if (targetTrash != null && !hasThrown && isHoldingTrash && currentAction !=Action.Hit)
         {
             hasThrown = true;
+            anim.SetTrigger("Throw");
 
-            Throw();
+            //Throw();
         }
 
     }
@@ -311,7 +343,6 @@ public class PlayerController : GameBehaviour
 
         if (targetTrash != null)
         {
-            anim.SetTrigger("Throw");
 
             hasThrown = false;
 
@@ -337,7 +368,7 @@ public class PlayerController : GameBehaviour
 
     public void OnAttack()
     {
-        if(!hasAttacked)
+        if(!hasAttacked && currentAction != Action.Hit)
         {
             hasAttacked = true;
 
@@ -369,15 +400,18 @@ public class PlayerController : GameBehaviour
 
     void Honk()
     {
-
-        if(isHoldingTrash) DropHeldItem();
-        if(!hasHonked)
+        if(currentAction != Action.Hit)
         {
-            hasHonked = true;
-            currentHonkOverheat += 0.5f;
+            if (isHoldingTrash) DropHeldItem();
+            if (!hasHonked)
+            {
+                hasHonked = true;
+                currentHonkOverheat += 0.5f;
 
-            if (currentHonkOverheat > maxHonkOverheat) HonkCoolDown();
-            ExecuteAfterSeconds(honkFirerate, () => hasHonked = false);
+                if (currentHonkOverheat > maxHonkOverheat) HonkCoolDown();
+                ExecuteAfterSeconds(honkFirerate, () => hasHonked = false);
+            }
+
         }
 
     }
@@ -395,25 +429,31 @@ public class PlayerController : GameBehaviour
     public void PickUpTargetItem(InputAction.CallbackContext context)
     {
 
-        if (targetTrash != null && !isHoldingTrash)
+        if(currentAction != Action.Hit)
         {
-            if (Vector3.Distance(holdTrashPos.transform.position, targetTrash.transform.position) < 0.5f && !isHoldingTrash)
+            if (targetTrash != null && !isHoldingTrash && !dropCoolDown)
             {
-                ExecuteAfterSeconds(0.5f, () =>  isHoldingTrash = true); 
+                if (Vector3.Distance(holdTrashPos.transform.position, targetTrash.transform.position) < 0.5f && !isHoldingTrash)
+                {
+                    isHoldingTrash = true;
+                    pickUpCoolDown = true;
 
-                targetTrash.layer = LayerMask.NameToLayer("HeldProps");
+                    targetTrash.layer = LayerMask.NameToLayer("HeldProps");
 
-                print("pick up");
-                targetTrash.GetComponent<TrashItem>().PickedUp(holdTrashPos);
+                    print("pick up " + targetTrash.name);
+                    targetTrash.GetComponent<TrashItem>().PickedUp(holdTrashPos);
+                    ExecuteAfterSeconds(1, () => pickUpCoolDown = false); //so it doesn't drop it instantly
+                }
+                return;
+
             }
-            return;
 
+            else if (isHoldingTrash && !pickUpCoolDown)
+            {
+                DropHeldItem();
+            }
         }
 
-        else if (isHoldingTrash)
-        {
-            DropHeldItem();
-        }
 
     }    
 
@@ -421,8 +461,8 @@ public class PlayerController : GameBehaviour
     {
         if(targetTrash != null)
         {
-            ExecuteAfterSeconds(1f, () => isHoldingTrash = false);
-
+            isHoldingTrash = false;
+            dropCoolDown = true;
             var tempTrashHolder = targetTrash;
             targetTrash = null;
 
@@ -435,6 +475,7 @@ public class PlayerController : GameBehaviour
             if(isHonking) tempTrashHolder.GetComponent<Rigidbody>().AddForce(transform.forward * dropForce_Honking, ForceMode.Force);
             else tempTrashHolder.GetComponent<Rigidbody>().AddForce(transform.forward * dropForce, ForceMode.Force);
 
+            ExecuteAfterSeconds(1, () => dropCoolDown = false);
 
 
         }

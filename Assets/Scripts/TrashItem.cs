@@ -44,35 +44,29 @@ public class TrashItem : GameBehaviour
         holdPos = null;
         rb.constraints = RigidbodyConstraints.None;
         thrownFrom = player;
-        print(player);
 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (rb.velocity.magnitude > 2f &&collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && thrownFrom != null)
         {
             if(collision.gameObject != thrownFrom)
             {
                 var direction = (collision.gameObject.transform.position - gameObject.transform.position).normalized;
                 //apply force
                 print("hit");
-                var rb = collision.gameObject.GetComponent<Rigidbody>();
 
-                rb.isKinematic = false;
-                rb.AddForce(direction * forceApplied, ForceMode.Force);
+                collision.gameObject.GetComponent<PlayerController>().GotHit(direction, forceApplied);
 
-                ExecuteAfterSeconds(1, () => ResetRB(rb));
+                ExecuteAfterSeconds(1, () => thrownFrom = null);
+
+
             }
- 
+
         }
     }
 
-    void ResetRB(Rigidbody rb)
-    {
-        rb.isKinematic = true;
-        thrownFrom = null;
-    }
 
 
 }
