@@ -103,4 +103,10 @@ public class PlayerInputHandler : GameBehaviour
     {
         playerControls.OnThrow();
     }
+
+    public void OnEmote(int emoteNum)
+    {
+        print("Emote" +  emoteNum);
+        playerControls.OnEmote(emoteNum);
+    }
 }
