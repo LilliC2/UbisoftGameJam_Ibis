@@ -38,8 +38,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Move Ibis Head"",
-                    ""type"": ""Button"",
+                    ""type"": ""Value"",
                     ""id"": ""3388aa6d-b775-4348-8369-5aba944c6001"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ResetIbisHeadRotations"",
+                    ""type"": ""Button"",
+                    ""id"": ""50fb276d-3bcc-4fd0-a5bc-52ac9072d35e"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -68,6 +77,17 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Move Ibis Head"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""161911c9-29b4-48ae-842c-8e9c992e4ca6"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": ""Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetIbisHeadRotations"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -78,6 +98,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_Movement = m_Gameplay.FindAction("Movement", throwIfNotFound: true);
         m_Gameplay_MoveIbisHead = m_Gameplay.FindAction("Move Ibis Head", throwIfNotFound: true);
+        m_Gameplay_ResetIbisHeadRotations = m_Gameplay.FindAction("ResetIbisHeadRotations", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -141,12 +162,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_Movement;
     private readonly InputAction m_Gameplay_MoveIbisHead;
+    private readonly InputAction m_Gameplay_ResetIbisHeadRotations;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
         public GameplayActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Gameplay_Movement;
         public InputAction @MoveIbisHead => m_Wrapper.m_Gameplay_MoveIbisHead;
+        public InputAction @ResetIbisHeadRotations => m_Wrapper.m_Gameplay_ResetIbisHeadRotations;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -162,6 +185,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @MoveIbisHead.started += instance.OnMoveIbisHead;
             @MoveIbisHead.performed += instance.OnMoveIbisHead;
             @MoveIbisHead.canceled += instance.OnMoveIbisHead;
+            @ResetIbisHeadRotations.started += instance.OnResetIbisHeadRotations;
+            @ResetIbisHeadRotations.performed += instance.OnResetIbisHeadRotations;
+            @ResetIbisHeadRotations.canceled += instance.OnResetIbisHeadRotations;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -172,6 +198,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @MoveIbisHead.started -= instance.OnMoveIbisHead;
             @MoveIbisHead.performed -= instance.OnMoveIbisHead;
             @MoveIbisHead.canceled -= instance.OnMoveIbisHead;
+            @ResetIbisHeadRotations.started -= instance.OnResetIbisHeadRotations;
+            @ResetIbisHeadRotations.performed -= instance.OnResetIbisHeadRotations;
+            @ResetIbisHeadRotations.canceled -= instance.OnResetIbisHeadRotations;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -193,5 +222,6 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnMoveIbisHead(InputAction.CallbackContext context);
+        void OnResetIbisHeadRotations(InputAction.CallbackContext context);
     }
 }
