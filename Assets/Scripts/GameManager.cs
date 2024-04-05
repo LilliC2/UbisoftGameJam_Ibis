@@ -19,6 +19,7 @@ public class GameManager : Singleton<GameManager>
 
     public LayerMask groundMask;
     public LayerMask pickUpPropsMask;
+    public LayerMask pickUpProps_and_HeldItemsMask;
     public LayerMask heldPropMask;
 
     public event System.Action<PlayerInput> PlayerJoinedGame;

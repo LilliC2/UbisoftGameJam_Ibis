@@ -5,6 +5,11 @@ using UnityEngine;
 public class BeakAttack : GameBehaviour
 {
     public float forceApplied = 500;
+    PlayerController controller;
+    public void Awake()
+    {
+        controller = gameObject.transform.root.GetComponent<PlayerController>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -16,7 +21,14 @@ public class BeakAttack : GameBehaviour
                 //apply force
                 print("Hit player with beak");
 
-                collision.gameObject.GetComponent<PlayerController>().GotHit(direction, forceApplied);
+                var newForce = forceApplied;
+
+                if(controller.isHoldingTrash)
+                {
+                    newForce =+ controller.targetTrash.GetComponent<TrashItem>().forceApplied/2;
+                }
+
+                collision.gameObject.GetComponent<PlayerController>().GotHit(direction, newForce);
 
 
             }

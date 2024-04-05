@@ -68,7 +68,7 @@ public class PlayerController : GameBehaviour
     //picking up trash controls
     public GameObject targetTrash;
     [SerializeField] float ibisHeadTrashRange;
-    [SerializeField] bool isHoldingTrash = false;
+    public bool isHoldingTrash = false;
     bool pickUpCoolDown;
     bool dropCoolDown;
     [SerializeField] GameObject holdTrashPos; //GO inside ibis mouth
@@ -225,7 +225,7 @@ public class PlayerController : GameBehaviour
                 if (!isHoldingTrash)
                 {
 
-                    var trashInRange = Physics.OverlapSphere(ibisHead.transform.position, ibisHeadTrashRange, _GM.pickUpPropsMask);
+                    var trashInRange = Physics.OverlapSphere(ibisHead.transform.position, ibisHeadTrashRange, _GM.pickUpProps_and_HeldItemsMask);
 
                     //print("trash range = " + trashInRange.Length);
 
@@ -236,21 +236,6 @@ public class PlayerController : GameBehaviour
                         else if (Vector3.Distance(prop.transform.position, ibisHead.transform.position) < Vector3.Distance(targetTrash.transform.position, ibisHead.transform.position))
                             targetTrash = prop.gameObject;
                     }
-
-
-                    //ibisHead.transform.LookAt(targetTrash.transform.position, Vector3.back);
-
-
-                    //Vector3 rotationV3 = Vector3.Lerp(new Vector3(defaultHeadRotation.x + 10, defaultHeadRotation.y, defaultHeadRotation.z)
-                    //    , new Vector3(defaultHeadRotation.x - 90, defaultHeadRotation.y, defaultHeadRotation.z), 0.5f);
-
-                    //print(rotationV3);
-                    //ibisHead.transform.localEulerAngles = rotationV3;
-
-
-
-
-
 
 
                 }
@@ -308,6 +293,7 @@ public class PlayerController : GameBehaviour
         {
             hasBeenHit = true;
             anim.SetTrigger("Hit");
+            if (isHoldingTrash) DropHeldItem();
 
         }
 
@@ -433,8 +419,21 @@ public class PlayerController : GameBehaviour
         {
             if (targetTrash != null && !isHoldingTrash && !dropCoolDown)
             {
+
+
                 if (Vector3.Distance(holdTrashPos.transform.position, targetTrash.transform.position) < 0.5f && !isHoldingTrash)
                 {
+                    //check if another ibis is holding that trash
+                    if (targetTrash.layer == _GM.heldPropMask)
+                    {
+                        //get ibis that is holding prop
+                        var otherIbis = targetTrash.GetComponent<TrashItem>().holdPos.transform.root.gameObject;
+
+                        otherIbis.GetComponent<PlayerController>().DropHeldItem();
+
+
+                    }
+
                     isHoldingTrash = true;
                     pickUpCoolDown = true;
 
@@ -444,6 +443,9 @@ public class PlayerController : GameBehaviour
                     targetTrash.GetComponent<TrashItem>().PickedUp(holdTrashPos);
                     ExecuteAfterSeconds(1, () => pickUpCoolDown = false); //so it doesn't drop it instantly
                 }
+
+
+
                 return;
 
             }
