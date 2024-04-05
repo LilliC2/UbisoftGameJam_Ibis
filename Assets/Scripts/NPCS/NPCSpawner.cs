@@ -13,11 +13,12 @@ public class NPCSpawner : Singleton<NPCSpawner>
     [Header("Spawn Controls")]
     public int spawnDelay = 2;
     public int spawnChance = 5;
+    public int spawnValue;
     
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnChance());
+        //StartCoroutine(SpawnChance());
     }
 
     // Update is called once per frame
@@ -33,16 +34,13 @@ public class NPCSpawner : Singleton<NPCSpawner>
     {
         yield return new WaitForSeconds(spawnDelay);
 
-        int spawner = Random.Range(0, 10);
+        spawnValue = Random.Range(0, 10);
 
-        if (spawnChance > spawner)
+        if (spawnChance > spawnValue)
         {
             SpawnNPC();
         }
-        else
-        {
             StartCoroutine(SpawnChance());
-        }
     }
 
     public void SpawnNPC()
@@ -53,8 +51,13 @@ public class NPCSpawner : Singleton<NPCSpawner>
         npcList.Add(npc);
     }
 
-    public Transform GetRandomSpawnPoint()
+    public Vector3 GetRandomSpawnPoint()
     {
-        return spawnPoints[Random.Range(0, spawnPoints.Length)];
+        return spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
+    }
+
+    public Vector3 SetFountainLocation()
+    {
+        return fountainPoint.transform.position;
     }
 }

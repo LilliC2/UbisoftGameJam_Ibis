@@ -3757,7 +3757,7 @@ GameObject:
   - component: {fileID: 1200409199}
   m_Layer: 0
   m_Name: TempFountain
-  m_TagString: Untagged
+  m_TagString: Fountain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3781,7 +3781,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
+  m_Radius: 0.72
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
@@ -6042,6 +6042,7 @@ MonoBehaviour:
   npcList: []
   spawnDelay: 2
   spawnChance: 5
+  spawnValue: 0
 --- !u!4 &2082494771
 Transform:
   m_ObjectHideFlags: 0

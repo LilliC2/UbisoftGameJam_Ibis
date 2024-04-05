@@ -8,6 +8,7 @@ public class GameBehaviour : Behaviour //inherits from
 
     //protected static SceneController _SC { get { return SceneController.INSTANCE; } }
     protected static GameManager _GM { get { return GameManager.INSTANCE; } }
+    protected static NPCSpawner _NPC { get { return NPCSpawner.INSTANCE; } }
 }
 //
 // Instanced GameBehaviour
