@@ -8,9 +8,9 @@ public class BeakAttack : GameBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") )
         {
-            if (collision.gameObject)
+            if (collision.gameObject != gameObject.transform.root.gameObject)
             {
                 var direction = (collision.gameObject.transform.position - gameObject.transform.position).normalized;
                 //apply force
