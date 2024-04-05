@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - SpawnPoint
+  - SmallTrash
+  - MediumTrash
+  - BigTrash
   layers:
   - Default
   - TransparentFX
@@ -12,9 +15,9 @@ TagManager:
   - Ground
   - Water
   - UI
-  - 
-  - 
-  - 
+  - PickUpProps
+  - HeldProps
+  - Player
   - 
   - 
   - 
