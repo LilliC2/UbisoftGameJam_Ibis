@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: New Avatar Mask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: acc_intelect_glasses
+    m_Weight: 1
+  - m_Path: casual_Male_K
+    m_Weight: 1
+  - m_Path: rig_CharRoot
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip L Thigh
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip L Thigh/bip L Calf
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip L Thigh/bip L Calf/bip L Foot
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip L Thigh/bip L Calf/bip L Foot/bip L Toe0
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip R Thigh
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip R Thigh/bip R Calf
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip R Thigh/bip R Calf/bip R Foot
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip R Thigh/bip R Calf/bip R Foot/bip R Toe0
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1/bip L Clavicle
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1/bip L Clavicle/bip L
+      UpperArm
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1/bip L Clavicle/bip L
+      UpperArm/bip L Forearm
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1/bip L Clavicle/bip L
+      UpperArm/bip L Forearm/bip L Hand
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1/bip L Clavicle/bip L
+      UpperArm/bip L Forearm/bip L Hand/bip L Finger0
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1/bip L Clavicle/bip L
+      UpperArm/bip L Forearm/bip L Hand/bip L Finger0/bip L Finger01
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1/bip L Clavicle/bip L
+      UpperArm/bip L Forearm/bip L Hand/bip L Finger1
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1/bip L Clavicle/bip L
+      UpperArm/bip L Forearm/bip L Hand/bip L Finger1/bip L Finger11
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1/bip Neck
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1/bip Neck/bip Head
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1/bip R Clavicle
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1/bip R Clavicle/bip R
+      UpperArm
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1/bip R Clavicle/bip R
+      UpperArm/bip R Forearm
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1/bip R Clavicle/bip R
+      UpperArm/bip R Forearm/bip R Hand
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1/bip R Clavicle/bip R
+      UpperArm/bip R Forearm/bip R Hand/bip R Finger0
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1/bip R Clavicle/bip R
+      UpperArm/bip R Forearm/bip R Hand/bip R Finger0/bip R Finger01
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1/bip R Clavicle/bip R
+      UpperArm/bip R Forearm/bip R Hand/bip R Finger1
+    m_Weight: 1
+  - m_Path: rig_CharRoot/bip/bip Pelvis/bip Spine/bip Spine1/bip R Clavicle/bip R
+      UpperArm/bip R Forearm/bip R Hand/bip R Finger1/bip R Finger11
+    m_Weight: 1
