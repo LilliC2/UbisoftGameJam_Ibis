@@ -288,7 +288,6 @@ public class PlayerController : GameBehaviour
 
     public void GotHit(Vector3 direction, float forceApplied)
     {
-        print("GOT HIT FUNCTION");
         if(!hasBeenHit) //so animation doesnt run more than once
         {
             hasBeenHit = true;
@@ -349,6 +348,30 @@ public class PlayerController : GameBehaviour
 
             tempTrashHolder.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce, ForceMode.Force);
 
+        }
+    }
+
+    public void OnEmote(int emoteNum)
+    {
+        switch(emoteNum)
+        {
+            case 0:
+
+                anim.SetTrigger("Dance");
+
+                break;
+            case 1:
+
+                anim.SetTrigger("Sit");
+
+
+                break;
+            case 2:
+                anim.SetTrigger("Wave");
+
+                break;
+            case 3:
+                break;
         }
     }
 
