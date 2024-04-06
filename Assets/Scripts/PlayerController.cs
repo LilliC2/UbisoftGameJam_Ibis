@@ -361,8 +361,14 @@ public class PlayerController : GameBehaviour
 
                 break;
             case 1:
+
+                anim.SetTrigger("Sit");
+
+
                 break;
             case 2:
+                anim.SetTrigger("Wave");
+
                 break;
             case 3:
                 break;
