@@ -1,0 +1,14 @@
+newmtl Lightbulb_Geo4SG
+illum 4
+Kd 0.83 0.83 0.83
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+Ni 1.00
+newmtl lambert3SG
+illum 4
+Kd 0.00 0.00 0.00
+Ka 0.00 0.00 0.00
+Tf 1.00 1.00 1.00
+map_Kd BenchSubstance_lambert3SG_BaseMap.png
+bump  -bm 1 BenchSubstance_lambert3SG_Normal.png
+Ni 1.00
