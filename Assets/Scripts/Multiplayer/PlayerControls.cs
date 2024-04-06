@@ -89,6 +89,42 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UpEmote"",
+                    ""type"": ""Button"",
+                    ""id"": ""712caa58-ed80-46d1-aa6e-458eee899819"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DownEmote"",
+                    ""type"": ""Button"",
+                    ""id"": ""fd23535c-8fa8-44b3-8ab2-2507f043da6f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftEmote"",
+                    ""type"": ""Button"",
+                    ""id"": ""7badbc56-0d47-4e1e-9011-4b6ba24b8570"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightEmote"",
+                    ""type"": ""Button"",
+                    ""id"": ""4915c48b-8274-4a6d-a649-387cabd762a6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -322,6 +358,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Throw"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8b34abd-efd4-4165-9acf-347477539d3e"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpEmote"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""dd38c744-e759-4468-a0c0-e742b1e1dcbc"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DownEmote"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11778329-84f8-4780-9074-5b08bb8f6c1d"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftEmote"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8e5f021a-eeae-4f38-bba5-f1cc88c5a083"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightEmote"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -337,6 +417,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay_Honk = m_Gameplay.FindAction("Honk", throwIfNotFound: true);
         m_Gameplay_Attack = m_Gameplay.FindAction("Attack", throwIfNotFound: true);
         m_Gameplay_Throw = m_Gameplay.FindAction("Throw", throwIfNotFound: true);
+        m_Gameplay_UpEmote = m_Gameplay.FindAction("UpEmote", throwIfNotFound: true);
+        m_Gameplay_DownEmote = m_Gameplay.FindAction("DownEmote", throwIfNotFound: true);
+        m_Gameplay_LeftEmote = m_Gameplay.FindAction("LeftEmote", throwIfNotFound: true);
+        m_Gameplay_RightEmote = m_Gameplay.FindAction("RightEmote", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -405,6 +489,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_Honk;
     private readonly InputAction m_Gameplay_Attack;
     private readonly InputAction m_Gameplay_Throw;
+    private readonly InputAction m_Gameplay_UpEmote;
+    private readonly InputAction m_Gameplay_DownEmote;
+    private readonly InputAction m_Gameplay_LeftEmote;
+    private readonly InputAction m_Gameplay_RightEmote;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -416,6 +504,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Honk => m_Wrapper.m_Gameplay_Honk;
         public InputAction @Attack => m_Wrapper.m_Gameplay_Attack;
         public InputAction @Throw => m_Wrapper.m_Gameplay_Throw;
+        public InputAction @UpEmote => m_Wrapper.m_Gameplay_UpEmote;
+        public InputAction @DownEmote => m_Wrapper.m_Gameplay_DownEmote;
+        public InputAction @LeftEmote => m_Wrapper.m_Gameplay_LeftEmote;
+        public InputAction @RightEmote => m_Wrapper.m_Gameplay_RightEmote;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -446,6 +538,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Throw.started += instance.OnThrow;
             @Throw.performed += instance.OnThrow;
             @Throw.canceled += instance.OnThrow;
+            @UpEmote.started += instance.OnUpEmote;
+            @UpEmote.performed += instance.OnUpEmote;
+            @UpEmote.canceled += instance.OnUpEmote;
+            @DownEmote.started += instance.OnDownEmote;
+            @DownEmote.performed += instance.OnDownEmote;
+            @DownEmote.canceled += instance.OnDownEmote;
+            @LeftEmote.started += instance.OnLeftEmote;
+            @LeftEmote.performed += instance.OnLeftEmote;
+            @LeftEmote.canceled += instance.OnLeftEmote;
+            @RightEmote.started += instance.OnRightEmote;
+            @RightEmote.performed += instance.OnRightEmote;
+            @RightEmote.canceled += instance.OnRightEmote;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -471,6 +575,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Throw.started -= instance.OnThrow;
             @Throw.performed -= instance.OnThrow;
             @Throw.canceled -= instance.OnThrow;
+            @UpEmote.started -= instance.OnUpEmote;
+            @UpEmote.performed -= instance.OnUpEmote;
+            @UpEmote.canceled -= instance.OnUpEmote;
+            @DownEmote.started -= instance.OnDownEmote;
+            @DownEmote.performed -= instance.OnDownEmote;
+            @DownEmote.canceled -= instance.OnDownEmote;
+            @LeftEmote.started -= instance.OnLeftEmote;
+            @LeftEmote.performed -= instance.OnLeftEmote;
+            @LeftEmote.canceled -= instance.OnLeftEmote;
+            @RightEmote.started -= instance.OnRightEmote;
+            @RightEmote.performed -= instance.OnRightEmote;
+            @RightEmote.canceled -= instance.OnRightEmote;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -497,5 +613,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnHonk(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnThrow(InputAction.CallbackContext context);
+        void OnUpEmote(InputAction.CallbackContext context);
+        void OnDownEmote(InputAction.CallbackContext context);
+        void OnLeftEmote(InputAction.CallbackContext context);
+        void OnRightEmote(InputAction.CallbackContext context);
     }
 }
