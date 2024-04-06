@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public enum NPCTyping { Casual, Runner, Police, Wanderer}
 
-public enum NPCActions { Fountain, Walking, Running, Still, Scared, Bin}
+public enum NPCActions { Fountain, Walking, Running, Still, Scared, Bin, Wander}
 
 public class NPCBehaviour : GameBehaviour
 {
@@ -16,6 +16,9 @@ public class NPCBehaviour : GameBehaviour
     public NavMeshAgent agent;
     public float mySpeed;
     public float myDelay = 1;
+    public bool hasReeachedFauntain;
+    Vector3 endPoint;
+    public int actionNumber;
     public NPCTyping myType;
     public NPCActions myActions;
     int patrolPoint = 0;        //Needed for linear patrol movement
@@ -27,8 +30,9 @@ public class NPCBehaviour : GameBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hasReeachedFauntain = false;
         //agent.SetDestination(_NPC.SetFountainLocation());
-        nextTarget = _NPC.GetRandomSpawnPoint();
+        nextTarget = endPoint = _NPC.GetRandomSpawnPoint();
         StartCoroutine(Actions());
     }
 
@@ -59,6 +63,15 @@ public class NPCBehaviour : GameBehaviour
             case NPCActions.Walking:
                 MoveToNextPoint();
                 break;
+            case NPCActions.Still:
+                actionNumber = Random.Range(0, 4);
+                if (actionNumber == 0) { myActions = NPCActions.Still; }
+                if (actionNumber == 1) { myActions = NPCActions.Walking; }
+                if (actionNumber == 2) { myActions = NPCActions.Wander; }
+                break;
+            case NPCActions.Wander:
+                agent.SetDestination(_NPC.SetFountainLocation());
+                break;
         }
 
         yield return new WaitForSeconds(myDelay);
@@ -66,21 +79,34 @@ public class NPCBehaviour : GameBehaviour
         StartCoroutine(Actions());
     }
 
-    //void OnCollisionEnter(Collision collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Fountain"))
-    //    {
-    //        ExecuteAfterSeconds(myDelay, () => MoveToNextPoint());
-    //    }
-    //}
-
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Fountain"))
         {
             print("hit");
+            hasReeachedFauntain = true;
             myActions = NPCActions.Walking;
-            ExecuteAfterSeconds(myDelay, () => MoveToNextPoint());
+
+            actionNumber = Random.Range(0, 4);
+            if(actionNumber == 0) { myActions = NPCActions.Still; }
+            if(actionNumber == 1) { myActions = NPCActions.Walking; }
+            if(actionNumber == 2) { myActions = NPCActions.Wander; }
+            //ExecuteAfterSeconds(myDelay, () => MoveToNextPoint());
+        }
+
+        if (other.CompareTag("BinBitchin"))
+        {
+            print("Ibised");
+            Vector3 collisionPoint = other.ClosestPoint(transform.position);
+            Vector3 oppositeDirection = transform.position - collisionPoint;
+            Vector3 newDestination = transform.position + oppositeDirection;
+            agent.SetDestination(newDestination);
+
+            actionNumber = Random.Range(0, 4);
+            if (actionNumber == 0) { myActions = NPCActions.Still; }
+            if (actionNumber == 1) { myActions = NPCActions.Walking; }
+            if (actionNumber == 2) { myActions = NPCActions.Wander; }
+            //ExecuteAfterSeconds(myDelay, () => MoveToNextPoint());
         }
     }
 

@@ -9,6 +9,7 @@ TagManager:
   - MediumTrash
   - BigTrash
   - Fountain
+  - BinBitchin
   layers:
   - Default
   - TransparentFX
