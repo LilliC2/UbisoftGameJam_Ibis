@@ -10,6 +10,8 @@ public class TrashItem : GameBehaviour
     public float forceApplied = 500;
     bool addForce;
 
+    public float aliveTime = 60;
+
     // Start is called before the first frame update
     void Start()
     {

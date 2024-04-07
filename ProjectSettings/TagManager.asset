@@ -18,9 +18,9 @@ TagManager:
   - PickUpProps
   - HeldProps
   - Player
-  - 
-  - 
-  - 
+  - Bin1
+  - Bin2
+  - BinInside
   - 
   - 
   - 
