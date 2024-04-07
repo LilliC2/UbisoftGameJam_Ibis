@@ -1081,12 +1081,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f05213b9cfd2424b86f4db9a2974f3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextTarget: {x: 0, y: 0, z: 0}
   agent: {fileID: 783579188127575969}
-  mySpeed: 0
+  nextTarget: {x: 0, y: 0, z: 0}
+  endPoint: {x: 0, y: 0, z: 0}
+  hasReeachedFauntain: 0
+  mySpeed: 20
   myDelay: 1
   myType: 0
   myActions: 0
+  ibisVunerability: 0
+  ibisDelay: 0.5
+  actionNumber: 0
 --- !u!136 &-2973191151838278030
 CapsuleCollider:
   m_ObjectHideFlags: 0

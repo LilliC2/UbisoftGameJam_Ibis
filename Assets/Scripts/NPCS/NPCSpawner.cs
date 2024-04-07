@@ -7,6 +7,7 @@ public class NPCSpawner : Singleton<NPCSpawner>
     [Header("Objs")]
     public GameObject[] npcTypes;
     public Transform[] spawnPoints;
+    public Transform[] randomPoints;
     public Transform fountainPoint;
     public List<GameObject> npcList;
 
@@ -18,7 +19,7 @@ public class NPCSpawner : Singleton<NPCSpawner>
     // Start is called before the first frame update
     void Start()
     {
-        //StartCoroutine(SpawnChance());
+        StartCoroutine(SpawnChance());
     }
 
     // Update is called once per frame
@@ -54,6 +55,11 @@ public class NPCSpawner : Singleton<NPCSpawner>
     public Vector3 GetRandomSpawnPoint()
     {
         return spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
+    }
+
+    public Vector3 GetRandomPoints()
+    {
+        return randomPoints[Random.Range(0, randomPoints.Length)].transform.position;
     }
 
     public Vector3 SetFountainLocation()
