@@ -16,6 +16,7 @@ public class BinMannager : MonoBehaviour
 
     [SerializeField] List<GameObject> BinItemList = new List<GameObject>();
     [SerializeField] int maxListAmount;
+    [SerializeField] DespawnMannager despawnMannager;
 
     private void Start()
     {
@@ -88,6 +89,7 @@ public class BinMannager : MonoBehaviour
         if (item != null)
         {
             BinItemList.Add(item);
+            despawnMannager.RemoveItemToDespawnList(item);
             checkDespawn();
         }
         else
@@ -102,7 +104,7 @@ public class BinMannager : MonoBehaviour
         if (item != null)
         {
             BinItemList.Remove(item);
-            
+            despawnMannager.AddItemToDespawnList(item);
         }
         else
         {

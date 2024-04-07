@@ -14,6 +14,8 @@ public class ItemSpawner : MonoBehaviour
     [SerializeField] private float ySpawn;
     [SerializeField] private float zSpawn;
 
+    [SerializeField] DespawnMannager despawnMannager;
+
 
     private void Start()
     {
@@ -42,7 +44,7 @@ public class ItemSpawner : MonoBehaviour
             itemPoolMannger.GetItem();
             //lastCatch = rand;
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(5f);
         }
     }
 
@@ -52,6 +54,8 @@ public class ItemSpawner : MonoBehaviour
         Vector3 spawnPosition = new Vector3(randomX, ySpawn, zSpawn);
         itemToSpawn.SetActive(true);
         itemToSpawn.transform.position = spawnPosition;
+        despawnMannager.AddItemToDespawnList(itemToSpawn);
+        
 
     }
 
