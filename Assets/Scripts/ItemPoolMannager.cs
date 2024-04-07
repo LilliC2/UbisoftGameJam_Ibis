@@ -25,7 +25,7 @@ public class ItemPoolMannager : MonoBehaviour
         if (!foundInactiveObject)
         {
             itemPoolSpawner.SpawnItem();
-            GetItem();
+            //GetItem();
         }
     }
 }

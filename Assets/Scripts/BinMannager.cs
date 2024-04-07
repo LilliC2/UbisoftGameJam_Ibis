@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BinMannager : MonoBehaviour
+public class BinMannager : Singleton<BinMannager>
 {
     [SerializeField] TrashObjectScores trashObjectScores;
 
@@ -84,7 +84,7 @@ public class BinMannager : MonoBehaviour
         }
     }
 
-    private void AddToList(GameObject item)
+    public void AddToList(GameObject item)
     {
         if (item != null)
         {
@@ -99,7 +99,7 @@ public class BinMannager : MonoBehaviour
         
     }
 
-    private void RemoveFromList(GameObject item)
+    public void RemoveFromList(GameObject item)
     {
         if (item != null)
         {

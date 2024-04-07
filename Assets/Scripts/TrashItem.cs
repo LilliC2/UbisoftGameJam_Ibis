@@ -21,7 +21,7 @@ public class TrashItem : GameBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(holdPos != null)
+        if (holdPos != null)
             transform.position = holdPos.transform.position;
 
     }
@@ -30,7 +30,12 @@ public class TrashItem : GameBehaviour
     {
         holdPos = player_holdPos;
         rb.constraints = RigidbodyConstraints.FreezeAll;
+        transform.position = holdPos.transform.position;
+
         //rb.Sleep();
+        _BM.RemoveFromList(gameObject);
+        _SC.RemoveItemToCollectList(gameObject);
+
     }
 
     public void Dropped()
@@ -38,6 +43,8 @@ public class TrashItem : GameBehaviour
         holdPos = null;
        // rb.WakeUp();
         rb.constraints = RigidbodyConstraints.None;
+        _BM.AddToList(gameObject);
+
     }
 
     public void Thrown(GameObject player)
@@ -46,6 +53,8 @@ public class TrashItem : GameBehaviour
         holdPos = null;
         rb.constraints = RigidbodyConstraints.None;
         thrownFrom = player;
+        _BM.AddToList(gameObject);
+
 
     }
 

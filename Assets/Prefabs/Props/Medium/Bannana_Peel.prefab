@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2334391532157091930}
   - component: {fileID: 3751899460854790190}
   - component: {fileID: 5426952762776872925}
-  - component: {fileID: 4076312618925776881}
   - component: {fileID: 4209979480401709823}
   - component: {fileID: 460616541416643495}
   - component: {fileID: 3319616284390733623}
@@ -29,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9194598463074541659}
-  serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &3751899460854790190
 MeshFilter:
@@ -87,28 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4076312618925776881
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9194598463074541659}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 8442451250459060791, guid: 0295ec35330484e409fcc0274d517903, type: 3}
 --- !u!54 &4209979480401709823
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -135,7 +112,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!114 &460616541416643495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdPos: {fileID: 0}
   forceApplied: 500
-  itemScore: 10
+  aliveTime: 60
 --- !u!136 &3319616284390733623
 CapsuleCollider:
   m_ObjectHideFlags: 0

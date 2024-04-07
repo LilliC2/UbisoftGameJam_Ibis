@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 808728977504885107}
   - component: {fileID: 870773469345551452}
   - component: {fileID: 535263875377020535}
-  - component: {fileID: 6019455877746119135}
   - component: {fileID: 9053971840663988922}
   - component: {fileID: 5837408464934348996}
   - component: {fileID: 80657868904195407}
@@ -29,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4157137599982939887}
-  serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2.9999998, y: 2.9999998, z: 2.9999998}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &870773469345551452
 MeshFilter:
@@ -87,28 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6019455877746119135
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4157137599982939887}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 658215165747059762, guid: c3077a56ab75d714b9a1f8510d7fbf1b, type: 3}
 --- !u!54 &9053971840663988922
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -135,7 +112,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 3
 --- !u!114 &5837408464934348996
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdPos: {fileID: 0}
   forceApplied: 500
-  itemScore: 10
+  aliveTime: 60
 --- !u!136 &80657868904195407
 CapsuleCollider:
   m_ObjectHideFlags: 0

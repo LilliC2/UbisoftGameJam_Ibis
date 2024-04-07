@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8803485864853424945}
   - component: {fileID: 4546740228468501524}
   - component: {fileID: 1563315172796926016}
-  - component: {fileID: 5350906752223514771}
   - component: {fileID: 1753027499747697778}
   - component: {fileID: 4647937873179171669}
   - component: {fileID: 7958366635633627504}
@@ -29,13 +28,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7220752308553402751}
-  serializedVersion: 2
   m_LocalRotation: {x: -0.7069834, y: 0, z: 0, w: 0.7072302}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &4546740228468501524
 MeshFilter:
@@ -87,28 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5350906752223514771
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7220752308553402751}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 5010483373962445755, guid: a5454bd1a4cb3e04a89db82690518f4f, type: 3}
 --- !u!54 &1753027499747697778
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -135,7 +112,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &4647937873179171669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdPos: {fileID: 0}
   forceApplied: 800
-  itemScore: 10
+  aliveTime: 60
 --- !u!136 &7958366635633627504
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -19,12 +19,13 @@ public class ItemPoolSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void SpawnItem()
     {
         GameObject newItem = Instantiate(ItemToSpawn, gameObject.transform);
         itemList.instantiatedItems.Add(newItem);
+        newItem.SetActive(false);
     }
 }

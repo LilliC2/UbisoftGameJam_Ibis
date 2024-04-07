@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5553770002635476160}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.312, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2650618370481626590}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7441733515590567233
 GameObject:
@@ -61,7 +61,6 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7441733515590567233}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.3014211, y: 0.45, z: 0.011900552}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -70,6 +69,7 @@ Transform:
   - {fileID: 7833745442212605086}
   - {fileID: 6882819546367340032}
   m_Father: {fileID: 0}
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3125458475916569343
 MonoBehaviour:
@@ -101,11 +101,11 @@ MonoBehaviour:
   ibisHead: {fileID: 3303847329216947380}
   ibisNeck: {fileID: 8114669823369966393}
   targetTrash: {fileID: 0}
-  ibisHeadTrashRange: 1
+  ibisHeadTrashRange: 50
   isHoldingTrash: 0
   holdTrashPos: {fileID: 6494825342920960217}
   dropForce: 300
-  dropForce_Honking: 500
+  dropForce_Honking: 1
   throwForce: 1500
   attackRate: 1
 --- !u!33 &1517317574236690676

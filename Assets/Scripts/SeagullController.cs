@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class SeagullController : MonoBehaviour
+public class SeagullController : Singleton<SeagullController>
 {
     [SerializeField] GameObject trackingObject;  //source for bird to follow
     [SerializeField] GameObject followerObj;    //smooths transform for bird
@@ -110,5 +110,10 @@ public class SeagullController : MonoBehaviour
         StartFlight();
     }
 
+    public void RemoveItemToCollectList(GameObject obj)
+    {
+        birdCollectList.Remove(obj);
+
+    }
    
 }
