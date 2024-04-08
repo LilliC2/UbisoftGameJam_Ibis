@@ -68,8 +68,8 @@ public class NPCBehaviour : GameBehaviour
                 actionNumber = Random.Range(0, 4);
                 ExecuteAfterSeconds(myDelay, () => RandomBehavior());
                 break;
-            case NPCActions.Wander:
-                agent.SetDestination(_NPC.GetRandomPoints());
+            //case NPCActions.Wander:
+            //    agent.SetDestination(_NPC.GetRandomPoints());
                 break;
             case NPCActions.Scared:
                 ExecuteAfterSeconds (myDelay + 2, ()=> ChangeBehavior(NPCActions.Walking));
@@ -128,6 +128,6 @@ public class NPCBehaviour : GameBehaviour
 
     void MoveToRandomPoint()
     {
-        agent.SetDestination(_NPC.GetRandomPoints());
+        //agent.SetDestination(_NPC.GetRandomPoints());
     }
 }

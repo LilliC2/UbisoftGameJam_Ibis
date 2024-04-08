@@ -7,9 +7,12 @@ public class NPCSpawner : Singleton<NPCSpawner>
     [Header("Objs")]
     public GameObject[] npcTypes;
     public Transform[] spawnPoints;
-    public Transform[] randomPoints;
     public Transform fountainPoint;
     public List<GameObject> npcList;
+    [SerializeField] int maxNumOfNPCs;
+
+    [Header("Travel To Destination")]
+    public GameObject[] destinations;
 
     [Header("Spawn Controls")]
     public int spawnDelay = 2;
@@ -37,11 +40,15 @@ public class NPCSpawner : Singleton<NPCSpawner>
 
         spawnValue = Random.Range(0, 10);
 
-        if (spawnChance > spawnValue)
+        if(npcList.Count != maxNumOfNPCs)
         {
-            SpawnNPC();
-        }
+            if (spawnChance > spawnValue)
+            {
+                SpawnNPC();
+            }
             StartCoroutine(SpawnChance());
+        }
+
     }
 
     public void SpawnNPC()
@@ -57,10 +64,10 @@ public class NPCSpawner : Singleton<NPCSpawner>
         return spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
     }
 
-    public Vector3 GetRandomPoints()
-    {
-        return randomPoints[Random.Range(0, randomPoints.Length)].transform.position;
-    }
+    //public Vector3 GetRandomPoints()
+    //{
+    //    return randomPoints[Random.Range(0, randomPoints.Length)].transform.position;
+    //}
 
     public Vector3 SetFountainLocation()
     {
