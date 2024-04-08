@@ -1590,10 +1590,6 @@ PrefabInstance:
       propertyPath: seagullController
       value: 
       objectReference: {fileID: 1348512778}
-    - target: {fileID: 1698715044255670471, guid: ea3baee83c044c94e91fa9a2fc93177e, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3047399526437252856, guid: ea3baee83c044c94e91fa9a2fc93177e, type: 3}
       propertyPath: m_Name
       value: GameManager_1
@@ -4122,8 +4118,7 @@ PrefabInstance:
       propertyPath: trashObjectScores
       value: 
       objectReference: {fileID: 2107370592}
-    m_RemovedComponents:
-    - {fileID: 1619070969538827671, guid: 18d56f15fb10a5a45976909332a6fe85, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
