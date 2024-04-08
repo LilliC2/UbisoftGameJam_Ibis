@@ -11,9 +11,12 @@ public class NPCPathfinding : GameBehaviour
     [SerializeField] float noramlSpeed;
     [SerializeField] float runningSpeed;
     [SerializeField] float distanceFromIbis;
+    [SerializeField] float dropTrashDelayMin;
+    [SerializeField] float dropTrashDelayMax;
     NavMeshAgent agent;
     public enum BehaviourStates { Patrol, TravelToDestination, RunFromIbis }
     public BehaviourStates behaviourStates;
+    Animator animator;
 
     [Header("Patrol")]
     bool hasDestination;
@@ -25,9 +28,11 @@ public class NPCPathfinding : GameBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         currentDestination = SearchPatrolPoint();
         UpdateAgentSpeed(noramlSpeed);
+        ExecuteAfterSeconds(3, () => StartCoroutine(DropTrash()));
     }
 
     void UpdateAgentSpeed(float speed)
@@ -39,6 +44,8 @@ public class NPCPathfinding : GameBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        animator.SetFloat("Speed", agent.velocity.magnitude);
         switch(behaviourStates)
         {
             case BehaviourStates.Patrol:
@@ -88,6 +95,20 @@ public class NPCPathfinding : GameBehaviour
                 }
                 break;
         }
+    }
+
+    IEnumerator DropTrash()
+    {
+        if(behaviourStates != BehaviourStates.RunFromIbis)
+        {
+            //animation
+            print("Drop trash");
+        }
+
+        yield return new WaitForSeconds(Random.Range(dropTrashDelayMin,dropTrashDelayMax));
+
+        StartCoroutine(DropTrash());
+
     }
 
     Vector3 SearchDestinationWalkPoint()
