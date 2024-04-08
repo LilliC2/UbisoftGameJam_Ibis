@@ -21,8 +21,10 @@ TagManager:
   - HeldProps
   - Player
   - Props
-  - 
-  - 
+  - Bin1
+  - Bin2
+  - BinInside
+
   - 
   - 
   - 

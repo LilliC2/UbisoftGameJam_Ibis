@@ -11,16 +11,16 @@ GameObject:
   - component: {fileID: 5616227454101299337}
   - component: {fileID: 328760347095723831}
   - component: {fileID: 7665972466188946939}
-  - component: {fileID: 4832561464739104915}
   - component: {fileID: 7065116868287678801}
   - component: {fileID: 2888559251949878356}
+  - component: {fileID: 7273671518900184711}
   m_Layer: 6
   m_Name: Vegimite_Full
   m_TagString: BigTrash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5616227454101299337
 Transform:
   m_ObjectHideFlags: 0
@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: -2
   m_LocalEulerAnglesHint: {x: -89.98, y: 0, z: 0}
 --- !u!33 &328760347095723831
 MeshFilter:
@@ -86,28 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4832561464739104915
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7789730455995425110}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2290800035356562081, guid: 25cd3bf6d3620e446bb18e35d64b3bb3, type: 3}
 --- !u!54 &7065116868287678801
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -117,7 +95,7 @@ Rigidbody:
   m_GameObject: {fileID: 7789730455995425110}
   serializedVersion: 4
   m_Mass: 8
-  m_Drag: 0
+  m_Drag: 0.2
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -134,7 +112,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &2888559251949878356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,3 +127,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdPos: {fileID: 0}
   forceApplied: 800
+  aliveTime: 60
+--- !u!136 &7273671518900184711
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7789730455995425110}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.034410913
+  m_Height: 0.089
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0.0000000018626454}
