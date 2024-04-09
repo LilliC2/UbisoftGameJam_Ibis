@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BinMannager : Singleton<BinMannager>
 {
-    [SerializeField] TrashObjectScores trashObjectScores;
+    TrashObjectScores trashObjectScores;
 
 
     [SerializeField] GameObject assigedPlayer;
@@ -20,6 +20,8 @@ public class BinMannager : Singleton<BinMannager>
 
     private void Start()
     {
+        trashObjectScores = _GM.GetComponent<TrashObjectScores>();
+
         smallScore = trashObjectScores.getScore(0);
         midScore = trashObjectScores.getScore(1);
         bigScore = trashObjectScores.getScore(2);

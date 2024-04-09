@@ -8,6 +8,8 @@ TagManager:
   - SmallTrash
   - MediumTrash
   - BigTrash
+  - Fountain
+  - BinBitchin
   layers:
   - Default
   - TransparentFX
@@ -18,11 +20,11 @@ TagManager:
   - PickUpProps
   - HeldProps
   - Player
+  - Props
   - Bin1
   - Bin2
   - BinInside
-  - 
-  - 
+  - People
   - 
   - 
   - 

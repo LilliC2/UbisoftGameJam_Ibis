@@ -1,0 +1,38 @@
+Pre 9.0 release
+glitter random
+Thry tool for correctly setting shaders on upgrade to 9.0
+look at 2 pass lighting
+change the blending names for grabpass
+custom sampling showing up when it should rgba masking
+
+https://discord.com/channels/550477546958094348/550477704617787422/1192982874174017557
+
+Could Not reproduce
+lighting changes when unlocking https://discord.com/channels/550477546958094348/579103312776003594/1186442147302486116
+Putting a texture in the global mask slot seems to break multilayer math shading https://discord.com/channels/550477546958094348/579103312776003594/1185362659261034676
+rgba something https://discord.com/channels/550477546958094348/579103312776003594/1187379241411678268
+smoothness something bla bla https://discord.com/channels/550477546958094348/550477704617787422/1187730965037072394
+Iridescence audio link
+
+post 9.0
+truchet thickness audio link
+outline grabpass with pixelation
+internal parallax no global mask
+internal parallax no way to use it as emission and it shows in the dark by default
+LTCGI
+fur
+add a no special uv toggle to decals
+scrolling emission offset by uv x or y
+UV glitching for textures
+screenspace ao in base pass
+plane uv with fresnel effects and depth
+Paralax write to depth
+normal shadows https://gitlab.com/s-ilent/filamented/-/blob/master/Filamented/SharedNormalShadowLib.hlsl?ref_type=heads
+take a look at the gem cloth aniso
+3d noise R&D
+Go to japan
+
+# 9.0.29 ALPHA
+* Fixed RGBA PBR settings enabling when only 1 was enabled
+* Fixed RGBA PBR setting from altering spots that shouldn't change
+* Fixed RGBA PBR Custom sampling showing when metallics & smoothness was disabled

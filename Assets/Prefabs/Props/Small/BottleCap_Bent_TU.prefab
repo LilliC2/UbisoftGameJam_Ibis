@@ -93,7 +93,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7181014168173947032}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 402fef18d2016de4e93e9d4ebab50329, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

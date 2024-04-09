@@ -8,8 +8,13 @@ public class GameBehaviour : Behaviour //inherits from
 
     //protected static SceneController _SC { get { return SceneController.INSTANCE; } }
     protected static GameManager _GM { get { return GameManager.INSTANCE; } }
+
+    protected static NPCSpawner _NPC { get { return NPCSpawner.INSTANCE; } }
+
     protected static BinMannager _BM { get { return BinMannager.INSTANCE; } }
     protected static SeagullController _SC { get { return SeagullController.INSTANCE; } }
+    protected static ItemSpawner _IS { get { return ItemSpawner.INSTANCE; } }
+
 }
 //
 // Instanced GameBehaviour
