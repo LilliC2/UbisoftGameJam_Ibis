@@ -13,6 +13,8 @@ public class CameraController : GameBehaviour
     [SerializeField] float zoomMax;
     [SerializeField] float zoomSpeed;
     [SerializeField] float orthoSize;
+    
+    float prevLargDis;
 
     Camera cam;
 
@@ -42,10 +44,11 @@ public class CameraController : GameBehaviour
 
         print(CheckIfAllPlayersAreVisible());
 
-        ChangeCameraSize();
 
         if (!CheckIfAllPlayersAreVisible())
         {
+            ChangeCameraSize();
+
         }
 
     }
@@ -66,15 +69,31 @@ public class CameraController : GameBehaviour
             }
         }
 
-        if(largestDistance > 22.5f) //go bigger
-        {
-            if(!CheckIfAllPlayersAreVisible()) orthoSize += zoomSpeed * Time.deltaTime;
-        }
-        else if(largestDistance < 22.5f && largestDistance > 5)
-            orthoSize -= zoomSpeed * Time.deltaTime;
 
-        orthoSize = Mathf.Clamp(orthoSize, zoomMin, zoomMax);
-        cam.orthographicSize = orthoSize;
+        //go bigger
+        if (!CheckIfAllPlayersAreVisible())
+        {
+            orthoSize += zoomSpeed * Time.deltaTime;
+        }
+        //else
+        //{
+
+        //    //go smaller
+        //    if (largestDistance < 25f)
+        //    {
+        //        orthoSize -= zoomSpeed * Time.deltaTime;
+
+        //        if (prevLargDis != largestDistance && largestDistance < prevLargDis)
+        //        {
+        //            orthoSize = Mathf.Clamp(orthoSize, zoomMin, zoomMax);
+        //            cam.orthographicSize = orthoSize;
+        //        }
+        //    }
+        //}
+
+
+
+        prevLargDis = largestDistance;
 
         print(largestDistance);
     }
