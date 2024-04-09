@@ -42,30 +42,7 @@ public class ItemSpawner : Singleton<ItemSpawner>
 
     }
 
-    //void CalculateMinMaxX()
-    //{
-    //    float screenHalfWidth = Camera.main.aspect * Camera.main.orthographicSize; // Half of the screen width in world units
-    //    minX = -screenHalfWidth + padding;
-    //    maxX = screenHalfWidth - padding;
-    //}
 
-    //IEnumerator Spawn()
-    //{
-    //    while (spawnObject == true)
-    //    {
-    //        int rand = Random.Range(0, foodToSpawnPools.Count);
-    //        int rand2 = Random.Range(0, 4);
-    //        if (rand2 < 1 && lastCatch != -1)
-    //            rand = lastCatch;
-
-    //        GameObject gameobject = foodToSpawnPools[rand];
-    //        ItemPoolMannager itemPoolMannger = gameobject.GetComponent<ItemPoolMannager>();
-    //        itemPoolMannger.GetItem();
-    //        //lastCatch = rand;
-
-    //        yield return new WaitForSeconds(5f);
-    //    }
-    //}
 
     public void SpawnItem(GameObject itemToSpawn, Vector3 spawnPos)
     {

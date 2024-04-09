@@ -30,12 +30,15 @@ public class ItemPoolInactiveMannager : MonoBehaviour
                     Debug.Log("Deleting object: " + item.name);
                     Destroy(item);
                     itemList.instantiatedItems.RemoveAt(i); // Remove the item from the list
-                    i--; 
+                    i--;
                 }
             }
             else // If the item is active, update its last active time
             {
-                item.GetComponent<InactiveTimeTracker>().lastActiveTime = Time.time;
+
+                //this makes slots of error messages
+                if (item != null) item.GetComponent<InactiveTimeTracker>().lastActiveTime = Time.time;
+
             }
         }
     }
