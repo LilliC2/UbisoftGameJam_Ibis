@@ -1444,7 +1444,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5bcf03216f344b73808f6eb992d4d95, type: 3}
---- !u!1001 &5099207769545360610
+--- !u!1001 &1862967870
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -1458,7 +1458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4783369796455854284, guid: 603084ac0fe7a47e588aa008ef493bbb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.382
       objectReference: {fileID: 0}
     - target: {fileID: 4783369796455854284, guid: 603084ac0fe7a47e588aa008ef493bbb, type: 3}
       propertyPath: m_LocalPosition.y
