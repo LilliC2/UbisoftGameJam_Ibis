@@ -25,6 +25,9 @@ public class NPCPathfinding : GameBehaviour
     [Header("Run From Ibis")]
     GameObject ibis;
 
+    [Header("Drop Trash")]
+    [SerializeField] GameObject dropTrashGO;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -103,6 +106,10 @@ public class NPCPathfinding : GameBehaviour
         {
             //animation
             print("Drop trash");
+
+            var itemPool = _IS.objectPools[Random.Range(0, _IS.objectPools.Length)];
+            itemPool.GetComponent<ItemPoolMannager>().GetItem(dropTrashGO.transform.position);
+
         }
 
         yield return new WaitForSeconds(Random.Range(dropTrashDelayMin,dropTrashDelayMax));
