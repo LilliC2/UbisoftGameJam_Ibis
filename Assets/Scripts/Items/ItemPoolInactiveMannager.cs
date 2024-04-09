@@ -37,7 +37,7 @@ public class ItemPoolInactiveMannager : MonoBehaviour
             {
 
                 //this makes slots of error messages
-                if (item != null) item.GetComponent<InactiveTimeTracker>().lastActiveTime = Time.time;
+                item.GetComponent<InactiveTimeTracker>().lastActiveTime = Time.time;
 
             }
         }
