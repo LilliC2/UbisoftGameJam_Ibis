@@ -75,6 +75,7 @@ public class ItemSpawner : Singleton<ItemSpawner>
         //Vector3 spawnPosition = new Vector3(randomX, ySpawn, zSpawn);
         itemToSpawn.transform.position = spawnPos;
         itemToSpawn.SetActive(true);
+        itemToSpawn.transform.rotation = Quaternion.identity;
         despawnMannager.AddItemToDespawnList(itemToSpawn);
 
     }
