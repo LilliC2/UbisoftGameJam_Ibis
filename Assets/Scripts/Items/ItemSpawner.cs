@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSpawner : MonoBehaviour
+public class ItemSpawner : Singleton<ItemSpawner>
 {
     [SerializeField] private bool spawnObject = true;
     [SerializeField] List<GameObject> foodToSpawnPools;
@@ -25,10 +25,7 @@ public class ItemSpawner : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            SpawnItem(foodToSpawnPools[0]);
-        }
+
     }
 
     //void CalculateMinMaxX()
@@ -56,16 +53,15 @@ public class ItemSpawner : MonoBehaviour
     //    }
     //}
 
-    public void SpawnItem(GameObject itemToSpawn)
+    public void SpawnItem(GameObject itemToSpawn,Vector3 spawnPosition)
     {
         //when humans throw trash, change spawnPosition to parameter instead of random
 
         float randomX = Random.Range(minX, maxX);
-        Vector3 spawnPosition = new Vector3(randomX, ySpawn, zSpawn);
+        //Vector3 spawnPosition = new Vector3(randomX, ySpawn, zSpawn);
         itemToSpawn.SetActive(true);
         itemToSpawn.transform.position = spawnPosition;
         despawnMannager.AddItemToDespawnList(itemToSpawn);
-
 
     }
 
