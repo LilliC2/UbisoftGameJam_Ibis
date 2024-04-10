@@ -105,10 +105,8 @@ public class NPCPathfinding : GameBehaviour
         if(behaviourStates != BehaviourStates.RunFromIbis)
         {
             //animation
-            //print("Drop trash");
-
-            var itemPool = _IS.objectPools[Random.Range(0, _IS.objectPools.Length)];
-            itemPool.GetComponent<ItemPoolMannager>().GetItem(dropTrashGO.transform.position);
+            print("trigger animation");
+            animator.SetTrigger("ThrowTrash");
 
         }
 
@@ -116,6 +114,14 @@ public class NPCPathfinding : GameBehaviour
 
         StartCoroutine(DropTrash());
 
+    }
+
+    public void DropTrashAnimEvent()
+    {
+        print("drop trash from anim event");
+
+        var itemPool = _IS.objectPools[Random.Range(0, _IS.objectPools.Length)];
+        itemPool.GetComponent<ItemPoolMannager>().GetItem(dropTrashGO.transform.position);
     }
 
     Vector3 SearchDestinationWalkPoint()

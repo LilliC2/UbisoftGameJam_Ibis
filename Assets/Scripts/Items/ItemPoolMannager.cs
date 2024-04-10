@@ -7,30 +7,28 @@ public class ItemPoolMannager : MonoBehaviour
     [SerializeField] ItemList itemList;
     [SerializeField] ItemSpawner itemToSpawn;
     [SerializeField] ItemPoolSpawner itemPoolSpawner;
-    [SerializeField] int itemCap;
-    [SerializeField] int currentItemNum;
 
     public void GetItem(Vector3 spawnPosition)
     {
-        if(currentItemNum < itemCap)
+        bool foundInactiveObject = false;
+
+        foreach (GameObject item in itemList.instantiatedItems)
         {
-            bool foundInactiveObject = false;
-
-            foreach (GameObject item in itemList.instantiatedItems)
+            if (!item.activeSelf)
             {
-                if (!item.activeSelf)
-                {
-                    foundInactiveObject = true;
-                    itemToSpawn.SpawnItem(item, spawnPosition);
-                    break;
-                }
+                foundInactiveObject = true;
+                itemToSpawn.SpawnItem(item, spawnPosition);
+                break;
             }
+        }
 
-            if (!foundInactiveObject)
-            {
-                itemPoolSpawner.SpawnItem();
-                GetItem(spawnPosition);
-            }
+        if (!foundInactiveObject)
+        {
+            itemPoolSpawner.SpawnItem();
+            GetItem(spawnPosition);
+        }
+        {
+            
         }
 
 
