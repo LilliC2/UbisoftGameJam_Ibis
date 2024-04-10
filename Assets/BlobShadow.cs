@@ -16,10 +16,11 @@ public class BlobShadow : MonoBehaviour
         Vector3 hitPosition = hit.point;
         //transofrms the shadow to the location
         shadow.transform.position = hitPosition;
+        shadow.transform.rotation = Quaternion.identity;
 
         //Casts a ray stright downwards. reads back where it lands
 
-        if(Physics.Raycast(downRay,out hit))
+        if (Physics.Raycast(downRay,out hit))
         {
             print(hit.transform);
         }
