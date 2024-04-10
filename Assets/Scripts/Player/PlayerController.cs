@@ -44,6 +44,7 @@ public class PlayerController : GameBehaviour
     [SerializeField] float maxHonkOverheat;
     [SerializeField] float honkResetTime;
     bool hasHonked;
+    [SerializeField] GameObject honkCollider;
     [SerializeField] float honkFirerate;
 
 
@@ -103,7 +104,7 @@ public class PlayerController : GameBehaviour
     void Update()
     {
         //change states
-        switch(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name)
+        switch(anim.GetCurrentAnimatorClipInfo(1)[0].clip.name)
         {
             case "IbisHonk":
                 currentAction = Action.Honking;
@@ -122,7 +123,8 @@ public class PlayerController : GameBehaviour
                 currentAction = Action.Walking; break;
         }
 
-
+        if(currentAction == Action.Honking) honkCollider.SetActive(true);
+        else honkCollider.SetActive(false);
 
         if(movementNeck != Vector3.zero) isNeckMoving = true;
         else isNeckMoving = false;

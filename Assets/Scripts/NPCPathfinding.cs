@@ -149,6 +149,7 @@ public class NPCPathfinding : GameBehaviour
     {
         if(other.CompareTag("BinBitchin"))
         {
+            print("HONKING");
             ibis = other.gameObject;
             behaviourStates = BehaviourStates.RunFromIbis;
         }
