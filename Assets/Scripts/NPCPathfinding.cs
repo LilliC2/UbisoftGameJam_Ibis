@@ -27,6 +27,7 @@ public class NPCPathfinding : GameBehaviour
 
     [Header("Drop Trash")]
     [SerializeField] GameObject dropTrashGO;
+    GameObject itemToDrop;
 
     // Start is called before the first frame update
     void Start()
@@ -106,6 +107,10 @@ public class NPCPathfinding : GameBehaviour
         {
             //animation
             print("trigger animation");
+            var itemPool = _IS.objectPools[Random.Range(0, _IS.objectPools.Length)];
+            itemToDrop = itemPool.GetComponent<ItemPoolMannager>().GetItem(dropTrashGO.transform.position);
+            itemToDrop.GetComponent<TrashItem>().PickedUp(dropTrashGO);
+
             animator.SetTrigger("ThrowTrash");
 
         }
@@ -119,9 +124,9 @@ public class NPCPathfinding : GameBehaviour
     public void DropTrashAnimEvent()
     {
         print("drop trash from anim event");
-
-        var itemPool = _IS.objectPools[Random.Range(0, _IS.objectPools.Length)];
-        itemPool.GetComponent<ItemPoolMannager>().GetItem(dropTrashGO.transform.position);
+        itemToDrop.GetComponent<TrashItem>().Dropped();
+        itemToDrop = null;
+        
     }
 
     Vector3 SearchDestinationWalkPoint()

@@ -29,7 +29,10 @@ public class TrashItem : GameBehaviour
     public void PickedUp(GameObject player_holdPos)
     {
         holdPos = player_holdPos;
+        if(rb == null) rb = GetComponent<Rigidbody>();
+
         rb.constraints = RigidbodyConstraints.FreezeAll;
+
         transform.position = holdPos.transform.position;
 
         //rb.Sleep();
