@@ -8,7 +8,7 @@ using System;
 public class PlayerController : GameBehaviour
 {
     public int playerNum; //are they player 1 - 4?
-
+    public GameObject colourIndicator;
 
     public enum Action { Walking, Throwing, Honking, Attacking, Hit};
     public Action currentAction;

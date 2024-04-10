@@ -8,24 +8,30 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: CityBits_UpdatedMat
-  m_Shader: {fileID: 4800000, guid: 23f6705aff8bf964c87bfb3dd66ab345, type: 3}
+  m_Shader: {fileID: 4800000, guid: 5a061816c8a24f24fb591343f8893602, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - BSSBLOOMFOGTYPE_HEIGHT
   - VIGNETTE_MASKED
   - _LIGHTINGMODE_FLAT
   - _RIM2STYLE_POIYOMI
   - _RIMSTYLE_POIYOMI
   - _STOCHASTICMODE_DELIOT_HEITZ
-  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2000
-  stringTagMap: {}
+  stringTagMap:
+    AllLockedGUIDS: ff915131b0a289348a2fa531a9773851
+    OriginalKeywords: BSSBLOOMFOGTYPE_HEIGHT VIGNETTE_MASKED _LIGHTINGMODE_FLAT _RIM2STYLE_POIYOMI
+      _RIMSTYLE_POIYOMI _STOCHASTICMODE_DELIOT_HEITZ
+    OriginalShader: .poiyomi/Poiyomi Toon
+    OriginalShaderGUID: 23f6705aff8bf964c87bfb3dd66ab345
+    RenderType: Opaque
   disabledShaderPasses: []
-  m_LockedProperties: 
+  m_LockedProperties: _BumpMap
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
@@ -1669,8 +1675,8 @@ Material:
     - _LightingAddDetailShadowStrengthR: 1
     - _LightingAdditiveCastedShadows: 1
     - _LightingAdditiveEnable: 1
-    - _LightingAdditiveGradientEnd: 0.5
-    - _LightingAdditiveGradientStart: 0
+    - _LightingAdditiveGradientEnd: 1
+    - _LightingAdditiveGradientStart: 0.616
     - _LightingAdditiveLimit: 1
     - _LightingAdditiveLimited: 1
     - _LightingAdditiveMonochromatic: 0
@@ -2307,7 +2313,7 @@ Material:
     - _Set_RimLightMaskChannel: 1
     - _Set_RimLightMaskUV: 0
     - _ShadeColor_Step: 0
-    - _ShaderOptimizerEnabled: 0
+    - _ShaderOptimizerEnabled: 1
     - _ShaderUIWarning0: -0
     - _ShaderUIWarning1: -0
     - _ShadingEnabled: 1
@@ -2676,7 +2682,7 @@ Material:
     - m_end_vertexManipulation: 0
     - m_end_videoEffects: 0
     - m_lightingCategory: 0
-    - m_mainCategory: 1
+    - m_mainCategory: 0
     - m_modifierCategory: 0
     - m_renderingCategory: 0
     - m_specialFXCategory: 0
@@ -2751,7 +2757,7 @@ Material:
     - m_start_PoiGlobalCategory: 0
     - m_start_PoiLightData: 0
     - m_start_PoiPostProcessingCategory: 0
-    - m_start_PoiShading: 0
+    - m_start_PoiShading: 1
     - m_start_PoiUVCategory: 0
     - m_start_RGBMask: 0
     - m_start_Rim2AudioLink: 0
@@ -3152,7 +3158,7 @@ Material:
     - s_start_RimLight2DirectionMask: 0
     - s_start_RimLightDirectionMask: 0
     - s_start_ScrollingEmission0: 0
-    - s_start_ShadingAddPass: 0
+    - s_start_ShadingAddPass: 1
     - s_start_ShadingGlobalMask: 0
     - s_start_StylizedSpecularAdvanced: 0
     - s_start_StylizedSpecularLayer0: 1

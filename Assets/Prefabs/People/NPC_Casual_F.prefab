@@ -1124,7 +1124,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4884183204578720476}
   - component: {fileID: 439276974850751817}
-  - component: {fileID: 7248703107821620371}
   - component: {fileID: 783579188127575969}
   - component: {fileID: -2973191151838278030}
   - component: {fileID: 6290729040302120432}
@@ -1151,7 +1150,7 @@ Transform:
   - {fileID: 8665454456680046200}
   - {fileID: 8346562919116082245}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &439276974850751817
 Animator:
@@ -1174,18 +1173,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7248703107821620371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7624638193634652840}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54f141628068b9b4493f69f797f003b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &783579188127575969
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1247,8 +1234,8 @@ MonoBehaviour:
   noramlSpeed: 1
   runningSpeed: 3
   distanceFromIbis: 3
-  dropTrashDelayMin: 5
-  dropTrashDelayMax: 10
+  dropTrashDelayMin: 10
+  dropTrashDelayMax: 15
   behaviourStates: 1
   currentDestination: {x: 0, y: 0, z: 0}
   dropTrashGO: {fileID: 549610996717225989}

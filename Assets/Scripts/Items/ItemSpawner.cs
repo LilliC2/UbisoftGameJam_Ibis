@@ -44,7 +44,7 @@ public class ItemSpawner : Singleton<ItemSpawner>
 
 
 
-    public void SpawnItem(GameObject itemToSpawn, Vector3 spawnPos)
+    public GameObject SpawnItem(GameObject itemToSpawn, Vector3 spawnPos)
     {
         //when humans throw trash, change spawnPosition to parameter instead of random
 
@@ -55,6 +55,7 @@ public class ItemSpawner : Singleton<ItemSpawner>
         itemToSpawn.transform.rotation = Quaternion.identity;
         despawnMannager.AddItemToDespawnList(itemToSpawn);
 
+        return itemToSpawn;
     }
 
 }

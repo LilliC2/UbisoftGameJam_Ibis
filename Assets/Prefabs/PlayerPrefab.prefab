@@ -165,6 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNum: 0
+  colourIndicator: {fileID: 1466039145831903265}
   currentAction: 0
   movementSpeed: 5
   movementSpeed_smallTrash: 5
@@ -603,6 +604,11 @@ PrefabInstance:
 --- !u!95 &676810144833270906 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3717794752347328144, guid: 928938db4e4fd5449a5a227312ea12f3, type: 3}
+  m_PrefabInstance: {fileID: 4250485026477816554}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1466039145831903265 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3360999554034109131, guid: 928938db4e4fd5449a5a227312ea12f3, type: 3}
   m_PrefabInstance: {fileID: 4250485026477816554}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2564843480777744982 stripped
