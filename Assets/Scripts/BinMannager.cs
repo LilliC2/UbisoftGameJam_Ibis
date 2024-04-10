@@ -16,7 +16,6 @@ public class BinMannager : Singleton<BinMannager>
 
     [SerializeField] List<GameObject> BinItemList = new List<GameObject>();
     [SerializeField] int maxListAmount;
-    [SerializeField] DespawnMannager despawnMannager;
 
     private void Start()
     {
@@ -91,7 +90,7 @@ public class BinMannager : Singleton<BinMannager>
         if (item != null)
         {
             BinItemList.Add(item);
-            despawnMannager.RemoveItemToDespawnList(item);
+            _DM.RemoveItemToDespawnList(item);
             checkDespawn();
         }
         else
@@ -106,7 +105,7 @@ public class BinMannager : Singleton<BinMannager>
         if (item != null)
         {
             BinItemList.Remove(item);
-            despawnMannager.AddItemToDespawnList(item);
+            _DM.AddItemToDespawnList(item);
         }
         else
         {
