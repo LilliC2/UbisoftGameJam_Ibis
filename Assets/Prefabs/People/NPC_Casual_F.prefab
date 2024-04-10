@@ -1127,8 +1127,8 @@ MonoBehaviour:
   noramlSpeed: 1
   runningSpeed: 3
   distanceFromIbis: 3
-  dropTrashDelayMin: 5
-  dropTrashDelayMax: 10
+  dropTrashDelayMin: 10
+  dropTrashDelayMax: 15
   behaviourStates: 1
   currentDestination: {x: 0, y: 0, z: 0}
   dropTrashGO: {fileID: 549610996717225989}
