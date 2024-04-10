@@ -33,6 +33,8 @@ public class TrashItem : GameBehaviour
         transform.position = holdPos.transform.position;
 
         //rb.Sleep();
+        _DM.RemoveItemToDespawnList(gameObject);
+
         _BM.RemoveFromList(gameObject);
         _SC.RemoveItemToCollectList(gameObject);
 
@@ -41,8 +43,10 @@ public class TrashItem : GameBehaviour
     public void Dropped()
     {
         holdPos = null;
-       // rb.WakeUp();
+        // rb.WakeUp();
         rb.constraints = RigidbodyConstraints.None;
+        _DM.AddItemToDespawnList(gameObject);
+
         _BM.AddToList(gameObject);
 
     }
