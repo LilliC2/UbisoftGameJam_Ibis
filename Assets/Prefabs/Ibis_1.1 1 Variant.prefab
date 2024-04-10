@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4545000821250024813}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.003}
+  m_LocalPosition: {x: 0, y: 0, z: 0.03}
   m_LocalScale: {x: 0.16800825, y: 0.16800825, z: 0.16800825}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -540,7 +540,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 75a16e95dc1b3a949a741c43c914d9b4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8157019066339732758}
+      addedObject: {fileID: 4961742908509425413}
     - targetCorrespondingSourceObject: {fileID: 3842613431950101802, guid: 75a16e95dc1b3a949a741c43c914d9b4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2801575644924800209}
@@ -1050,7 +1050,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 75a16e95dc1b3a949a741c43c914d9b4, type: 3}
   m_PrefabInstance: {fileID: 7129997592976028417}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8157019066339732758
+--- !u!114 &4961742908509425413
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1059,7 +1059,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7940900408119316048}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bf5e6de682942246ac19b1ce11c9d9e, type: 3}
+  m_Script: {fileID: 11500000, guid: 54062a7bfc5771441863a4e387133ee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shadow: {fileID: 6780919657838087246}
