@@ -16,6 +16,7 @@ public class PlayerController : GameBehaviour
 
     Rigidbody rb;
 
+    [SerializeField] float turnSpeed;
     [SerializeField] float movementSpeed;
     [SerializeField] float movementSpeed_smallTrash;
     [SerializeField] float movementSpeed_mediumTrash;
@@ -169,6 +170,14 @@ public class PlayerController : GameBehaviour
         {
             //move body
             //movementBody += new Vector3(0, 45, 0);
+
+
+            //var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
+            //var skewedInput = matrix.MultiplyPoint3x4(movementBody);
+            //var relative = (transform.position + skewedInput) - transform.position;
+            //var rot = Quaternion.LookRotation(relative, Vector3.up);
+
+            //transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, turnSpeed * Time.deltaTime);
 
             controller.Move(movementBody * movementSpeed * Time.deltaTime);
             if (transform.localEulerAngles != Vector3.zero) directionBody = transform.localEulerAngles;
@@ -525,9 +534,18 @@ public class PlayerController : GameBehaviour
     {
 
         Vector2 move = context.ReadValue<Vector2>();
-        movementBody = new Vector3(move.x, 0, move.y);
+        Vector3 toConvert = new Vector3(move.x, 0, move.y);
+        movementBody = IsoVectorConvert(toConvert);
         transform.rotation = Quaternion.LookRotation(movementBody);
 
+    }
+
+    Vector3 IsoVectorConvert(Vector3 vector)
+    {
+        Quaternion rotation = Quaternion.Euler(0, 45, 0);
+        Matrix4x4 isoMatrix = Matrix4x4.Rotate(rotation);
+        Vector3 result =isoMatrix.MultiplyPoint3x4(vector);
+        return result;
     }
 
     public void OnMoveHead(InputAction.CallbackContext context)

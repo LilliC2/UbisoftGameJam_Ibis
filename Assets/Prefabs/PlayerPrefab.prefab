@@ -138,6 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerNum: 0
   currentAction: 0
+  turnSpeed: 1
   movementSpeed: 3
   movementSpeed_smallTrash: 3
   movementSpeed_mediumTrash: 2
