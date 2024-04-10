@@ -1806,6 +1806,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1097854636821013012, guid: e896da7ea6014e34b973d6a164096241, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 27.99
+      objectReference: {fileID: 0}
     - target: {fileID: 4230316775584243833, guid: e896da7ea6014e34b973d6a164096241, type: 3}
       propertyPath: m_Name
       value: FightPrefab
