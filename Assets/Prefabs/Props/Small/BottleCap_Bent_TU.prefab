@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 819244252577308950}
   - component: {fileID: 4179090136898940552}
   - component: {fileID: 702797911627987141}
+  - component: {fileID: 7242872095532809637}
   m_Layer: 6
   m_Name: BottleCap_Bent_TU
   m_TagString: SmallTrash
@@ -150,3 +151,16 @@ MonoBehaviour:
   holdPos: {fileID: 0}
   forceApplied: 300
   aliveTime: 60
+--- !u!114 &7242872095532809637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7181014168173947032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea293d51d8d196a4c89a48192609e02f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastActiveTime: 0

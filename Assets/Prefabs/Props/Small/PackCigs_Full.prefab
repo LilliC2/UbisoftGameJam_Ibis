@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8563075520335120343}
   - component: {fileID: 4666519564637821660}
   - component: {fileID: 2020575639899832127}
+  - component: {fileID: -7342963561351579116}
   m_Layer: 6
   m_Name: PackCigs_Full
   m_TagString: SmallTrash
@@ -150,3 +151,16 @@ MonoBehaviour:
   holdPos: {fileID: 0}
   forceApplied: 300
   aliveTime: 60
+--- !u!114 &-7342963561351579116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935003806808766453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea293d51d8d196a4c89a48192609e02f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastActiveTime: 0

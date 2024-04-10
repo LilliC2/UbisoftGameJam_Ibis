@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 715377990944431550}
   - component: {fileID: 2024646549606067774}
   - component: {fileID: 6206864291640470614}
+  - component: {fileID: -8423563535737585317}
   m_Layer: 6
   m_Name: Bannana_HalfEaten
   m_TagString: MediumTrash
@@ -151,3 +152,16 @@ CapsuleCollider:
   m_Height: 0.15
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-8423563535737585317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4537126088068570868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea293d51d8d196a4c89a48192609e02f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastActiveTime: 0
