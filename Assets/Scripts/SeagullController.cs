@@ -58,7 +58,7 @@ public class SeagullController : Singleton<SeagullController>
             Transform targetPoint = movePoints[currentPointIndex];
             trackingObject.transform.position = Vector3.MoveTowards(trackingObject.transform.position, targetPoint.position, moveSpeed * Time.deltaTime);
 
-            print(currentPointIndex);
+            //print(currentPointIndex);
             // Check if the second point is reached
             if (currentPointIndex >= 3)
             {

@@ -105,7 +105,7 @@ public class NPCPathfinding : GameBehaviour
         if(behaviourStates != BehaviourStates.RunFromIbis)
         {
             //animation
-            print("Drop trash");
+            //print("Drop trash");
 
             var itemPool = _IS.objectPools[Random.Range(0, _IS.objectPools.Length)];
             itemPool.GetComponent<ItemPoolMannager>().GetItem(dropTrashGO.transform.position);

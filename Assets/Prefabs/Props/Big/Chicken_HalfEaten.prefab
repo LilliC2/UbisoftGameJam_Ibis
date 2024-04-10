@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1729153936776249919}
   - component: {fileID: 4636605812310724701}
   - component: {fileID: 6343989957883952366}
+  - component: {fileID: 7551469383991604378}
   m_Layer: 6
   m_Name: Chicken_HalfEaten
   m_TagString: BigTrash
@@ -151,3 +152,16 @@ CapsuleCollider:
   m_Height: 0.24
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7551469383991604378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950203265592280177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea293d51d8d196a4c89a48192609e02f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastActiveTime: 0
