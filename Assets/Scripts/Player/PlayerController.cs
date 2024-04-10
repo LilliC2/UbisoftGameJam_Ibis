@@ -16,7 +16,6 @@ public class PlayerController : GameBehaviour
 
     Rigidbody rb;
 
-    [SerializeField] float turnSpeed;
     [SerializeField] float movementSpeed;
     [SerializeField] float movementSpeed_smallTrash;
     [SerializeField] float movementSpeed_mediumTrash;
