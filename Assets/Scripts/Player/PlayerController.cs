@@ -168,6 +168,8 @@ public class PlayerController : GameBehaviour
         if(currentAction != Action.Attacking&& currentAction != Action.Throwing && currentAction != Action.Hit)
         {
             //move body
+            //movementBody += new Vector3(0, 45, 0);
+
             controller.Move(movementBody * movementSpeed * Time.deltaTime);
             if (transform.localEulerAngles != Vector3.zero) directionBody = transform.localEulerAngles;
             if (controller.velocity.magnitude < 1) transform.localEulerAngles = directionBody;
