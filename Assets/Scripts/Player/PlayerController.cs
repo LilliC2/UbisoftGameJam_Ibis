@@ -133,7 +133,7 @@ public class PlayerController : GameBehaviour
         if (isHoldingTrash && targetTrash != null)
         {
             var tag = targetTrash.tag;
-            print("change speed");
+            //print("change speed");
             switch (tag)
             {
                 case "SmallTrash":
@@ -253,7 +253,7 @@ public class PlayerController : GameBehaviour
                 }
                 else
                 {
-                    print("turn head");
+                    //print("turn head");
                     Vector3 rotation120 = new Vector3(120, ibisHead.transform.eulerAngles.y, ibisHead.transform.eulerAngles.z);
                     ibisHead.transform.eulerAngles = rotation120;
 
@@ -474,7 +474,7 @@ public class PlayerController : GameBehaviour
 
                     targetTrash.layer = LayerMask.NameToLayer("HeldProps");
 
-                    print("pick up " + targetTrash.name);
+                    //print("pick up " + targetTrash.name);
                     targetTrash.GetComponent<TrashItem>().PickedUp(holdTrashPos);
                     ExecuteAfterSeconds(1, () => pickUpCoolDown = false); //so it doesn't drop it instantly
                 }

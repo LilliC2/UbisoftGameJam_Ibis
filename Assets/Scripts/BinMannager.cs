@@ -33,19 +33,19 @@ public class BinMannager : Singleton<BinMannager>
         switch (other.tag)
         {
             case "BigTrash":
-                print("Big Trash input");
+                //print("Big Trash input");
                 binCurrentScore += bigScore;
                 AddToList(other.gameObject);
                 break;
 
             case "MediumTrash":
-                print("Big Medium input");
+                //print("Big Medium input");
                 binCurrentScore += midScore;
                 AddToList(other.gameObject);
                 break;
 
             case "SmallTrash":
-                print("Big Small input");
+                //print("Big Small input");
                 binCurrentScore += smallScore;
                 AddToList(other.gameObject);
                 break;
@@ -57,19 +57,19 @@ public class BinMannager : Singleton<BinMannager>
         switch (other.tag)
         {
             case "BigTrash":
-                print("Big Trash Exit");
+                //print("Big Trash Exit");
                 binCurrentScore -= bigScore;
                 RemoveFromList(other.gameObject);
                 break;
 
             case "MediumTrash":
-                print("Big Medium Exit");
+                //print("Big Medium Exit");
                 binCurrentScore -= midScore;
                 RemoveFromList(other.gameObject);
                 break;
 
             case "SmallTrash":
-                print("Big Small input");
+                //print("Big Small input");
                 binCurrentScore -= smallScore;
                 RemoveFromList(other.gameObject);
                 break;

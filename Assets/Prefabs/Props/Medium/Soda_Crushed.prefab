@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3582969472344029510}
   - component: {fileID: 8745819368469869381}
   - component: {fileID: 3859418178347881058}
+  - component: {fileID: 4652691551372169087}
   m_Layer: 6
   m_Name: Soda_Crushed
   m_TagString: MediumTrash
@@ -151,3 +152,16 @@ CapsuleCollider:
   m_Height: 0
   m_Direction: 2
   m_Center: {x: 0, y: 0, z: 9.313227e-10}
+--- !u!114 &4652691551372169087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3299750194725214341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea293d51d8d196a4c89a48192609e02f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastActiveTime: 0
