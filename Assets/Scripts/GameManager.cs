@@ -5,6 +5,8 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
+public enum GameState { Menu, Playing, Paused, GameOver}
+
 public class GameManager : Singleton<GameManager>
 {
     public GameObject[] spawnPoints;
@@ -100,5 +102,10 @@ public class GameManager : Singleton<GameManager>
         }
 
        // playerInput.GetComponentInParent<PlayerController>().DestroyPlayer();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

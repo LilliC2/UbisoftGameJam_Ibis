@@ -14,6 +14,8 @@ public class GameBehaviour : Behaviour //inherits from
     protected static BinMannager _BM { get { return BinMannager.INSTANCE; } }
     protected static SeagullController _SC { get { return SeagullController.INSTANCE; } }
     protected static ItemSpawner _IS { get { return ItemSpawner.INSTANCE; } }
+    protected static MainMenu _MM { get { return MainMenu.INSTANCE; } }
+    protected static UIManager _UI { get { return UIManager.INSTANCE; } }
 
 }
 //
