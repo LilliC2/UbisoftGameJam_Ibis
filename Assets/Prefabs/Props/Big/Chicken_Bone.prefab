@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdPos: {fileID: 0}
-  forceApplied: 1500
+  forceApplied: 1000
   aliveTime: 60
 --- !u!136 &6815420084490709377
 CapsuleCollider:
