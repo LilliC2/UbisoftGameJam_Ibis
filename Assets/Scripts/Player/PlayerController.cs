@@ -30,6 +30,8 @@ public class PlayerController : GameBehaviour
     Vector3 movementBody;
     Vector3 directionBody;
 
+    
+
 
 
     [SerializeField]
@@ -44,9 +46,13 @@ public class PlayerController : GameBehaviour
     [SerializeField] float maxHonkOverheat;
     [SerializeField] float honkResetTime;
     bool hasHonked;
+    bool postHonkClarity;
+    bool hasAngryied;
     [SerializeField] GameObject honkCollider;
     [SerializeField] float honkFirerate;
 
+    VFXManager vfxManager;
+    [SerializeField] GameObject honkVFXTransform;
 
     [Header("Head and Neck Movement")]
     [SerializeField]
@@ -94,6 +100,8 @@ public class PlayerController : GameBehaviour
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
         controls = new PlayerControls();
+
+        vfxManager = _VFXM.GetComponent<VFXManager>();
 
         groundCheck = transform.Find("GroundCheck").gameObject;
         OnResetHeadRotations();
@@ -427,12 +435,22 @@ public class PlayerController : GameBehaviour
             if (!hasHonked)
             {
                 hasHonked = true;
+                postHonkClarity = true;
                 currentHonkOverheat += 0.5f;
-
+                vfxManager.SpawnParticle(0, honkVFXTransform.transform);
                 if (currentHonkOverheat > maxHonkOverheat) HonkCoolDown();
                 ExecuteAfterSeconds(honkFirerate, () => hasHonked = false);
+                ExecuteAfterSeconds(honkFirerate/4, () => postHonkClarity = false);
             }
-
+            else if (hasHonked == true)
+            {  
+                if (hasAngryied == false && postHonkClarity == false)
+                {
+                    hasAngryied = true;
+                    vfxManager.SpawnParticle(2, honkVFXTransform.transform);
+                    ExecuteAfterSeconds(honkFirerate/4, () => hasAngryied = false);
+                }
+            }
         }
 
     }
@@ -442,6 +460,7 @@ public class PlayerController : GameBehaviour
         var value = context.ReadValue<float>();
         if (value == 0) isHonking = false;
         else if (value == 1) isHonking = true;
+
         print(isHonking);
 
 

@@ -180,6 +180,7 @@ MonoBehaviour:
   honkResetTime: 0.5
   honkCollider: {fileID: 5737535947934061447}
   honkFirerate: 3
+  honkVFXTransform: {fileID: 7862637457977071474}
   isNeckMoving: 0
   ibisHead: {fileID: 3303847329216947380}
   ibisNeck: {fileID: 8114669823369966393}
@@ -333,6 +334,50 @@ MonoBehaviour:
   m_Radius: 0.5
   m_Height: 0
   m_Radius2: 0
+--- !u!1 &7862637457977071474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4437583392611175039}
+  - component: {fileID: 2617410963990206208}
+  m_Layer: 8
+  m_Name: HonkTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4437583392611175039
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7862637457977071474}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.0226, z: -0.0219}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2564843480777744982}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2617410963990206208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7862637457977071474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf86660f9209e7849841e5fb71d6e12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4250485026477816554
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -587,6 +632,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1829840313844783292, guid: 928938db4e4fd5449a5a227312ea12f3, type: 3}
       insertIndex: 0
       addedObject: {fileID: 2790295108835973214}
+    - targetCorrespondingSourceObject: {fileID: 1829840313844783292, guid: 928938db4e4fd5449a5a227312ea12f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4437583392611175039}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7940900408119316048, guid: 928938db4e4fd5449a5a227312ea12f3, type: 3}
       insertIndex: -1
