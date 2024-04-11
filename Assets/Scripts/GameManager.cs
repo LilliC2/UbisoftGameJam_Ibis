@@ -35,7 +35,7 @@ public class GameManager : Singleton<GameManager>
     {
         foreach (var bin in playerBins)
         {
-            bin.SetActive(false);
+           bin.SetActive(false);
         }
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
 
