@@ -22,7 +22,7 @@ public class ItemSpawner : Singleton<ItemSpawner>
     {
         int totalCount = 0;
 
-        foreach (var pool in foodToSpawnPools)
+        foreach (var pool in objectPools)
         {
             totalCount += pool.GetComponent<ItemList>().instantiatedItems.Count;
         }
