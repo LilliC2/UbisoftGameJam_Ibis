@@ -290,11 +290,11 @@ public class PlayerController : GameBehaviour
     {
         //transform.position = _GM.spawnPoints[playerNum].transform.position;
 
-        controls.Gameplay.Enable();
+        //controls.Gameplay.Enable();
     }
     private void OnDisable()
     {
-        controls.Gameplay.Disable();
+        //controls.Gameplay.Disable();
 
     }
 

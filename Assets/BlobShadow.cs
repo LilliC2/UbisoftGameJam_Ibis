@@ -22,7 +22,7 @@ public class BlobShadow : MonoBehaviour
 
         if (Physics.Raycast(downRay,out hit))
         {
-            print(hit.transform);
+           // print(hit.transform);
         }
     }
 }

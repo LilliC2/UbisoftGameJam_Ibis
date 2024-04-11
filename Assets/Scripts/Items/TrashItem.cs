@@ -38,7 +38,6 @@ public class TrashItem : GameBehaviour
         //rb.Sleep();
         _DM.RemoveItemToDespawnList(gameObject);
 
-        _BM.RemoveFromList(gameObject);
         _SC.RemoveItemToCollectList(gameObject);
 
     }
@@ -50,7 +49,7 @@ public class TrashItem : GameBehaviour
         rb.constraints = RigidbodyConstraints.None;
         _DM.AddItemToDespawnList(gameObject);
 
-        _BM.AddToList(gameObject);
+        //_BM.AddToList(gameObject);
 
     }
 
@@ -60,7 +59,9 @@ public class TrashItem : GameBehaviour
         holdPos = null;
         rb.constraints = RigidbodyConstraints.None;
         thrownFrom = player;
-        _BM.AddToList(gameObject);
+        _DM.RemoveItemToDespawnList(gameObject);
+
+        //_BM.AddToList(gameObject);
 
 
     }

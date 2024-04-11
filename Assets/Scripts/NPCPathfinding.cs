@@ -132,7 +132,8 @@ public class NPCPathfinding : GameBehaviour
     public void DropTrashAnimEvent()
     {
         print("drop trash from anim event");
-        itemToDrop.GetComponent<TrashItem>().Dropped();
+        if(itemToDrop != null) itemToDrop.GetComponent<TrashItem>().Dropped();
+
         itemToDrop = null;
         agent.isStopped = false;
         

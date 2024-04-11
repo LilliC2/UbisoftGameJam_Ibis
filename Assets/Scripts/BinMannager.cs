@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BinMannager : Singleton<BinMannager>
+public class BinMannager : GameBehaviour
 {
     TrashObjectScores trashObjectScores;
 
 
-    [SerializeField] GameObject assigedPlayer;
+    public GameObject assigedPlayer;
     [SerializeField] int binCurrentScore;
 
     [SerializeField] int smallScore;
