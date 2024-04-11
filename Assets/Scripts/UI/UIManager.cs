@@ -35,6 +35,7 @@ public class UIManager : Singleton<UIManager>
     public int score3;
     public int score4;
     public TMP_Text timerText;
+    public int playerNumber;
 
     [Header("Pause")]
     public Image player1ready;
@@ -157,12 +158,14 @@ public class UIManager : Singleton<UIManager>
         Setup();
     }
 
-    public void UpdateScoreText(int _score)
+    public void UpdateScoreText(int _score, int _playerNumber)
     {
-        switch (playerControls.playerNum)
+        print("binned");
+        switch (_playerNumber)
         {
             case 0:
                 player1Score.text = _score.ToString();
+                print("p1");
                 break;
 
             case 1:
