@@ -202,7 +202,7 @@ MeshCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5077887928474083804}
-  m_Material: {fileID: 13400000, guid: 402fef18d2016de4e93e9d4ebab50329, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -258,6 +258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdPos: {fileID: 0}
   forceApplied: 300
+  readyToBin: 1
   aliveTime: 60
 --- !u!114 &-533019517007027284
 MonoBehaviour:

@@ -211,8 +211,8 @@ public class PlayerController : GameBehaviour
                     neckYrotation = Mathf.Clamp(neckYrotation, -90, 90);
                     //apply rotations
                     //if it hasn't changed, dont change it
-                    var euler = Quaternion.Euler(neckXrotation, neckYrotation, 0f);
-                    if (euler != Quaternion.Euler(defaultNeckRotation)) ibisNeck.transform.localRotation = Quaternion.Euler(neckXrotation, neckYrotation, 0f);
+                    var euler = Quaternion.Euler(neckXrotation, 0, 0f);
+                    if (euler != Quaternion.Euler(defaultNeckRotation)) ibisNeck.transform.localRotation = Quaternion.Euler(neckXrotation, 0, 0f);
 
 
 

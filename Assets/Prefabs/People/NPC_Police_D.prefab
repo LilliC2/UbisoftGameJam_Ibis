@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 3345092519424037539}
   m_Layer: 13
   m_Name: NPC_Police_D
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -635,7 +635,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.7820566, z: 0}
 --- !u!114 &7240304721457783931
 MonoBehaviour:
   m_ObjectHideFlags: 0

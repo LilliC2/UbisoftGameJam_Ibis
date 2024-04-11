@@ -1026,7 +1026,7 @@ GameObject:
   - component: {fileID: 1771777839350233293}
   m_Layer: 13
   m_Name: NPC_Casual_B
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1111,9 +1111,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 1
+  m_Height: 2.5641131
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.7820566, z: 0}
 --- !u!114 &823960056637464259
 MonoBehaviour:
   m_ObjectHideFlags: 0
