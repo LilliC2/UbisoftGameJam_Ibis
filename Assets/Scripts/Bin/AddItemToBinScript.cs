@@ -6,10 +6,12 @@ public class AddItemToBinScript : GameBehaviour
 {
     [SerializeField] Transform binTpTransform;
     BinMannager binMannager;
+    AudioSource audioSource;
 
     private void Start()
     {
         binMannager = GetComponentInParent<BinMannager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,6 +64,7 @@ public class AddItemToBinScript : GameBehaviour
             {
                 trashitem.Dropped();
                 trashitem.readyToBin = false;
+                _AM.PlaySound(_AM.trashInBin, audioSource);
             }
             else
             {

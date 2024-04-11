@@ -18,6 +18,9 @@ public class NPCPathfinding : GameBehaviour
     public BehaviourStates behaviourStates;
     Animator animator;
 
+    AudioSource audioSource;
+    public bool isMale;
+
     [Header("Patrol")]
     bool hasDestination;
     [SerializeField] Vector3 currentDestination;
@@ -37,6 +40,7 @@ public class NPCPathfinding : GameBehaviour
         currentDestination = SearchPatrolPoint();
         UpdateAgentSpeed(noramlSpeed);
         ExecuteAfterSeconds(3, () => StartCoroutine(DropTrash()));
+        audioSource = GetComponent<AudioSource>();
     }
 
     void UpdateAgentSpeed(float speed)
@@ -97,6 +101,8 @@ public class NPCPathfinding : GameBehaviour
                     ibis = null;
                     behaviourStates = BehaviourStates.TravelToDestination;
                 }
+
+
                 break;
         }
     }
@@ -119,9 +125,6 @@ public class NPCPathfinding : GameBehaviour
                 animator.SetTrigger("ThrowTrash");
 
             }
-            
-
-
 
         }
 
@@ -138,7 +141,7 @@ public class NPCPathfinding : GameBehaviour
 
         itemToDrop = null;
         agent.isStopped = false;
-        
+
     }
 
     Vector3 SearchDestinationWalkPoint()
@@ -174,6 +177,13 @@ public class NPCPathfinding : GameBehaviour
         {
             print("HONKING");
             ibis = other.gameObject;
+
+            //Play Scream
+            if (isMale == true)
+                _AM.PlaySound(_AM.maleScream, audioSource);
+            else
+                _AM.PlaySound(_AM.femaleScream, audioSource);
+
             behaviourStates = BehaviourStates.RunFromIbis;
         }
     }

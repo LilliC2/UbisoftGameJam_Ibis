@@ -34,6 +34,7 @@ public class PlayerController : GameBehaviour
 
     [SerializeField]
     public Animator anim;
+    AudioSource audioSource;
 
 
     [Header("Honk")]
@@ -97,6 +98,8 @@ public class PlayerController : GameBehaviour
 
         groundCheck = transform.Find("GroundCheck").gameObject;
         OnResetHeadRotations();
+
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -312,6 +315,8 @@ public class PlayerController : GameBehaviour
         controller.enabled = false;
         rb.AddForce(direction * forceApplied, ForceMode.Force);
 
+        _AM.PlaySound(_AM.hitPlayer, audioSource);
+
         ExecuteAfterSeconds(1, () => ResetRB(rb, controller));
     }
 
@@ -359,6 +364,8 @@ public class PlayerController : GameBehaviour
             tempTrashHolder.layer = LayerMask.NameToLayer("PickUpProps"); ;
 
             tempTrashHolder.GetComponent<Rigidbody>().AddForce(transform.forward * throwForce, ForceMode.Force);
+
+            _AM.PlaySound(_AM.throwTrash, audioSource);
 
         }
     }
@@ -432,7 +439,7 @@ public class PlayerController : GameBehaviour
                 if (currentHonkOverheat > maxHonkOverheat) HonkCoolDown();
                 ExecuteAfterSeconds(honkFirerate, () => hasHonked = false);
             }
-
+            _AM.PlaySound(_AM.ibisHonk, audioSource);
         }
 
     }
@@ -474,6 +481,8 @@ public class PlayerController : GameBehaviour
 
                     targetTrash.layer = LayerMask.NameToLayer("HeldProps");
 
+                    _AM.PlaySound(_AM.pickUpTrash, audioSource);
+
                     //print("pick up " + targetTrash.name);
                     targetTrash.GetComponent<TrashItem>().PickedUp(holdTrashPos);
                     ExecuteAfterSeconds(1, () => pickUpCoolDown = false); //so it doesn't drop it instantly
@@ -511,6 +520,8 @@ public class PlayerController : GameBehaviour
             tempTrashHolder.GetComponent<TrashItem>().Dropped();
             if(isHonking) tempTrashHolder.GetComponent<Rigidbody>().AddForce(transform.forward * dropForce_Honking, ForceMode.Force);
             else tempTrashHolder.GetComponent<Rigidbody>().AddForce(transform.forward * dropForce, ForceMode.Force);
+
+            _AM.PlaySound(_AM.dropTrash, audioSource);
 
             ExecuteAfterSeconds(1, () => dropCoolDown = false);
 
