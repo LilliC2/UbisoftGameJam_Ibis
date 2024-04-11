@@ -6,6 +6,7 @@ public class TrashItem : GameBehaviour
 {
     public GameObject holdPos;
     public GameObject lastToHold;
+    Transform poolParent;
     GameObject thrownFrom;
     Rigidbody rb;
     public float forceApplied = 500;
@@ -18,7 +19,7 @@ public class TrashItem : GameBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
+        poolParent = gameObject.transform.root;
     }
 
     // Update is called once per frame
@@ -32,6 +33,7 @@ public class TrashItem : GameBehaviour
     public void PickedUp(GameObject player_holdPos)
     {
         holdPos = player_holdPos;
+        gameObject.transform.parent = player_holdPos.transform;
         lastToHold = player_holdPos.transform.root.gameObject;
         if(rb == null) rb = GetComponent<Rigidbody>();
 
@@ -48,7 +50,8 @@ public class TrashItem : GameBehaviour
 
     public void Dropped()
     {
-        
+
+        gameObject.transform.parent = poolParent;
 
         readyToBin = true;
         holdPos = null;
@@ -62,6 +65,8 @@ public class TrashItem : GameBehaviour
 
     public void Thrown(GameObject player)
     {
+        gameObject.transform.parent = poolParent;
+
         print("Called thrown on object for " + gameObject.name);
         holdPos = null;
         rb.constraints = RigidbodyConstraints.None;

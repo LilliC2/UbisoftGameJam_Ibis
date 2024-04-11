@@ -34,7 +34,7 @@ public class GameManager : Singleton<GameManager>
         {
             bin.SetActive(false);
         }
-        spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+       // spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
 
         joinAction.Enable();
         leaveAction.Enable();
@@ -46,7 +46,7 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Alpha0)) _IS.GetTotalItemCount();
     }
 
     void OnPlayerJoined(PlayerInput playerInput)

@@ -18,6 +18,16 @@ public class ItemSpawner : Singleton<ItemSpawner>
 
     DespawnMannager despawnMannager;
 
+    public void GetTotalItemCount()
+    {
+        int totalCount = 0;
+
+        foreach (var pool in foodToSpawnPools)
+        {
+            totalCount += pool.GetComponent<ItemList>().instantiatedItems.Count;
+        }
+        print(totalCount);
+    }
 
     private void Start()
     {

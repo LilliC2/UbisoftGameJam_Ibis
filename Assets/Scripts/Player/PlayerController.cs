@@ -498,6 +498,7 @@ public class PlayerController : GameBehaviour
     {
         if(targetTrash != null)
         {
+
             isHoldingTrash = false;
             dropCoolDown = true;
             var tempTrashHolder = targetTrash;
@@ -511,6 +512,7 @@ public class PlayerController : GameBehaviour
             tempTrashHolder.GetComponent<TrashItem>().Dropped();
             if(isHonking) tempTrashHolder.GetComponent<Rigidbody>().AddForce(transform.forward * dropForce_Honking, ForceMode.Force);
             else tempTrashHolder.GetComponent<Rigidbody>().AddForce(transform.forward * dropForce, ForceMode.Force);
+
 
             ExecuteAfterSeconds(1, () => dropCoolDown = false);
 
