@@ -76,6 +76,8 @@ public class GameManager : Singleton<GameManager>
     {
 
         PlayerInputManager.instance.JoinPlayerFromActionIfNotAlreadyJoined(context); //getting controller from button input
+        _UI.ReadyPlayer();
+        print("i Join");
 
     }
     void LeaveAction(InputAction.CallbackContext context)

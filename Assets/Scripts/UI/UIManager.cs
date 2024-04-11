@@ -16,7 +16,7 @@ public class UIManager : Singleton<UIManager>
     public GameObject gameOverUI;
 
     [Header("Main Menu")]
-    public Camera mainMenuCamera;
+    public GameObject mainMenuCamera;
     public Image player1Icon;
     public Image player2Icon;
     public Image player3Icon;
@@ -24,7 +24,7 @@ public class UIManager : Singleton<UIManager>
     public Sprite[] connectionIcon; // 0 = disconnected, 1 = connected
 
     [Header("In-Game UI")]
-    public Camera playingCamera;
+    public GameObject playingCamera;
     public TMP_Text player1Score;
     public TMP_Text player2Score;
     public TMP_Text player3Score;
@@ -45,7 +45,7 @@ public class UIManager : Singleton<UIManager>
     public Sprite[] readyIcon; // 0 = not ready, 1 = ready
 
     [Header("Game Over")]
-    public Camera gameOverCamera;
+    public GameObject gameOverCamera;
     public TMP_Text player1EndScore;
     public TMP_Text player2EndScore;
     public TMP_Text player3EndScore;
@@ -54,7 +54,8 @@ public class UIManager : Singleton<UIManager>
     // Start is called before the first frame update
     void Start()
     {
-        uiState = UIState.Playing;
+        uiState = UIState.MainMenu;
+        Setup();
         player1Score.text = "0";
         player2Score.text = "0";
         player3Score.text = "0";
@@ -78,9 +79,10 @@ public class UIManager : Singleton<UIManager>
                 pauseUI.SetActive(false);
                 gameOverUI.SetActive(false);
                 //camera
-                mainMenuCamera.enabled = true;
-                playingCamera.enabled = false;
-                gameOverCamera.enabled = false;
+                mainMenuCamera.SetActive(true);
+                playingCamera.SetActive(false);
+                gameOverCamera.SetActive(false);
+
 
                 break;
 
@@ -91,9 +93,11 @@ public class UIManager : Singleton<UIManager>
                 pauseUI.SetActive(false);
                 gameOverUI.SetActive(false);
                 //camera
-                mainMenuCamera.enabled = false;
-                playingCamera.enabled = true;
-                gameOverCamera.enabled = false;
+                mainMenuCamera.SetActive(false);
+                playingCamera.SetActive(true);
+                gameOverCamera.SetActive(false);
+
+
                 break;
 
             case UIState.Paused:
@@ -111,9 +115,10 @@ public class UIManager : Singleton<UIManager>
                 pauseUI.SetActive(false);
                 gameOverUI.SetActive(true);
                 //camera
-                mainMenuCamera.enabled = false;
-                playingCamera.enabled = false;
-                gameOverCamera.enabled = true;
+                mainMenuCamera.SetActive(false);
+                playingCamera.SetActive(false);
+                gameOverCamera.SetActive(true);
+
                 break;
         }
     }
@@ -127,26 +132,37 @@ public class UIManager : Singleton<UIManager>
 
     public void ReadyPlayer()
     {
+        print("bin is ready");
+        
         int maxPlayers = Mathf.Min(_GM.playerCount, connectionIcon.Length);
+
+        print(maxPlayers);
 
         for (int i = 0; i < maxPlayers; i++)
         {
             switch (i)
             {
                 case 0:
-                    player1Icon.sprite = connectionIcon[i];
+                    print("p1 is here");
+                    player1Icon.sprite = connectionIcon[1];
+                    print("p1 was here");
                     break;
                 case 1:
-                    player2Icon.sprite = connectionIcon[i];
+                    player2Icon.sprite = connectionIcon[1];
                     break;
                 case 2:
-                    player3Icon.sprite = connectionIcon[i];
+                    player3Icon.sprite = connectionIcon[1];
                     break;
                 case 3:
-                    player4Icon.sprite = connectionIcon[i];
+                    player4Icon.sprite = connectionIcon[1];
                     break;
             }
         }
+    }
+
+    public void QuitGme()
+    {
+        _GM.QuitGame();
     }
 
     #endregion
@@ -188,4 +204,5 @@ public class UIManager : Singleton<UIManager>
     }
 
     #endregion
+
 }
