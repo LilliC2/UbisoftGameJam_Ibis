@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BinMannager : Singleton<BinMannager>
+public class BinMannager : GameBehaviour
 {
     TrashObjectScores trashObjectScores;
 
 
-    [SerializeField] GameObject assigedPlayer;
+    public GameObject assigedPlayer;
     [SerializeField] int binCurrentScore;
 
     [SerializeField] int smallScore;
@@ -16,7 +16,6 @@ public class BinMannager : Singleton<BinMannager>
 
     [SerializeField] List<GameObject> BinItemList = new List<GameObject>();
     [SerializeField] int maxListAmount;
-    [SerializeField] DespawnMannager despawnMannager;
 
     private void Start()
     {
@@ -33,19 +32,19 @@ public class BinMannager : Singleton<BinMannager>
         switch (other.tag)
         {
             case "BigTrash":
-                print("Big Trash input");
+                //print("Big Trash input");
                 binCurrentScore += bigScore;
                 AddToList(other.gameObject);
                 break;
 
             case "MediumTrash":
-                print("Big Medium input");
+                //print("Big Medium input");
                 binCurrentScore += midScore;
                 AddToList(other.gameObject);
                 break;
 
             case "SmallTrash":
-                print("Big Small input");
+                //print("Big Small input");
                 binCurrentScore += smallScore;
                 AddToList(other.gameObject);
                 break;
@@ -57,19 +56,19 @@ public class BinMannager : Singleton<BinMannager>
         switch (other.tag)
         {
             case "BigTrash":
-                print("Big Trash Exit");
+                //print("Big Trash Exit");
                 binCurrentScore -= bigScore;
                 RemoveFromList(other.gameObject);
                 break;
 
             case "MediumTrash":
-                print("Big Medium Exit");
+                //print("Big Medium Exit");
                 binCurrentScore -= midScore;
                 RemoveFromList(other.gameObject);
                 break;
 
             case "SmallTrash":
-                print("Big Small input");
+                //print("Big Small input");
                 binCurrentScore -= smallScore;
                 RemoveFromList(other.gameObject);
                 break;
@@ -91,7 +90,7 @@ public class BinMannager : Singleton<BinMannager>
         if (item != null)
         {
             BinItemList.Add(item);
-            despawnMannager.RemoveItemToDespawnList(item);
+            _DM.RemoveItemToDespawnList(item);
             checkDespawn();
         }
         else
@@ -106,7 +105,7 @@ public class BinMannager : Singleton<BinMannager>
         if (item != null)
         {
             BinItemList.Remove(item);
-            despawnMannager.AddItemToDespawnList(item);
+            _DM.AddItemToDespawnList(item);
         }
         else
         {

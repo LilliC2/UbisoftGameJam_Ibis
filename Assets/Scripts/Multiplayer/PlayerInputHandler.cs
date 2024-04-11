@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
+using static UnityEditor.Progress;
 
 public class PlayerInputHandler : GameBehaviour
 {
@@ -24,6 +25,11 @@ public class PlayerInputHandler : GameBehaviour
             var go = playerControls.gameObject;
             _GM.playerGameObjList.Add(go);
             playerControls.playerNum = _GM.playerGameObjList.IndexOf(go);
+            _GM.playerBins[playerControls.playerNum].SetActive(true);
+
+
+            var bin = _GM.playerBins[playerControls.playerNum].GetComponent<GetBinScript>().binMannager;
+            bin.assigedPlayer = playerControls.gameObject;
 
             ChangePlayerColour();
 
@@ -37,34 +43,30 @@ public class PlayerInputHandler : GameBehaviour
 
     void ChangePlayerColour()
     {
-        var renderChild = _GM.playerGameObjList[playerControls.playerNum].GetComponentsInChildren<Renderer>();
+        var renderChild = _GM.playerGameObjList[playerControls.playerNum].GetComponent<PlayerController>().colourIndicator.GetComponent<Renderer>();
+        var bin = _GM.playerBins[playerControls.playerNum].GetComponent<GetBinScript>().binRenderer.GetComponent<Renderer>();
 
         switch (playerControls.playerNum)
         {
             case 0:
 
-                foreach (var item in renderChild)
-                {
-                    item.material.color = Color.red; 
-                }
+                renderChild.material.color = Color.red;
+                bin.material.color = Color.red;
                 break;
             case 1:
-                foreach (var item in renderChild)
-                {
-                    item.material.color = Color.blue;
-                }
+                renderChild.material.color = Color.blue;
+                bin.material.color = Color.blue;
+
                 break;
             case 2:
-                foreach (var item in renderChild)
-                {
-                    item.material.color = Color.yellow;
-                }
+                renderChild.material.color = Color.yellow;
+                bin.material.color = Color.yellow;
+
                 break;
             case 3:
-                foreach(var item in renderChild)
-                {
-                    item.material.color = Color.green;
-                }
+                renderChild.material.color = Color.green;
+                bin.material.color = Color.green;
+
                 break;
         }
     }

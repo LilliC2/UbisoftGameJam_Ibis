@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DespawnMannager : MonoBehaviour
+public class DespawnMannager : Singleton<DespawnMannager>
 {
     public float itemAliveTime = 20;
     [SerializeField] SeagullController seagullController;

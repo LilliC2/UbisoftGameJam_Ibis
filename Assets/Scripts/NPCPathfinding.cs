@@ -27,6 +27,7 @@ public class NPCPathfinding : GameBehaviour
 
     [Header("Drop Trash")]
     [SerializeField] GameObject dropTrashGO;
+    GameObject itemToDrop;
 
     // Start is called before the first frame update
     void Start()
@@ -104,11 +105,21 @@ public class NPCPathfinding : GameBehaviour
     {
         if(behaviourStates != BehaviourStates.RunFromIbis)
         {
-            //animation
-            print("Drop trash");
+            agent.isStopped = true;
 
+            //animation
+            print("trigger animation");
             var itemPool = _IS.objectPools[Random.Range(0, _IS.objectPools.Length)];
-            itemPool.GetComponent<ItemPoolMannager>().GetItem(dropTrashGO.transform.position);
+            itemToDrop = itemPool.GetComponent<ItemPoolMannager>().GetItem(dropTrashGO.transform.position);
+            if(itemToDrop != null)
+            {
+                itemToDrop.GetComponent<TrashItem>().PickedUp(dropTrashGO);
+                animator.SetTrigger("ThrowTrash");
+
+            }
+            
+
+
 
         }
 
@@ -116,6 +127,16 @@ public class NPCPathfinding : GameBehaviour
 
         StartCoroutine(DropTrash());
 
+    }
+
+    public void DropTrashAnimEvent()
+    {
+        print("drop trash from anim event");
+        if(itemToDrop != null) itemToDrop.GetComponent<TrashItem>().Dropped();
+
+        itemToDrop = null;
+        agent.isStopped = false;
+        
     }
 
     Vector3 SearchDestinationWalkPoint()
@@ -149,6 +170,7 @@ public class NPCPathfinding : GameBehaviour
     {
         if(other.CompareTag("BinBitchin"))
         {
+            print("HONKING");
             ibis = other.gameObject;
             behaviourStates = BehaviourStates.RunFromIbis;
         }

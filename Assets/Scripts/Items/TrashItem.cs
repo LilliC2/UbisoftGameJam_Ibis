@@ -29,11 +29,15 @@ public class TrashItem : GameBehaviour
     public void PickedUp(GameObject player_holdPos)
     {
         holdPos = player_holdPos;
+        if(rb == null) rb = GetComponent<Rigidbody>();
+
         rb.constraints = RigidbodyConstraints.FreezeAll;
+
         transform.position = holdPos.transform.position;
 
         //rb.Sleep();
-        _BM.RemoveFromList(gameObject);
+        _DM.RemoveItemToDespawnList(gameObject);
+
         _SC.RemoveItemToCollectList(gameObject);
 
     }
@@ -41,9 +45,11 @@ public class TrashItem : GameBehaviour
     public void Dropped()
     {
         holdPos = null;
-       // rb.WakeUp();
+        // rb.WakeUp();
         rb.constraints = RigidbodyConstraints.None;
-        _BM.AddToList(gameObject);
+        _DM.AddItemToDespawnList(gameObject);
+
+        //_BM.AddToList(gameObject);
 
     }
 
@@ -53,7 +59,9 @@ public class TrashItem : GameBehaviour
         holdPos = null;
         rb.constraints = RigidbodyConstraints.None;
         thrownFrom = player;
-        _BM.AddToList(gameObject);
+        _DM.RemoveItemToDespawnList(gameObject);
+
+        //_BM.AddToList(gameObject);
 
 
     }

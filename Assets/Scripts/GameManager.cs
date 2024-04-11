@@ -12,6 +12,7 @@ public class GameManager : Singleton<GameManager>
     public GameObject[] spawnPoints;
     public List<PlayerInput> playerInputList = new List<PlayerInput>();
     public List<GameObject> playerGameObjList = new List<GameObject>();
+    public GameObject[] playerBins;
 
     //bind action
     public InputAction joinAction;

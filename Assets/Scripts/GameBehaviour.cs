@@ -10,10 +10,10 @@ public class GameBehaviour : Behaviour //inherits from
     protected static GameManager _GM { get { return GameManager.INSTANCE; } }
 
     protected static NPCSpawner _NPC { get { return NPCSpawner.INSTANCE; } }
-
-    protected static BinMannager _BM { get { return BinMannager.INSTANCE; } }
+    protected static DespawnMannager _DM { get { return DespawnMannager.INSTANCE; } }
     protected static SeagullController _SC { get { return SeagullController.INSTANCE; } }
     protected static ItemSpawner _IS { get { return ItemSpawner.INSTANCE; } }
+    protected static VFXMannager _VFXM { get { return VFXMannager.INSTANCE; } }
     protected static MainMenu _MM { get { return MainMenu.INSTANCE; } }
     protected static UIManager _UI { get { return UIManager.INSTANCE; } }
 

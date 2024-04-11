@@ -8,7 +8,7 @@ using System;
 public class PlayerController : GameBehaviour
 {
     public int playerNum; //are they player 1 - 4?
-
+    public GameObject colourIndicator;
 
     public enum Action { Walking, Throwing, Honking, Attacking, Hit};
     public Action currentAction;
@@ -44,6 +44,7 @@ public class PlayerController : GameBehaviour
     [SerializeField] float maxHonkOverheat;
     [SerializeField] float honkResetTime;
     bool hasHonked;
+    [SerializeField] GameObject honkCollider;
     [SerializeField] float honkFirerate;
 
 
@@ -103,7 +104,7 @@ public class PlayerController : GameBehaviour
     void Update()
     {
         //change states
-        switch(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name)
+        switch(anim.GetCurrentAnimatorClipInfo(1)[0].clip.name)
         {
             case "IbisHonk":
                 currentAction = Action.Honking;
@@ -122,7 +123,8 @@ public class PlayerController : GameBehaviour
                 currentAction = Action.Walking; break;
         }
 
-
+        if(currentAction == Action.Honking) honkCollider.SetActive(true);
+        else honkCollider.SetActive(false);
 
         if(movementNeck != Vector3.zero) isNeckMoving = true;
         else isNeckMoving = false;
@@ -131,7 +133,7 @@ public class PlayerController : GameBehaviour
         if (isHoldingTrash && targetTrash != null)
         {
             var tag = targetTrash.tag;
-            print("change speed");
+            //print("change speed");
             switch (tag)
             {
                 case "SmallTrash":
@@ -168,6 +170,16 @@ public class PlayerController : GameBehaviour
         if(currentAction != Action.Attacking&& currentAction != Action.Throwing && currentAction != Action.Hit)
         {
             //move body
+            //movementBody += new Vector3(0, 45, 0);
+
+
+            //var matrix = Matrix4x4.Rotate(Quaternion.Euler(0, 45, 0));
+            //var skewedInput = matrix.MultiplyPoint3x4(movementBody);
+            //var relative = (transform.position + skewedInput) - transform.position;
+            //var rot = Quaternion.LookRotation(relative, Vector3.up);
+
+            //transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, turnSpeed * Time.deltaTime);
+
             controller.Move(movementBody * movementSpeed * Time.deltaTime);
             if (transform.localEulerAngles != Vector3.zero) directionBody = transform.localEulerAngles;
             if (controller.velocity.magnitude < 1) transform.localEulerAngles = directionBody;
@@ -241,7 +253,7 @@ public class PlayerController : GameBehaviour
                 }
                 else
                 {
-                    print("turn head");
+                    //print("turn head");
                     Vector3 rotation120 = new Vector3(120, ibisHead.transform.eulerAngles.y, ibisHead.transform.eulerAngles.z);
                     ibisHead.transform.eulerAngles = rotation120;
 
@@ -278,11 +290,11 @@ public class PlayerController : GameBehaviour
     {
         //transform.position = _GM.spawnPoints[playerNum].transform.position;
 
-        controls.Gameplay.Enable();
+        //controls.Gameplay.Enable();
     }
     private void OnDisable()
     {
-        controls.Gameplay.Disable();
+        //controls.Gameplay.Disable();
 
     }
 
@@ -462,7 +474,7 @@ public class PlayerController : GameBehaviour
 
                     targetTrash.layer = LayerMask.NameToLayer("HeldProps");
 
-                    print("pick up " + targetTrash.name);
+                    //print("pick up " + targetTrash.name);
                     targetTrash.GetComponent<TrashItem>().PickedUp(holdTrashPos);
                     ExecuteAfterSeconds(1, () => pickUpCoolDown = false); //so it doesn't drop it instantly
                 }
@@ -523,9 +535,18 @@ public class PlayerController : GameBehaviour
     {
 
         Vector2 move = context.ReadValue<Vector2>();
-        movementBody = new Vector3(move.x, 0, move.y);
+        Vector3 toConvert = new Vector3(move.x, 0, move.y);
+        movementBody = IsoVectorConvert(toConvert);
         transform.rotation = Quaternion.LookRotation(movementBody);
 
+    }
+
+    Vector3 IsoVectorConvert(Vector3 vector)
+    {
+        Quaternion rotation = Quaternion.Euler(0, 45, 0);
+        Matrix4x4 isoMatrix = Matrix4x4.Rotate(rotation);
+        Vector3 result =isoMatrix.MultiplyPoint3x4(vector);
+        return result;
     }
 
     public void OnMoveHead(InputAction.CallbackContext context)
