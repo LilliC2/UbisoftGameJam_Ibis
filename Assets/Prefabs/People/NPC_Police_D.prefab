@@ -548,7 +548,7 @@ GameObject:
   - component: {fileID: 3345092519424037539}
   m_Layer: 13
   m_Name: NPC_Police_D
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

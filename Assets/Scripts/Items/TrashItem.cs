@@ -5,10 +5,12 @@ using UnityEngine;
 public class TrashItem : GameBehaviour
 {
     public GameObject holdPos;
+    public GameObject lastToHold;
     GameObject thrownFrom;
     Rigidbody rb;
     public float forceApplied = 500;
     bool addForce;
+    public bool readyToBin = true;
 
     public float aliveTime = 60;
 
@@ -16,6 +18,7 @@ public class TrashItem : GameBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame
@@ -29,6 +32,7 @@ public class TrashItem : GameBehaviour
     public void PickedUp(GameObject player_holdPos)
     {
         holdPos = player_holdPos;
+        lastToHold = player_holdPos;
         if(rb == null) rb = GetComponent<Rigidbody>();
 
         rb.constraints = RigidbodyConstraints.FreezeAll;
@@ -44,6 +48,9 @@ public class TrashItem : GameBehaviour
 
     public void Dropped()
     {
+        
+
+        readyToBin = true;
         holdPos = null;
         // rb.WakeUp();
         rb.constraints = RigidbodyConstraints.None;

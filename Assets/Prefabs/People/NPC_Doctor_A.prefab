@@ -1083,7 +1083,7 @@ GameObject:
   - component: {fileID: 7952237753724210726}
   m_Layer: 13
   m_Name: NPC_Doctor_A
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
