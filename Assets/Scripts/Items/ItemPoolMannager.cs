@@ -20,7 +20,9 @@ public class ItemPoolMannager : MonoBehaviour
             if (!item.activeSelf)
             {
                 foundInactiveObject = true;
+                print(item);
                 itemGot = itemToSpawn.SpawnItem(item, spawnPosition);
+
                 break;
             }
         }
