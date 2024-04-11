@@ -12,6 +12,9 @@ public class GameManager : Singleton<GameManager>
     public List<GameObject> playerGameObjList = new List<GameObject>();
     public GameObject[] playerBins;
 
+    public int playerCount;
+
+
     //bind action
     public InputAction joinAction;
     public InputAction leaveAction;
@@ -30,7 +33,11 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
-        spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        foreach (var bin in playerBins)
+        {
+            bin.SetActive(false);
+        }
+       // spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
 
         joinAction.Enable();
         leaveAction.Enable();
@@ -42,7 +49,7 @@ public class GameManager : Singleton<GameManager>
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKey(KeyCode.Alpha0)) _IS.GetTotalItemCount();
     }
 
     void OnPlayerJoined(PlayerInput playerInput)

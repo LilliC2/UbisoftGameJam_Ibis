@@ -219,8 +219,8 @@ public class PlayerController : GameBehaviour
                     neckYrotation = Mathf.Clamp(neckYrotation, -90, 90);
                     //apply rotations
                     //if it hasn't changed, dont change it
-                    var euler = Quaternion.Euler(neckXrotation, neckYrotation, 0f);
-                    if (euler != Quaternion.Euler(defaultNeckRotation)) ibisNeck.transform.localRotation = Quaternion.Euler(neckXrotation, neckYrotation, 0f);
+                    var euler = Quaternion.Euler(neckXrotation, 0, 0f);
+                    if (euler != Quaternion.Euler(defaultNeckRotation)) ibisNeck.transform.localRotation = Quaternion.Euler(neckXrotation, 0, 0f);
 
 
 
@@ -517,6 +517,7 @@ public class PlayerController : GameBehaviour
     {
         if(targetTrash != null)
         {
+
             isHoldingTrash = false;
             dropCoolDown = true;
             var tempTrashHolder = targetTrash;
@@ -530,6 +531,7 @@ public class PlayerController : GameBehaviour
             tempTrashHolder.GetComponent<TrashItem>().Dropped();
             if(isHonking) tempTrashHolder.GetComponent<Rigidbody>().AddForce(transform.forward * dropForce_Honking, ForceMode.Force);
             else tempTrashHolder.GetComponent<Rigidbody>().AddForce(transform.forward * dropForce, ForceMode.Force);
+
 
             ExecuteAfterSeconds(1, () => dropCoolDown = false);
 

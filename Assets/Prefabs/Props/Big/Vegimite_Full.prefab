@@ -236,6 +236,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   holdPos: {fileID: 0}
   forceApplied: 1000
+  readyToBin: 1
   aliveTime: 60
 --- !u!136 &7273671518900184711
 CapsuleCollider:
@@ -244,7 +245,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7789730455995425110}
-  m_Material: {fileID: 13400000, guid: 402fef18d2016de4e93e9d4ebab50329, type: 2}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

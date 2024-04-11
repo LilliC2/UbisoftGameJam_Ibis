@@ -10,6 +10,7 @@ TagManager:
   - BigTrash
   - Fountain
   - BinBitchin
+  - NPC
   layers:
   - Default
   - TransparentFX

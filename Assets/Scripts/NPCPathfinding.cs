@@ -113,7 +113,9 @@ public class NPCPathfinding : GameBehaviour
             itemToDrop = itemPool.GetComponent<ItemPoolMannager>().GetItem(dropTrashGO.transform.position);
             if(itemToDrop != null)
             {
+                itemToDrop.GetComponent<TrashItem>().readyToBin = false;
                 itemToDrop.GetComponent<TrashItem>().PickedUp(dropTrashGO);
+                itemToDrop.GetComponent<TrashItem>().lastToHold = gameObject;
                 animator.SetTrigger("ThrowTrash");
 
             }
