@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BinMannager : GameBehaviour
@@ -49,6 +50,7 @@ public class BinMannager : GameBehaviour
                 AddToList(other.gameObject);
                 break;
         }
+        _UI.UpdateScoreText(binCurrentScore, assigedPlayer.GetComponent<PlayerController>().playerNum);
     }
 
     private void OnTriggerExit(Collider other)
@@ -73,6 +75,8 @@ public class BinMannager : GameBehaviour
                 RemoveFromList(other.gameObject);
                 break;
         }
+
+        _UI.UpdateScoreText(binCurrentScore, assigedPlayer.GetComponent<PlayerController>().playerNum);
     }
 
     private void checkDespawn()

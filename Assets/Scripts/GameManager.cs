@@ -5,6 +5,8 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
+public enum GameState { Menu, Playing, Paused, GameOver}
+
 public class GameManager : Singleton<GameManager>
 {
     public GameObject[] spawnPoints;
@@ -73,6 +75,8 @@ public class GameManager : Singleton<GameManager>
     {
 
         PlayerInputManager.instance.JoinPlayerFromActionIfNotAlreadyJoined(context); //getting controller from button input
+        _UI.ReadyPlayer();
+        print("i Join");
 
     }
     void LeaveAction(InputAction.CallbackContext context)
@@ -107,5 +111,10 @@ public class GameManager : Singleton<GameManager>
         }
 
        // playerInput.GetComponentInParent<PlayerController>().DestroyPlayer();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
