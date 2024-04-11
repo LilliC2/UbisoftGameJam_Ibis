@@ -12,6 +12,9 @@ public class GameManager : Singleton<GameManager>
     public List<GameObject> playerGameObjList = new List<GameObject>();
     public GameObject[] playerBins;
 
+    public int playerCount;
+
+
     //bind action
     public InputAction joinAction;
     public InputAction leaveAction;

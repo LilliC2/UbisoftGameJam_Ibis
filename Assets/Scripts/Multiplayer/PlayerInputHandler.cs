@@ -32,6 +32,7 @@ public class PlayerInputHandler : GameBehaviour
             playerControls.playerNum = _GM.playerGameObjList.IndexOf(go);
             _GM.playerBins[playerControls.playerNum].SetActive(true);
 
+            _GM.playerCount++;
 
             var bin = _GM.playerBins[playerControls.playerNum].GetComponent<GetBinScript>().binMannager;
             bin.assigedPlayer = playerControls.gameObject;
