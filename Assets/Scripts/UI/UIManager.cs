@@ -29,8 +29,14 @@ public class UIManager : Singleton<UIManager>
     public TMP_Text player2Score;
     public TMP_Text player3Score;
     public TMP_Text player4Score;
+    PlayerController playerControls;
+    public int score1;
+    public int score2;
+    public int score3;
+    public int score4;
+    public TMP_Text timerText;
 
-    [Header("In-Game UI")]
+    [Header("Pause")]
     public Image player1ready;
     public Image player2ready;
     public Image player3ready;
@@ -47,7 +53,7 @@ public class UIManager : Singleton<UIManager>
     // Start is called before the first frame update
     void Start()
     {
-        uiState = UIState.MainMenu;
+        uiState = UIState.Playing;
         player1Score.text = "0";
         player2Score.text = "0";
         player3Score.text = "0";
@@ -120,8 +126,26 @@ public class UIManager : Singleton<UIManager>
 
     public void ReadyPlayer()
     {
-        //if playerCount >0
-        player1Icon.sprite = connectionIcon[1];
+        int maxPlayers = Mathf.Min(_GM.playerCount, connectionIcon.Length);
+
+        for (int i = 0; i < maxPlayers; i++)
+        {
+            switch (i)
+            {
+                case 0:
+                    player1Icon.sprite = connectionIcon[i];
+                    break;
+                case 1:
+                    player2Icon.sprite = connectionIcon[i];
+                    break;
+                case 2:
+                    player3Icon.sprite = connectionIcon[i];
+                    break;
+                case 3:
+                    player4Icon.sprite = connectionIcon[i];
+                    break;
+            }
+        }
     }
 
     #endregion
@@ -131,6 +155,33 @@ public class UIManager : Singleton<UIManager>
     {
         uiState = UIState.Playing;
         Setup();
+    }
+
+    public void UpdateScoreText(int _score)
+    {
+        switch (playerControls.playerNum)
+        {
+            case 0:
+                player1Score.text = _score.ToString();
+                break;
+
+            case 1:
+                player2Score.text = _score.ToString();
+                break;
+
+            case 2:
+                player3Score.text = _score.ToString();
+                break;
+
+            case 3:
+                player4Score.text = _score.ToString();
+                break;
+        }
+    }
+
+    public void UpdateTimerText()
+    {
+
     }
 
     #endregion

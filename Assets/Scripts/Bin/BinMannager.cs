@@ -49,6 +49,7 @@ public class BinMannager : GameBehaviour
                 AddToList(other.gameObject);
                 break;
         }
+        _UI.UpdateScoreText(binCurrentScore);
     }
 
     private void OnTriggerExit(Collider other)
@@ -73,6 +74,7 @@ public class BinMannager : GameBehaviour
                 RemoveFromList(other.gameObject);
                 break;
         }
+        _UI.UpdateScoreText(binCurrentScore);
     }
 
     private void checkDespawn()
