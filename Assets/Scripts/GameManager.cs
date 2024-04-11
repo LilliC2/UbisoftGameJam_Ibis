@@ -37,7 +37,6 @@ public class GameManager : Singleton<GameManager>
         {
             bin.SetActive(false);
         }
-       // spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
 
         joinAction.Enable();
         leaveAction.Enable();
