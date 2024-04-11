@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a8aab1eac084074295428c06b7e4391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroy: 0
   itemAliveTime: 25
   seagullController: {fileID: 0}
   despawnList: []
@@ -80,7 +81,7 @@ Transform:
   m_Children:
   - {fileID: 2425641340161218953}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1058861550517674104
 MonoBehaviour:
@@ -98,6 +99,11 @@ MonoBehaviour:
   spawnPoints: []
   playerInputList: []
   playerGameObjList: []
+  playerBins:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   joinAction:
     m_Name: Join
     m_Type: 0

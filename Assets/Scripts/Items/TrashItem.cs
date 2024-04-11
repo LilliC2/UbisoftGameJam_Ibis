@@ -32,7 +32,7 @@ public class TrashItem : GameBehaviour
     public void PickedUp(GameObject player_holdPos)
     {
         holdPos = player_holdPos;
-        lastToHold = player_holdPos;
+        lastToHold = player_holdPos.transform.root.gameObject;
         if(rb == null) rb = GetComponent<Rigidbody>();
 
         rb.constraints = RigidbodyConstraints.FreezeAll;

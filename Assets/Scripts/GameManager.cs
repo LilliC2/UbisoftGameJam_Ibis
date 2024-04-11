@@ -30,6 +30,10 @@ public class GameManager : Singleton<GameManager>
 
     void Start()
     {
+        foreach (var bin in playerBins)
+        {
+            bin.SetActive(false);
+        }
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
 
         joinAction.Enable();
