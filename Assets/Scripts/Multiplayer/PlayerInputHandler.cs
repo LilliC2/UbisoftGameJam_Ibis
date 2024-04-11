@@ -10,6 +10,11 @@ public class PlayerInputHandler : GameBehaviour
     public GameObject playerPrefab;
     PlayerController playerControls;
 
+    [SerializeField] Color P1;
+    [SerializeField] Color P2;
+    [SerializeField] Color P3;
+    [SerializeField] Color P4;
+
     PlayerInput playerInput;
 
     Vector3 startPos = new Vector3(0, 0, 0);
@@ -27,6 +32,7 @@ public class PlayerInputHandler : GameBehaviour
             playerControls.playerNum = _GM.playerGameObjList.IndexOf(go);
             _GM.playerBins[playerControls.playerNum].SetActive(true);
 
+            _GM.playerCount++;
 
             var bin = _GM.playerBins[playerControls.playerNum].GetComponent<GetBinScript>().binMannager;
             bin.assigedPlayer = playerControls.gameObject;
@@ -45,27 +51,28 @@ public class PlayerInputHandler : GameBehaviour
     {
         var renderChild = _GM.playerGameObjList[playerControls.playerNum].GetComponent<PlayerController>().colourIndicator.GetComponent<Renderer>();
         var bin = _GM.playerBins[playerControls.playerNum].GetComponent<GetBinScript>().binRenderer.GetComponent<Renderer>();
+        print(bin.name);
 
         switch (playerControls.playerNum)
         {
             case 0:
 
-                renderChild.material.color = Color.red;
-                bin.material.color = Color.red;
+                renderChild.material.color = P1;
+                bin.material.color = P1;
                 break;
             case 1:
-                renderChild.material.color = Color.blue;
-                bin.material.color = Color.blue;
+                renderChild.material.color = P2;
+                bin.material.color = P2;
 
                 break;
             case 2:
-                renderChild.material.color = Color.yellow;
-                bin.material.color = Color.yellow;
+                renderChild.material.color = P3;
+                bin.material.color = P3;
 
                 break;
             case 3:
-                renderChild.material.color = Color.green;
-                bin.material.color = Color.green;
+                renderChild.material.color = P4;
+                bin.material.color = P4;
 
                 break;
         }
