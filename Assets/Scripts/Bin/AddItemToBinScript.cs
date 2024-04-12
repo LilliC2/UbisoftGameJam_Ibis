@@ -29,19 +29,10 @@ public class AddItemToBinScript : GameBehaviour
                 if (other.transform.tag == "SmallTrash" || other.transform.tag == "MediumTrash" || other.transform.tag == "BigTrash")
                 {
                     BinIt(other);
-                    trashItemScript.lastToHold.GetComponent<PlayerController>().UpdateSpeed();
                 }
             }
 
         }
-
-        //if (trashItemScript.lastToHold.name.Contains("NPC"))
-        //{
-        //    if (trashItemScript.readyToBin) BinIt(other);
-        //}
-
-
-
 
     }
 
@@ -58,11 +49,14 @@ public class AddItemToBinScript : GameBehaviour
     {
         if (other.transform.tag == "SmallTrash" || other.transform.tag == "MediumTrash" || other.transform.tag == "BigTrash")
         {
+            other.gameObject.TryGetComponent<TrashItem>(out TrashItem trashItemScript);
 
             print("TrashInZone");
             other.transform.position = binTpTransform.position;
             TrashItem trashitem = other.gameObject.GetComponent<TrashItem>();
             _AM.PlaySound(_AM.trashInBin, audioSource);
+
+            trashItemScript.lastToHold.GetComponent<PlayerController>().movementSpeed = 3;
 
             if (trashitem != null)
             {

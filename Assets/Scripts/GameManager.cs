@@ -5,15 +5,21 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
+public enum GameState { Menu, Playing, Paused, GameOver}
+
 public class GameManager : Singleton<GameManager>
 {
-    public GameObject[] spawnPoints;
+    public GameObject[] spawnPoints_InGame;
+    public GameObject[] spawnPoints_MainMenu;
+    public GameObject[] spawnPoints_GameOver;
     public List<PlayerInput> playerInputList = new List<PlayerInput>();
     public List<GameObject> playerGameObjList = new List<GameObject>();
     public GameObject[] playerBins;
 
-    public int playerCount;
+    public int[] playerScore;
 
+    public int playerCount;
+    [SerializeField] GameObject mainMenuColliders;
 
     //bind action
     public InputAction joinAction;
@@ -30,6 +36,10 @@ public class GameManager : Singleton<GameManager>
     public event System.Action<PlayerInput> PlayerLeftGame;
     // Start is called before the first frame update
 
+    public bool timerIsRunning;
+    public float timerMax = 120f;
+    public float timeRemaining;
+
 
     void Start()
     {
@@ -37,19 +47,82 @@ public class GameManager : Singleton<GameManager>
         {
            bin.SetActive(false);
         }
-        //spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+
 
         joinAction.Enable();                                                       
         leaveAction.Enable();
         //subscribe method to action
         joinAction.performed += context => JoinAction(context); //pass context to JoinAction()
         leaveAction.performed += context => LeaveAction(context);
+
+        timeRemaining = timerMax;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.Alpha0)) _IS.GetTotalItemCount();
+
+        if (_UI.uiState == UIState.Playing)
+        {
+            timerIsRunning = true;
+            //OnGameStart();
+        }
+
+        if (timerIsRunning)
+        {
+            if (timeRemaining  > 0)
+            {
+                //OnGameStart();
+                timeRemaining -= Time.deltaTime;
+                _UI.UpdateTimerText(timeRemaining);
+            }
+            else
+            {
+                timeRemaining = 0;
+                timerIsRunning=false;
+                _UI.uiState = UIState.GameOver;
+                _UI.Setup();
+            }
+        }
+
+
+    }
+
+    public void OnGameStart()
+    {
+       // mainMenuColliders.SetActive(false);
+        //spawn trash
+        _IS.InitalTrashSpawn();
+        //start NPC spawnin
+        _NPC.SpawnChance();
+        foreach (var player in _GM.playerGameObjList)
+        {
+
+            player.GetComponent<PlayerController>().enabled = false;
+
+        }
+        //put players in right spawn pos
+        for (int i = 0; i < playerGameObjList.Count; i++)
+        {
+            playerGameObjList[i].transform.position = spawnPoints_InGame[i].transform.position;
+        }
+        foreach (var player in playerInputList)
+        {
+            player.currentActionMap = player.actions.FindActionMap("Gameplay");
+        }
+        foreach (var player in _GM.playerGameObjList)
+        {
+
+            player.GetComponent<PlayerController>().enabled = true;
+            player.GetComponent<PlayerController>().playerCirlce_PS.gameObject.SetActive(true);
+            player.GetComponent<PlayerController>().playerArrow_PS.gameObject.SetActive(true);
+
+        }
+
+        mainMenuColliders.SetActive(false);
+
     }
 
     void OnPlayerJoined(PlayerInput playerInput)
@@ -74,6 +147,9 @@ public class GameManager : Singleton<GameManager>
     {
 
         PlayerInputManager.instance.JoinPlayerFromActionIfNotAlreadyJoined(context); //getting controller from button input
+        _UI.ReadyPlayer();
+        _UI.readyCountMax = _GM.playerCount;
+        print("i Join");
 
     }
     void LeaveAction(InputAction.CallbackContext context)
@@ -108,5 +184,15 @@ public class GameManager : Singleton<GameManager>
         }
 
        // playerInput.GetComponentInParent<PlayerController>().DestroyPlayer();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void OnGameEnd()
+    {
+        _UI.OnGameOver();
     }
 }

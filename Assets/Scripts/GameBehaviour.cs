@@ -13,6 +13,9 @@ public class GameBehaviour : Behaviour //inherits from
     protected static DespawnMannager _DM { get { return DespawnMannager.INSTANCE; } }
     protected static SeagullControllerMannager _SC { get { return SeagullControllerMannager.INSTANCE; } }
     protected static ItemSpawner _IS { get { return ItemSpawner.INSTANCE; } }
+
+    protected static MainMenu _MM { get { return MainMenu.INSTANCE; } }
+    protected static UIManager _UI { get { return UIManager.INSTANCE; } }
     protected static VFXManager _VFXM { get { return VFXManager.INSTANCE; } }
     protected static AudioManager _AM { get { return AudioManager.INSTANCE; } }
 

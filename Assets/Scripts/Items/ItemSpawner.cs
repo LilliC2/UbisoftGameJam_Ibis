@@ -16,7 +16,6 @@ public class ItemSpawner : Singleton<ItemSpawner>
     [SerializeField] private float minZ;
     [SerializeField] private float maxZ;
 
-    DespawnMannager despawnMannager;
 
     public void GetTotalItemCount()
     {
@@ -31,13 +30,11 @@ public class ItemSpawner : Singleton<ItemSpawner>
 
     private void Start()
     {
-       despawnMannager = _GM.GetComponentInChildren<DespawnMannager>();
         //CalculateMinMaxX();
         //StartCoroutine(Spawn());
-        InitalTrashSpawn();
     }
 
-    void InitalTrashSpawn()
+    public void InitalTrashSpawn()
     {
         for (int i = 0; i < 20; i++)
         {

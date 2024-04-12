@@ -9,6 +9,7 @@ public class PlayerInputHandler : GameBehaviour
 {
     public GameObject playerPrefab;
     PlayerController playerControls;
+    public bool hasReadyUp = false;
 
     [SerializeField] Color P1;
     [SerializeField] Color P2;
@@ -26,7 +27,7 @@ public class PlayerInputHandler : GameBehaviour
 
         if (playerPrefab != null)
         {
-            playerControls = GameObject.Instantiate(playerPrefab, _GM.spawnPoints[_GM.playerGameObjList.Count].transform.position, transform.rotation).GetComponent<PlayerController>();
+            playerControls = GameObject.Instantiate(playerPrefab, _GM.spawnPoints_MainMenu[_GM.playerGameObjList.Count].transform.position, transform.rotation).GetComponent<PlayerController>();
             var go = playerControls.gameObject;
             _GM.playerGameObjList.Add(go);
             playerControls.playerNum = _GM.playerGameObjList.IndexOf(go);
@@ -42,8 +43,11 @@ public class PlayerInputHandler : GameBehaviour
             transform.parent = playerControls.transform;
             transform.position = playerControls.transform.position;
 
+            _UI.readyPlayer.Add(false);
+
         }
 
+        //hasReadyUp = false;
 
     }
 
@@ -52,7 +56,7 @@ public class PlayerInputHandler : GameBehaviour
         var renderChild = _GM.playerGameObjList[playerControls.playerNum].GetComponent<PlayerController>().colourIndicator.GetComponent<Renderer>();
         var bin = _GM.playerBins[playerControls.playerNum].GetComponent<GetBinScript>().binRenderer.GetComponent<Renderer>();
 
-        var arrowParticle = _GM.playerGameObjList[playerControls.playerNum].GetComponent<PlayerController>().playerArrow_PS.main;
+        var arrowParticle = _GM.playerGameObjList[playerControls.playerNum].GetComponent<PlayerController>().playerArrow_PS.GetComponent<ParticleSystem>().main;
         var circleParticle = _GM.playerGameObjList[playerControls.playerNum].GetComponent<PlayerController>().playerCirlce_PS.main;
         var circleParticle_bin = _GM.playerBins[playerControls.playerNum].GetComponent<GetBinScript>().circlePS.main;
 
@@ -134,5 +138,12 @@ public class PlayerInputHandler : GameBehaviour
     {
         print("Emote" +  emoteNum);
         playerControls.OnEmote(emoteNum);
+    }
+
+    public void OnReadyUp()
+    {
+        _UI.readyPlayer[playerControls.playerNum] = true;
+        _UI.mmIcon[playerControls.playerNum].sprite = _UI.connectionIcon[2];
+        _UI.ReadyUp();
     }
 }
