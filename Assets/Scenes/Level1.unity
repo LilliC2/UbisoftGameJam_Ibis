@@ -2795,6 +2795,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 42a38b7d0a1593e4d82d33aa6cf6d996, type: 3}
   m_PrefabInstance: {fileID: 962665531}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &229281417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 229281418}
+  - component: {fileID: 229281419}
+  m_Layer: 0
+  m_Name: CarSpawnPoint (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &229281418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229281417}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
+  m_LocalPosition: {x: 19.47, y: 0, z: -15.56}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1146881064}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
+--- !u!114 &229281419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 229281417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25b29c47257964c13a1641f2a21b5ab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cars:
+  - {fileID: 1444791592995295475, guid: 6ea568e484cc0461cb0f7ff64928c0dc, type: 3}
+  - {fileID: 6995373458044178779, guid: b8f4b4dad66f84afbb73be3b587c7096, type: 3}
+  - {fileID: 8168673208734538230, guid: 6b519ef0976f74b64b8c5ba47e1c8423, type: 3}
+  - {fileID: 4810886126202528004, guid: 56366dbba3e524f319648b88ee440db9, type: 3}
+  - {fileID: 3705281834959735489, guid: 97f5e03d443fc40a0b3d1dc61343f1fe, type: 3}
+  movementSpeed: 10
+  minTime: 4
+  maxTime: 8
 --- !u!1001 &231549518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11444,6 +11497,7 @@ Transform:
   - {fileID: 5786834}
   - {fileID: 2018190812}
   - {fileID: 901706214}
+  - {fileID: 229281418}
   m_Father: {fileID: 1964959966}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
