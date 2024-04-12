@@ -32,6 +32,10 @@ public class GameManager : Singleton<GameManager>
     public event System.Action<PlayerInput> PlayerLeftGame;
     // Start is called before the first frame update
 
+    public bool timerIsRunning;
+    public float timerMax = 120f;
+    public float timeRemaining;
+
 
     void Start()
     {
@@ -117,5 +121,10 @@ public class GameManager : Singleton<GameManager>
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    public void Timer()
+    {
+
     }
 }
