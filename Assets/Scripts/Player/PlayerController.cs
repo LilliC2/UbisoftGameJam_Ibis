@@ -49,6 +49,7 @@ public class PlayerController : GameBehaviour
 
     VFXManager vfxManager;
     [SerializeField] GameObject honkVFXTransform;
+    [SerializeField] GameObject DizzyVFXTransform;
 
     [Header("Head and Neck Movement")]
     [SerializeField]
@@ -321,6 +322,8 @@ public class PlayerController : GameBehaviour
             hasBeenHit = true;
             anim.SetTrigger("Hit");
             if (isHoldingTrash) DropHeldItem();
+            //spawn hit partical
+            vfxManager.SpawnParticle(4, DizzyVFXTransform.transform);
 
         }
 

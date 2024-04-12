@@ -857,6 +857,37 @@ Transform:
   m_Father: {fileID: 2683293309634415188}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3465620673063516690
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 392159495104092270}
+  m_Layer: 0
+  m_Name: ParticalTrans
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &392159495104092270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3465620673063516690}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0, y: 1.37, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5841069239938863766}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &3971897373781939281
 GameObject:
   m_ObjectHideFlags: 0
@@ -1781,6 +1812,7 @@ MonoBehaviour:
   bigScore: 0
   BinItemList: []
   maxListAmount: 0
+  particalSpawnTransform: {fileID: 392159495104092270}
 --- !u!136 &4934624416849201042
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2124,6 +2156,7 @@ Transform:
   - {fileID: 7396797364067800130}
   - {fileID: 8313224145555508310}
   - {fileID: 2136300975757429360}
+  - {fileID: 392159495104092270}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
