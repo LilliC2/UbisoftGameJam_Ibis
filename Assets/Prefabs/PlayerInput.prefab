@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 7441733515590567233, guid: e61e13414bae21344b9a44c3ea6b7c34, type: 3}
+  hasReadyUp: 0
   P1: {r: 1, g: 0.12935324, b: 0, a: 1}
   P2: {r: 0, g: 0.73248386, b: 1, a: 1}
   P3: {r: 1, g: 0.56930697, b: 0, a: 1}
@@ -251,8 +252,24 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 4915c48b-8274-4a6d-a649-387cabd762a6
     m_ActionName: Gameplay/RightEmote[/SwitchProControllerHID/dpad/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 48898354041573144}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnReadyUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ae4efb8d-c2fc-4348-9be7-6853779f92c4
+    m_ActionName: UI/New action[/XInputControllerWindows/buttonWest]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
+  m_DefaultActionMap: UI
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

@@ -404,6 +404,45 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""UI"",
+            ""id"": ""98156836-f5a3-4292-90cc-db9cde4b2081"",
+            ""actions"": [
+                {
+                    ""name"": ""ReadyUP"",
+                    ""type"": ""Button"",
+                    ""id"": ""ae4efb8d-c2fc-4348-9be7-6853779f92c4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""7374af8d-48c3-4411-b673-731a6f1bed7f"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReadyUP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e8fde33d-0454-42dc-a24c-a24052c52d3c"",
+                    ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ReadyUP"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -421,6 +460,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay_DownEmote = m_Gameplay.FindAction("DownEmote", throwIfNotFound: true);
         m_Gameplay_LeftEmote = m_Gameplay.FindAction("LeftEmote", throwIfNotFound: true);
         m_Gameplay_RightEmote = m_Gameplay.FindAction("RightEmote", throwIfNotFound: true);
+        // UI
+        m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
+        m_UI_ReadyUP = m_UI.FindAction("ReadyUP", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -604,6 +646,52 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public GameplayActions @Gameplay => new GameplayActions(this);
+
+    // UI
+    private readonly InputActionMap m_UI;
+    private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
+    private readonly InputAction m_UI_ReadyUP;
+    public struct UIActions
+    {
+        private @PlayerControls m_Wrapper;
+        public UIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ReadyUP => m_Wrapper.m_UI_ReadyUP;
+        public InputActionMap Get() { return m_Wrapper.m_UI; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UIActions set) { return set.Get(); }
+        public void AddCallbacks(IUIActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UIActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UIActionsCallbackInterfaces.Add(instance);
+            @ReadyUP.started += instance.OnReadyUP;
+            @ReadyUP.performed += instance.OnReadyUP;
+            @ReadyUP.canceled += instance.OnReadyUP;
+        }
+
+        private void UnregisterCallbacks(IUIActions instance)
+        {
+            @ReadyUP.started -= instance.OnReadyUP;
+            @ReadyUP.performed -= instance.OnReadyUP;
+            @ReadyUP.canceled -= instance.OnReadyUP;
+        }
+
+        public void RemoveCallbacks(IUIActions instance)
+        {
+            if (m_Wrapper.m_UIActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUIActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UIActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UIActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UIActions @UI => new UIActions(this);
     public interface IGameplayActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -617,5 +705,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnDownEmote(InputAction.CallbackContext context);
         void OnLeftEmote(InputAction.CallbackContext context);
         void OnRightEmote(InputAction.CallbackContext context);
+    }
+    public interface IUIActions
+    {
+        void OnReadyUP(InputAction.CallbackContext context);
     }
 }
