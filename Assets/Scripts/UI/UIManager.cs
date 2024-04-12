@@ -54,7 +54,7 @@ public class UIManager : Singleton<UIManager>
     // Start is called before the first frame update
     void Start()
     {
-        uiState = UIState.Playing;
+        uiState = UIState.MainMenu;
         player1Score.text = "0";
         player2Score.text = "0";
         player3Score.text = "0";

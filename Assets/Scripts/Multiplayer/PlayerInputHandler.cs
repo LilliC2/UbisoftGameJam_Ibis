@@ -118,4 +118,9 @@ public class PlayerInputHandler : GameBehaviour
         print("Emote" +  emoteNum);
         playerControls.OnEmote(emoteNum);
     }
+
+    public void OnReadyUp()
+    {
+
+    }
 }
