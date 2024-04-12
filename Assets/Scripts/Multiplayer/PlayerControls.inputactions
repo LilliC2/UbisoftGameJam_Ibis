@@ -103,15 +103,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "27df7595-58bd-45e8-a1a8-bee370c1dfc6",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -389,28 +380,6 @@
                     "action": "RightEmote",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d1e14866-c8bb-4532-8218-09ceda68f02d",
-                    "path": "<Gamepad>/start",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7943b553-ad07-41b2-abe5-9acc758d2775",
-                    "path": "<Keyboard>/c",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -428,7 +397,6 @@
                     "initialStateCheck": false
                 },
                 {
-
                     "name": "Movement",
                     "type": "PassThrough",
                     "id": "916446d6-cd95-447e-af5c-513f138b8ce6",
@@ -445,15 +413,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
-
-                    "name": "Quit",
-                    "type": "Button",
-                    "id": "8a7bef35-d6b2-42b7-ba64-8cae06ed8029",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-
                 }
             ],
             "bindings": [
@@ -481,26 +440,16 @@
                 },
                 {
                     "name": "",
-
                     "id": "053d046e-25c6-4f3a-b258-39adbe2cafa8",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Movement",
-
-                    "id": "b86e473a-5681-46cb-824c-fb550f8c88f3",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Quit",
-
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
-
                     "name": "WASD 2D Vector",
                     "id": "e96e234d-5800-4f3d-9b65-751491723131",
                     "path": "2DVector",
@@ -620,17 +569,6 @@
                     "action": "Move Ibis Head",
                     "isComposite": false,
                     "isPartOfComposite": true
-
-                    "name": "",
-                    "id": "7b864536-a660-4fbc-b2ff-46f5a000be65",
-                    "path": "<Keyboard>/x",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Quit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-
                 }
             ]
         }
