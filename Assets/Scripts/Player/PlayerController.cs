@@ -30,9 +30,6 @@ public class PlayerController : GameBehaviour
     Vector3 movementBody;
     Vector3 directionBody;
 
-    
-
-
 
     [SerializeField]
     public Animator anim;
@@ -138,30 +135,7 @@ public class PlayerController : GameBehaviour
         else isNeckMoving = false;
 
         //change speed based on current held item
-        if (isHoldingTrash && targetTrash != null)
-        {
-            var tag = targetTrash.tag;
-            //print("change speed");
-            switch (tag)
-            {
-                case "SmallTrash":
-                    //speed stay same
-                    movementSpeed = movementSpeed_smallTrash;
-                    break;
-                case "MediumTrash":
-                    movementSpeed = movementSpeed_mediumTrash;
-                    break;
-                case "BigTrash":
-                    movementSpeed = movementSpeed_LargeTrash;
 
-                    break;
-                default:
-                    movementSpeed = movementSpeed_smallTrash;
-
-                    break;
-            }
-        }
-        else movementSpeed = movementSpeed_smallTrash;
 
         #region Body Movement
         //apply animation
@@ -195,10 +169,38 @@ public class PlayerController : GameBehaviour
 
         #endregion
 
+        UpdateSpeed();
 
 
     }
 
+    public void UpdateSpeed()
+    {
+        if (isHoldingTrash && targetTrash != null)
+        {
+            var tag = targetTrash.tag;
+            //print("change speed");
+            switch (tag)
+            {
+                case "SmallTrash":
+                    //speed stay same
+                    movementSpeed = movementSpeed_smallTrash;
+                    break;
+                case "MediumTrash":
+                    movementSpeed = movementSpeed_mediumTrash;
+                    break;
+                case "BigTrash":
+                    movementSpeed = movementSpeed_LargeTrash;
+
+                    break;
+                default:
+                    movementSpeed = movementSpeed_smallTrash;
+
+                    break;
+            }
+        }
+        else movementSpeed = movementSpeed_smallTrash;
+    }
     private void LateUpdate()
     {
         if(currentAction == Action.Walking)
