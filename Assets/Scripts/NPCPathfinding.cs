@@ -184,9 +184,9 @@ public class NPCPathfinding : GameBehaviour
 
             //Play Scream
             if (isMale == true)
-                _AM.PlaySound(_AM.maleScream, audioSource);
+                _AM.PlaySound(_AM.maleScreams[Random.Range(0,_AM.maleScreams.Length)], audioSource);
             else
-                _AM.PlaySound(_AM.femaleScream, audioSource);
+                _AM.PlaySound(_AM.femaleScreams[Random.Range(0, _AM.femaleScreams.Length)], audioSource);
 	
 
             vFXManager.SpawnParticle(1, particalTransform);

@@ -6,8 +6,8 @@ public class AudioManager : Singleton<AudioManager>
 {
     public AudioClip anxiousClockTickling;
     public AudioClip dropTrash;
-    public AudioClip femaleScream;
-    public AudioClip maleScream;
+    public AudioClip[] femaleScreams;
+    public AudioClip[] maleScreams;
     public AudioClip hitPlayer;
     public AudioClip ibisHonk;
     public AudioClip knockOverBin;
@@ -16,6 +16,7 @@ public class AudioManager : Singleton<AudioManager>
     public AudioClip trashInBin;
     public AudioClip confirmButton;
 
+    
     /// <summary>
     /// Plays an Audio Clip at set volume
     /// </summary>

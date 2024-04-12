@@ -58,14 +58,16 @@ public class AddItemToBinScript : GameBehaviour
     {
         if (other.transform.tag == "SmallTrash" || other.transform.tag == "MediumTrash" || other.transform.tag == "BigTrash")
         {
+
             print("TrashInZone");
             other.transform.position = binTpTransform.position;
             TrashItem trashitem = other.gameObject.GetComponent<TrashItem>();
+            _AM.PlaySound(_AM.trashInBin, audioSource);
+
             if (trashitem != null)
             {
                 trashitem.Dropped();
                 trashitem.readyToBin = false;
-                _AM.PlaySound(_AM.trashInBin, audioSource);
             }
             else
             {

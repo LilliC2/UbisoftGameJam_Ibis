@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3916276838319140494
 MonoBehaviour:
@@ -47,8 +47,16 @@ MonoBehaviour:
   dontDestroy: 0
   anxiousClockTickling: {fileID: 8300000, guid: c7ff90389b281d440bb9b5d94b03433d, type: 3}
   dropTrash: {fileID: 8300000, guid: ad601e58277c9874182b71ca6ae007cf, type: 3}
-  femaleScream: {fileID: 8300000, guid: 53f6c61815745b2409e3d0f03a7b380c, type: 3}
-  maleScream: {fileID: 8300000, guid: d6c4cd40a77fe8140872936d87fa079b, type: 3}
+  femaleScreams:
+  - {fileID: 8300000, guid: 1819509baa60a7b41bca08ce03d2f696, type: 3}
+  - {fileID: 8300000, guid: 47a3f5905749253448052a23e3a030dc, type: 3}
+  - {fileID: 8300000, guid: 53f6c61815745b2409e3d0f03a7b380c, type: 3}
+  - {fileID: 8300000, guid: 3fcadd4e0a2f8894d957947172e2c222, type: 3}
+  - {fileID: 8300000, guid: d6eca0430e437ab428bc85f5db7036b0, type: 3}
+  maleScreams:
+  - {fileID: 8300000, guid: 345f0251c6f9e874d8a7417c403e94de, type: 3}
+  - {fileID: 8300000, guid: 03b95c48f27e502488797b3bbc44f914, type: 3}
+  - {fileID: 8300000, guid: d6c4cd40a77fe8140872936d87fa079b, type: 3}
   hitPlayer: {fileID: 8300000, guid: 91da151330d332041abdcfe03fc1c1f7, type: 3}
   ibisHonk: {fileID: 8300000, guid: 9a57449a66a7a3f4698d0331f44963b8, type: 3}
   knockOverBin: {fileID: 8300000, guid: 86b3b07790666e74fa51b088e67621bd, type: 3}

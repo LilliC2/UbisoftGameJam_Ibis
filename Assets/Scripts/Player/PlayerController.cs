@@ -31,7 +31,7 @@ public class PlayerController : GameBehaviour
 
     [SerializeField]
     public Animator anim;
-    AudioSource audioSource;
+    public AudioSource audioSource;
 
 
     [Header("Honk")]
@@ -448,11 +448,13 @@ public class PlayerController : GameBehaviour
             {
                 hasHonked = true;
                 postHonkClarity = true;
+
                 currentHonkOverheat += 0.5f;
                 vfxManager.SpawnParticle(0, honkVFXTransform.transform);
                 if (currentHonkOverheat > maxHonkOverheat) HonkCoolDown();
                 ExecuteAfterSeconds(honkFirerate, () => hasHonked = false);
                 ExecuteAfterSeconds(honkFirerate/4, () => postHonkClarity = false);
+
             }
             else if (hasHonked == true)
             {  
@@ -464,7 +466,6 @@ public class PlayerController : GameBehaviour
                 }
             }
 			
-			_AM.PlaySound(_AM.ibisHonk, audioSource);
 
 
         }
