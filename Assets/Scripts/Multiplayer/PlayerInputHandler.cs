@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Events;
-using static UnityEditor.Progress;
 
 public class PlayerInputHandler : GameBehaviour
 {
@@ -55,9 +54,9 @@ public class PlayerInputHandler : GameBehaviour
     {
         var renderChild = _GM.playerGameObjList[playerControls.playerNum].GetComponent<PlayerController>().colourIndicator.GetComponent<Renderer>();
         var bin = _GM.playerBins[playerControls.playerNum].GetComponent<GetBinScript>().binRenderer.GetComponent<Renderer>();
-
-        var arrowParticle = _GM.playerGameObjList[playerControls.playerNum].GetComponent<PlayerController>().playerArrow_PS.GetComponent<ParticleSystem>().main;
+        print(bin.name);
         var circleParticle = _GM.playerGameObjList[playerControls.playerNum].GetComponent<PlayerController>().playerCirlce_PS.main;
+        var arrowParticle = _GM.playerGameObjList[playerControls.playerNum].GetComponent<PlayerController>().playerArrow_PS.main;
         var circleParticle_bin = _GM.playerBins[playerControls.playerNum].GetComponent<GetBinScript>().circlePS.main;
 
         print(bin.name);

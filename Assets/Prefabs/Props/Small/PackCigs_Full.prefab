@@ -119,7 +119,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935003806808766453}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 1.75
   m_Drag: 0.2
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -151,7 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdPos: {fileID: 0}
-  forceApplied: 300
+  lastToHold: {fileID: 0}
+  forceApplied: 150
   readyToBin: 1
   aliveTime: 60
 --- !u!114 &-7342963561351579116

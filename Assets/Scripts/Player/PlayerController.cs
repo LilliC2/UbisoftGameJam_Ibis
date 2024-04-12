@@ -85,12 +85,13 @@ public class PlayerController : GameBehaviour
 
     [Header("Attack")]
     bool hasAttacked;
-    [SerializeField] float attackRate;
+    public float attackRate;
     bool hasBeenHit = false;
      
     [Header("Particles")]
     public ParticleSystem playerCirlce_PS;
-    public GameObject playerArrow_PS;
+    public GameObject playerArrow;
+    public ParticleSystem playerArrow_PS;
 
     // Start is called before the first frame update
     void Start()

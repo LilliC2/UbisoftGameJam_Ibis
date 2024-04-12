@@ -96,7 +96,7 @@ public class GameManager : Singleton<GameManager>
         //spawn trash
         _IS.InitalTrashSpawn();
         //start NPC spawnin
-        _NPC.SpawnChance();
+        _NPC.CallSpawnHuman();
         foreach (var player in _GM.playerGameObjList)
         {
 
@@ -112,30 +112,40 @@ public class GameManager : Singleton<GameManager>
         {
             player.currentActionMap = player.actions.FindActionMap("Gameplay");
         }
-        foreach (var player in _GM.playerGameObjList)
-        {
 
-            player.GetComponent<PlayerController>().enabled = true;
-            player.GetComponent<PlayerController>().playerCirlce_PS.gameObject.SetActive(true);
-            player.GetComponent<PlayerController>().playerArrow_PS.gameObject.SetActive(true);
-
-        }
+        ExecuteAfterSeconds(1, () => AddControls());
 
         mainMenuColliders.SetActive(false);
 
     }
 
+    void AddControls()
+    {
+        foreach (var player in _GM.playerGameObjList)
+        {
+
+            player.GetComponent<PlayerController>().enabled = true;
+            player.GetComponent<PlayerController>().playerCirlce_PS.gameObject.SetActive(true);
+            player.GetComponent<PlayerController>().playerArrow.gameObject.SetActive(true);
+
+        }
+    }
+
     void OnPlayerJoined(PlayerInput playerInput)
     {
-        playerInputList.Add(playerInput);
-
-        int index = playerInputList.IndexOf(playerInput);
-
-
-        if (PlayerJoinedGame != null) //check if anything is subscribed
+        if(_UI.uiState == UIState.MainMenu)
         {
-            PlayerJoinedGame(playerInput); //be able to send this to anything that wants it   
+            playerInputList.Add(playerInput);
+
+            int index = playerInputList.IndexOf(playerInput);
+
+
+            if (PlayerJoinedGame != null) //check if anything is subscribed
+            {
+                PlayerJoinedGame(playerInput); //be able to send this to anything that wants it   
+            }
         }
+
     }
 
     void OnPlayerLeft(PlayerInput playerInput)

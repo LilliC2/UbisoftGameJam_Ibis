@@ -283,10 +283,7 @@ public class UIManager : Singleton<UIManager>
 
         scoreList.Sort();
 
-        foreach (var player in _GM.playerGameObjList)
-        {
-            player.GetComponent<CharacterController>().enabled = false;
-        }
+
 
         for (int i = 0; i < scoreList.Count; i++)
         {
@@ -331,7 +328,13 @@ public class UIManager : Singleton<UIManager>
         player3rdEndScore.text = thirdPlaceScore.ToString();
         player4thEndScore.text = fourthPlaceScore.ToString();
 
+        foreach (var player in _GM.playerGameObjList)
+        {
+            player.GetComponent<CharacterController>().enabled = false;
+            //player.GetComponent<CharacterController>().enabled = false;
 
+            //new action map
+        }
     }
 
 

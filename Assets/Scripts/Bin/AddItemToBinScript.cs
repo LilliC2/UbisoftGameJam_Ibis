@@ -51,12 +51,17 @@ public class AddItemToBinScript : GameBehaviour
         {
             other.gameObject.TryGetComponent<TrashItem>(out TrashItem trashItemScript);
 
+            
+
             print("TrashInZone");
             other.transform.position = binTpTransform.position;
             TrashItem trashitem = other.gameObject.GetComponent<TrashItem>();
             _AM.PlaySound(_AM.trashInBin, audioSource);
+            _DM.RemoveItemToDespawnList(other.gameObject);
+            _SC.RemoveItemToCollectList(other.gameObject);
 
-            trashItemScript.lastToHold.GetComponent<PlayerController>().movementSpeed = 3;
+            if(trashItemScript.lastToHold != null) trashItemScript.lastToHold.GetComponent<PlayerController>().movementSpeed = 3;
+
 
             if (trashitem != null)
             {

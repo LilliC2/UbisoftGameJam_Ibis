@@ -30,10 +30,16 @@ public class NPCSpawner : Singleton<NPCSpawner>
 
     }
 
+    public void CallSpawnHuman()
+    {
+        StartCoroutine(SpawnChance());
+    }
+
     public IEnumerator SpawnChance()
     {
-        yield return new WaitForSeconds(spawnDelay);
+        print("spawn human");
 
+        yield return new WaitForSeconds(spawnDelay);
         spawnValue = Random.Range(0, 10);
 
         if(npcList.Count != maxNumOfNPCs)

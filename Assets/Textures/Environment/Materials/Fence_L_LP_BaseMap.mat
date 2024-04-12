@@ -8,17 +8,25 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Fence_L_LP_BaseMap
-  m_Shader: {fileID: 4800000, guid: 510c98a5fe0badb42bb6e92a4ff4e3fd, type: 3}
+  m_Shader: {fileID: 4800000, guid: e65c5cf7581c1444a8d31cc79f4a931a, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - BSSBLOOMFOGTYPE_HEIGHT
+  - VIGNETTE_MASKED
+  - _LIGHTINGMODE_FLAT
+  - _RIM2STYLE_POIYOMI
+  - _RIMSTYLE_POIYOMI
+  - _STOCHASTICMODE_DELIOT_HEITZ
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 2000
   stringTagMap:
-    AllLockedGUIDS: 360f75f06e22e3e47ab7950537a630e8,c0345c26f7236ad45987181237abc370,8a8600607bf39844d9cf894ec948e5b4,aef518226c8d559418cd49e8a3116cc2
+    AllLockedGUIDS: 8a8600607bf39844d9cf894ec948e5b4
+    OriginalKeywords: BSSBLOOMFOGTYPE_HEIGHT VIGNETTE_MASKED _LIGHTINGMODE_FLAT _RIM2STYLE_POIYOMI
+      _RIMSTYLE_POIYOMI _STOCHASTICMODE_DELIOT_HEITZ
     OriginalShader: .poiyomi/Poiyomi Pro
     OriginalShaderGUID: 8da3d90ffd42e624499ae6a1ca478bee
     RenderType: Opaque
@@ -296,7 +304,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 94de88f52d36a824daeae3a56d000780, type: 3}
+        m_Texture: {fileID: 2800000, guid: e39be834fda24074f8db95c62c9117ab, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Matcap:
@@ -2823,7 +2831,7 @@ Material:
     - m_end_voronoi: 0
     - m_end_voronoiRandom: 0
     - m_lightingCategory: 0
-    - m_mainCategory: 0
+    - m_mainCategory: 1
     - m_modifierCategory: 0
     - m_renderingCategory: 0
     - m_specialFXCategory: 0

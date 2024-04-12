@@ -19,7 +19,8 @@ public class TrashItem : GameBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        poolParent = gameObject.transform.root;
+        poolParent = gameObject.transform.parent;
+        print(poolParent.name);
     }
 
     // Update is called once per frame

@@ -58,31 +58,31 @@ public class BinMannager : GameBehaviour
         _UI.UpdateScoreText(binCurrentScore, assigedPlayer.GetComponent<PlayerController>().playerNum);
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        switch (other.tag)
-        {
-            case "BigTrash":
-                //print("Big Trash Exit");
-                binCurrentScore -= bigScore;
-                RemoveFromList(other.gameObject);
-                break;
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    switch (other.tag)
+    //    {
+    //        case "BigTrash":
+    //            //print("Big Trash Exit");
+    //            binCurrentScore -= bigScore;
+    //            RemoveFromList(other.gameObject);
+    //            break;
 
-            case "MediumTrash":
-                //print("Big Medium Exit");
-                binCurrentScore -= midScore;
-                RemoveFromList(other.gameObject);
-                break;
+    //        case "MediumTrash":
+    //            //print("Big Medium Exit");
+    //            binCurrentScore -= midScore;
+    //            RemoveFromList(other.gameObject);
+    //            break;
 
-            case "SmallTrash":
-                //print("Big Small input");
-                binCurrentScore -= smallScore;
-                RemoveFromList(other.gameObject);
-                break;
-        }
+    //        case "SmallTrash":
+    //            //print("Big Small input");
+    //            binCurrentScore -= smallScore;
+    //            RemoveFromList(other.gameObject);
+    //            break;
+    //    }
 
-        _UI.UpdateScoreText(binCurrentScore, assigedPlayer.GetComponent<PlayerController>().playerNum);
-    }
+    //    _UI.UpdateScoreText(binCurrentScore, assigedPlayer.GetComponent<PlayerController>().playerNum);
+    //}
 
     private void checkDespawn()
     {
@@ -100,6 +100,8 @@ public class BinMannager : GameBehaviour
         {
             BinItemList.Add(item);
             _DM.RemoveItemToDespawnList(item);
+            _SC.RemoveItemToCollectList(item);
+
             checkDespawn();
             vFXManager.SpawnParticle(3, particalSpawnTransform);
         }

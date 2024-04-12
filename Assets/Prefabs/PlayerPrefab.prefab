@@ -227,8 +227,9 @@ MonoBehaviour:
   dropForce: 300
   dropForce_Honking: 1
   throwForce: 1500
-  attackRate: 1
+  attackRate: 3
   playerCirlce_PS: {fileID: 8758760379812404410}
+  playerArrow: {fileID: 2815459810856415612}
   playerArrow_PS: {fileID: 730463469030851233}
 --- !u!33 &1517317574236690676
 MeshFilter:
