@@ -14,6 +14,7 @@ public class GameBehaviour : Behaviour //inherits from
     protected static SeagullController _SC { get { return SeagullController.INSTANCE; } }
     protected static ItemSpawner _IS { get { return ItemSpawner.INSTANCE; } }
     protected static VFXManager _VFXM { get { return VFXManager.INSTANCE; } }
+    protected static AudioManager _AM { get { return AudioManager.INSTANCE; } }
 
 }
 //

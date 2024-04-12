@@ -14,6 +14,14 @@ public class ThrowAnimEvent : GameBehaviour
         print("Throw event");
         playerController.Throw();
     
+        
+    }
     
+    public void HonkAudio()
+    {
+        _AM.PlaySound(_AM.ibisHonk, playerController.audioSource);
+
+
+
     }
 }
