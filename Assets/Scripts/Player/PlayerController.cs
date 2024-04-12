@@ -13,9 +13,7 @@ public class PlayerController : GameBehaviour
     public enum Action { Walking, Throwing, Honking, Attacking, Hit};
     public Action currentAction;
     [Header("Player Controls")]
-
     Rigidbody rb;
-
     [SerializeField] float movementSpeed;
     [SerializeField] float movementSpeed_smallTrash;
     [SerializeField] float movementSpeed_mediumTrash;
@@ -31,7 +29,6 @@ public class PlayerController : GameBehaviour
     Vector3 directionBody;
 
 
-
     [SerializeField]
     public Animator anim;
     AudioSource audioSource;
@@ -45,9 +42,13 @@ public class PlayerController : GameBehaviour
     [SerializeField] float maxHonkOverheat;
     [SerializeField] float honkResetTime;
     bool hasHonked;
+    bool postHonkClarity;
+    bool hasAngryied;
     [SerializeField] GameObject honkCollider;
     [SerializeField] float honkFirerate;
 
+    VFXManager vfxManager;
+    [SerializeField] GameObject honkVFXTransform;
 
     [Header("Head and Neck Movement")]
     [SerializeField]
@@ -85,7 +86,10 @@ public class PlayerController : GameBehaviour
     bool hasAttacked;
     [SerializeField] float attackRate;
     bool hasBeenHit = false;
-
+     
+    [Header("Particles")]
+    public ParticleSystem playerCirlce_PS;
+    public ParticleSystem playerArrow_PS;
 
     // Start is called before the first frame update
     void Start()
@@ -95,6 +99,8 @@ public class PlayerController : GameBehaviour
         anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
         controls = new PlayerControls();
+
+        vfxManager = _VFXM.GetComponent<VFXManager>();
 
         groundCheck = transform.Find("GroundCheck").gameObject;
         OnResetHeadRotations();
@@ -133,30 +139,7 @@ public class PlayerController : GameBehaviour
         else isNeckMoving = false;
 
         //change speed based on current held item
-        if (isHoldingTrash && targetTrash != null)
-        {
-            var tag = targetTrash.tag;
-            //print("change speed");
-            switch (tag)
-            {
-                case "SmallTrash":
-                    //speed stay same
-                    movementSpeed = movementSpeed_smallTrash;
-                    break;
-                case "MediumTrash":
-                    movementSpeed = movementSpeed_mediumTrash;
-                    break;
-                case "BigTrash":
-                    movementSpeed = movementSpeed_LargeTrash;
 
-                    break;
-                default:
-                    movementSpeed = movementSpeed_smallTrash;
-
-                    break;
-            }
-        }
-        else movementSpeed = movementSpeed_smallTrash;
 
         #region Body Movement
         //apply animation
@@ -190,10 +173,40 @@ public class PlayerController : GameBehaviour
 
         #endregion
 
+        _GM.playerBins[playerNum].GetComponent<GetBinScript>().circlePS.gameObject.SetActive(isHoldingTrash);
+
+        UpdateSpeed();
 
 
     }
 
+    public void UpdateSpeed()
+    {
+        if (isHoldingTrash && targetTrash != null)
+        {
+            var tag = targetTrash.tag;
+            //print("change speed");
+            switch (tag)
+            {
+                case "SmallTrash":
+                    //speed stay same
+                    movementSpeed = movementSpeed_smallTrash;
+                    break;
+                case "MediumTrash":
+                    movementSpeed = movementSpeed_mediumTrash;
+                    break;
+                case "BigTrash":
+                    movementSpeed = movementSpeed_LargeTrash;
+
+                    break;
+                default:
+                    movementSpeed = movementSpeed_smallTrash;
+
+                    break;
+            }
+        }
+        else movementSpeed = movementSpeed_smallTrash;
+    }
     private void LateUpdate()
     {
         if(currentAction == Action.Walking)
@@ -434,12 +447,26 @@ public class PlayerController : GameBehaviour
             if (!hasHonked)
             {
                 hasHonked = true;
+                postHonkClarity = true;
                 currentHonkOverheat += 0.5f;
-
+                vfxManager.SpawnParticle(0, honkVFXTransform.transform);
                 if (currentHonkOverheat > maxHonkOverheat) HonkCoolDown();
                 ExecuteAfterSeconds(honkFirerate, () => hasHonked = false);
+                ExecuteAfterSeconds(honkFirerate/4, () => postHonkClarity = false);
             }
-            _AM.PlaySound(_AM.ibisHonk, audioSource);
+            else if (hasHonked == true)
+            {  
+                if (hasAngryied == false && postHonkClarity == false)
+                {
+                    hasAngryied = true;
+                    vfxManager.SpawnParticle(2, honkVFXTransform.transform);
+                    ExecuteAfterSeconds(honkFirerate/4, () => hasAngryied = false);
+                }
+            }
+			
+			_AM.PlaySound(_AM.ibisHonk, audioSource);
+
+
         }
 
     }
@@ -449,6 +476,7 @@ public class PlayerController : GameBehaviour
         var value = context.ReadValue<float>();
         if (value == 0) isHonking = false;
         else if (value == 1) isHonking = true;
+
         print(isHonking);
 
 
@@ -507,6 +535,7 @@ public class PlayerController : GameBehaviour
     {
         if(targetTrash != null)
         {
+
             isHoldingTrash = false;
             dropCoolDown = true;
             var tempTrashHolder = targetTrash;
@@ -520,8 +549,8 @@ public class PlayerController : GameBehaviour
             tempTrashHolder.GetComponent<TrashItem>().Dropped();
             if(isHonking) tempTrashHolder.GetComponent<Rigidbody>().AddForce(transform.forward * dropForce_Honking, ForceMode.Force);
             else tempTrashHolder.GetComponent<Rigidbody>().AddForce(transform.forward * dropForce, ForceMode.Force);
+			_AM.PlaySound(_AM.dropTrash, audioSource);
 
-            _AM.PlaySound(_AM.dropTrash, audioSource);
 
             ExecuteAfterSeconds(1, () => dropCoolDown = false);
 

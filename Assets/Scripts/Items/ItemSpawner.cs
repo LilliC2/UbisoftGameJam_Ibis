@@ -18,6 +18,16 @@ public class ItemSpawner : Singleton<ItemSpawner>
 
     DespawnMannager despawnMannager;
 
+    public void GetTotalItemCount()
+    {
+        int totalCount = 0;
+
+        foreach (var pool in objectPools)
+        {
+            totalCount += pool.GetComponent<ItemList>().instantiatedItems.Count;
+        }
+        print(totalCount);
+    }
 
     private void Start()
     {
@@ -53,7 +63,7 @@ public class ItemSpawner : Singleton<ItemSpawner>
         itemToSpawn.transform.position = spawnPos;
         itemToSpawn.SetActive(true);
         itemToSpawn.transform.rotation = Quaternion.identity;
-        despawnMannager.AddItemToDespawnList(itemToSpawn);
+        _DM.AddItemToDespawnList(itemToSpawn);
 
         return itemToSpawn;
     }

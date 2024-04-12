@@ -8,6 +8,8 @@ public class ItemPoolMannager : MonoBehaviour
     [SerializeField] ItemSpawner itemToSpawn;
     [SerializeField] ItemPoolSpawner itemPoolSpawner;
 
+
+
     public GameObject GetItem(Vector3 spawnPosition)
     {
         bool foundInactiveObject = false;
@@ -18,7 +20,9 @@ public class ItemPoolMannager : MonoBehaviour
             if (!item.activeSelf)
             {
                 foundInactiveObject = true;
+                //print(item);
                 itemGot = itemToSpawn.SpawnItem(item, spawnPosition);
+
                 break;
             }
         }

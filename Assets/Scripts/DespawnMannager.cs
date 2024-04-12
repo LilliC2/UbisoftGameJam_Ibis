@@ -8,8 +8,13 @@ public class DespawnMannager : Singleton<DespawnMannager>
     [SerializeField] SeagullController seagullController;
     [SerializeField] List<GameObject> despawnList = new List<GameObject>();
 
+    
+
+
+
     IEnumerator Start()
     {
+        seagullController = _SC.GetComponentInChildren<SeagullController>();
         while (true)
         {
             yield return new WaitForSeconds(1f); // Adjust the delay as needed
@@ -21,10 +26,11 @@ public class DespawnMannager : Singleton<DespawnMannager>
                     trashItem.aliveTime -= 1f; // Subtract 1 from alive time
                     if (trashItem.aliveTime <= 0f)
                     {
-                        //Debug.Log(obj.name + " has expired!");
+                        Debug.Log(obj.name + " has expired!");
                         RemoveItemToDespawnList(obj);
                         //obj.SetActive(false);
-                        seagullController.AddItemToCollectList(obj);
+                        //Debug.Log("add Item to de spawn list");
+                        seagullController.AddItemToCollectList(obj); // not calling AddItemToCollectionList?
                         break;
                     }
                 }
@@ -34,6 +40,7 @@ public class DespawnMannager : Singleton<DespawnMannager>
 
     public void AddItemToDespawnList(GameObject obj)
     {
+
         despawnList.Add(obj);
         TrashItem trashItem = obj.GetComponent<TrashItem>();
        // Debug.Log(obj.name + " has been Added to list");
