@@ -165,7 +165,7 @@ public class NPCPathfinding : GameBehaviour
         //point = hit.position;
 
         //return point;
-
+        
     }
 
     private void OnTriggerEnter(Collider other)
