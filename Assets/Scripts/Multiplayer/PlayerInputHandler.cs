@@ -56,7 +56,7 @@ public class PlayerInputHandler : GameBehaviour
         var renderChild = _GM.playerGameObjList[playerControls.playerNum].GetComponent<PlayerController>().colourIndicator.GetComponent<Renderer>();
         var bin = _GM.playerBins[playerControls.playerNum].GetComponent<GetBinScript>().binRenderer.GetComponent<Renderer>();
 
-        var arrowParticle = _GM.playerGameObjList[playerControls.playerNum].GetComponent<PlayerController>().playerArrow_PS.main;
+        var arrowParticle = _GM.playerGameObjList[playerControls.playerNum].GetComponent<PlayerController>().playerArrow_PS.GetComponent<ParticleSystem>().main;
         var circleParticle = _GM.playerGameObjList[playerControls.playerNum].GetComponent<PlayerController>().playerCirlce_PS.main;
         var circleParticle_bin = _GM.playerBins[playerControls.playerNum].GetComponent<GetBinScript>().circlePS.main;
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BlobShadow : MonoBehaviour
 {
-    [SerializeField] GameObject shadow;
+    public GameObject shadow;
     [SerializeField] RaycastHit hit;
     [SerializeField] float offset;
 

@@ -97,7 +97,12 @@ public class GameManager : Singleton<GameManager>
         _IS.InitalTrashSpawn();
         //start NPC spawnin
         _NPC.SpawnChance();
+        foreach (var player in _GM.playerGameObjList)
+        {
 
+            player.GetComponent<PlayerController>().enabled = false;
+
+        }
         //put players in right spawn pos
         for (int i = 0; i < playerGameObjList.Count; i++)
         {
@@ -106,8 +111,17 @@ public class GameManager : Singleton<GameManager>
         foreach (var player in playerInputList)
         {
             player.currentActionMap = player.actions.FindActionMap("Gameplay");
+        }
+        foreach (var player in _GM.playerGameObjList)
+        {
+
+            player.GetComponent<PlayerController>().enabled = true;
+            player.GetComponent<PlayerController>().playerCirlce_PS.gameObject.SetActive(true);
+            player.GetComponent<PlayerController>().playerArrow_PS.gameObject.SetActive(true);
 
         }
+
+        mainMenuColliders.SetActive(false);
 
     }
 
@@ -135,7 +149,6 @@ public class GameManager : Singleton<GameManager>
         PlayerInputManager.instance.JoinPlayerFromActionIfNotAlreadyJoined(context); //getting controller from button input
         _UI.ReadyPlayer();
         _UI.readyCountMax = _GM.playerCount;
-        _UI.UpdateReadyUPText(_UI.readyCountMax, _GM.playerCount);
         print("i Join");
 
     }

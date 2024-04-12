@@ -14,7 +14,7 @@ public class PlayerController : GameBehaviour
     public Action currentAction;
     [Header("Player Controls")]
     Rigidbody rb;
-    [SerializeField] float movementSpeed;
+    public float movementSpeed;
     [SerializeField] float movementSpeed_smallTrash;
     [SerializeField] float movementSpeed_mediumTrash;
     [SerializeField] float movementSpeed_LargeTrash;
@@ -90,7 +90,7 @@ public class PlayerController : GameBehaviour
      
     [Header("Particles")]
     public ParticleSystem playerCirlce_PS;
-    public ParticleSystem playerArrow_PS;
+    public GameObject playerArrow_PS;
 
     // Start is called before the first frame update
     void Start()

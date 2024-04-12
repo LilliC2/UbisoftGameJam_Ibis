@@ -121,6 +121,8 @@ public class NPCPathfinding : GameBehaviour
             //print("trigger animation");
             var itemPool = _IS.objectPools[Random.Range(0, _IS.objectPools.Length)];
             itemToDrop = itemPool.GetComponent<ItemPoolMannager>().GetItem(dropTrashGO.transform.position);
+
+            itemToDrop.GetComponent<BlobShadow>().shadow.SetActive(false);
             if(itemToDrop != null)
             {
                 itemToDrop.GetComponent<TrashItem>().readyToBin = false;
@@ -142,6 +144,7 @@ public class NPCPathfinding : GameBehaviour
     {
         //print("drop trash from anim event");
         if(itemToDrop != null) itemToDrop.GetComponent<TrashItem>().Dropped();
+        itemToDrop.GetComponent<BlobShadow>().shadow.SetActive(true);
 
         itemToDrop = null;
         agent.isStopped = false;

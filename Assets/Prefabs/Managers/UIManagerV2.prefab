@@ -2095,7 +2095,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: a23f8e000abce433fa37583070ea8c50, type: 3}
-  m_Type: 2
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2579,7 +2579,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: a23f8e000abce433fa37583070ea8c50, type: 3}
-  m_Type: 2
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3037,7 +3037,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: a23f8e000abce433fa37583070ea8c50, type: 3}
-  m_Type: 2
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -4072,6 +4072,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   binMannager: {fileID: 6037742534536208562}
   binRenderer: {fileID: 4126761225819107966}
+  circlePS: {fileID: 0}
 --- !u!208 &5015484715635766451
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -4297,6 +4298,7 @@ MonoBehaviour:
   bigScore: 0
   BinItemList: []
   maxListAmount: 0
+  particalSpawnTransform: {fileID: 0}
 --- !u!136 &5513982234454410493
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7263,6 +7265,7 @@ MonoBehaviour:
   bigScore: 0
   BinItemList: []
   maxListAmount: 0
+  particalSpawnTransform: {fileID: 0}
 --- !u!136 &2315963581504104399
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -14318,7 +14321,7 @@ Transform:
   - {fileID: 6103589599061142831}
   - {fileID: 8884169999263934049}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3259530017590278441
 MonoBehaviour:
@@ -14339,6 +14342,7 @@ MonoBehaviour:
   pauseUI: {fileID: 5112656636869917759}
   gameOverUI: {fileID: 748041877141140904}
   mainMenuCamera: {fileID: 1564822667320847218}
+  mmIcon: []
   player1Icon: {fileID: 467522283473588224}
   player2Icon: {fileID: 1257669639172684846}
   player3Icon: {fileID: 9094101531110532674}
@@ -14346,6 +14350,12 @@ MonoBehaviour:
   connectionIcon:
   - {fileID: 21300000, guid: 013d30133967e46368c46a6c8d385c5b, type: 3}
   - {fileID: 21300000, guid: 0842bfb68fde64fdf9aa57e1d0791757, type: 3}
+  readyCountMax: 0
+  readyCountCurrent: 0
+  readyPlayer: 
+  readyP2: 0
+  readyP3: 0
+  readyP4: 0
   playingCamera: {fileID: 0}
   player1Score: {fileID: 1139448167864335826}
   player2Score: {fileID: 2302406999006533908}
@@ -14365,10 +14375,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e2dbd9fa44e7c4e248163582b7a5ed97, type: 3}
   - {fileID: 21300000, guid: 75530c3d3e5b344a0ab8d988c3cd0caf, type: 3}
   gameOverCamera: {fileID: 7996444406362287220}
-  player1EndScore: {fileID: 5066312060833917679}
-  player2EndScore: {fileID: 8719422077717130490}
-  player3EndScore: {fileID: 5914630189222422527}
-  player4EndScore: {fileID: 1708409177469221654}
+  player1stEndScore: {fileID: 5066312060833917679}
+  player2ndEndScore: {fileID: 8719422077717130490}
+  player3rdEndScore: {fileID: 5914630189222422527}
+  player4thEndScore: {fileID: 1708409177469221654}
 --- !u!1 &7996052127958023502
 GameObject:
   m_ObjectHideFlags: 0
@@ -16936,6 +16946,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   binMannager: {fileID: 4119911665948296475}
   binRenderer: {fileID: 1867989844976918932}
+  circlePS: {fileID: 0}
 --- !u!208 &3820636803978346813
 NavMeshObstacle:
   m_ObjectHideFlags: 0

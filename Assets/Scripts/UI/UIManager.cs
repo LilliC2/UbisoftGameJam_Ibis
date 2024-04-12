@@ -26,7 +26,6 @@ public class UIManager : Singleton<UIManager>
     public Sprite[] connectionIcon; // 0 = disconnected, 1 = connected, 2 = ready
     public int readyCountMax;
     public int readyCountCurrent = 0;
-    public TMP_Text readyupText;
     public List<bool> readyPlayer;
     public bool readyP2;
     public bool readyP3;
@@ -181,10 +180,6 @@ public class UIManager : Singleton<UIManager>
 
     }
 
-    public void UpdateReadyUPText(int _PR, int _MP)
-    {
-      //  readyupText.text = "[" + _PR + "/" + _MP + "]";
-    }
 
     public void ReadyPlayer()
     {
