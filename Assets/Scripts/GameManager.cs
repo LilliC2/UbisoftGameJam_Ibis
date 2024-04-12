@@ -54,6 +54,15 @@ public class GameManager : Singleton<GameManager>
         if (Input.GetKey(KeyCode.Alpha0)) _IS.GetTotalItemCount();
     }
 
+    public void OnGameStart()
+    {
+        //spawn trash
+        _IS.InitalTrashSpawn();
+        //start NPC spawnin
+        _NPC.SpawnChance();
+
+    }
+
     void OnPlayerJoined(PlayerInput playerInput)
     {
         playerInputList.Add(playerInput);

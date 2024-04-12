@@ -97,6 +97,7 @@ public class UIManager : Singleton<UIManager>
                 playingCamera.SetActive(true);
                 gameOverCamera.SetActive(false);
 
+                _GM.OnGameStart();
 
                 break;
 

@@ -22,19 +22,15 @@ public class NPCSpawner : Singleton<NPCSpawner>
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(SpawnChance());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            SpawnNPC();
-        }
+
     }
 
-    IEnumerator SpawnChance()
+    public IEnumerator SpawnChance()
     {
         yield return new WaitForSeconds(spawnDelay);
 
