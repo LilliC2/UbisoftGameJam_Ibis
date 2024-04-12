@@ -1244,7 +1244,7 @@ MonoBehaviour:
   noramlSpeed: 1
   runningSpeed: 3
   distanceFromIbis: 3
-  dropTrashDelayMin: 20
+  dropTrashDelayMin: 15
   dropTrashDelayMax: 25
   behaviourStates: 1
   isMale: 0

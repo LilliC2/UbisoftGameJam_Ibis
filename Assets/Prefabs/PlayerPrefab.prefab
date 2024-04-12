@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2375951488089815324
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1840922007734107688}
+  m_Layer: 8
+  m_Name: DizzyTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1840922007734107688
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2375951488089815324}
+  m_LocalRotation: {x: -0.63456273, y: 3.7796586e-13, z: 3.4246022e-13, w: 0.7728714}
+  m_LocalPosition: {x: -0.0416, y: 0.0139, z: -0.0236}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2564843480777744982}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: -78.775, y: 0, z: 0}
 --- !u!1 &5553770002635476160
 GameObject:
   m_ObjectHideFlags: 0
@@ -185,6 +216,7 @@ MonoBehaviour:
   honkCollider: {fileID: 5737535947934061447}
   honkFirerate: 3
   honkVFXTransform: {fileID: 7862637457977071474}
+  DizzyVFXTransform: {fileID: 2375951488089815324}
   isNeckMoving: 0
   ibisHead: {fileID: 3303847329216947380}
   ibisNeck: {fileID: 8114669823369966393}
@@ -812,6 +844,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1829840313844783292, guid: 928938db4e4fd5449a5a227312ea12f3, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4437583392611175039}
+    - targetCorrespondingSourceObject: {fileID: 1829840313844783292, guid: 928938db4e4fd5449a5a227312ea12f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1840922007734107688}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7940900408119316048, guid: 928938db4e4fd5449a5a227312ea12f3, type: 3}
       insertIndex: -1

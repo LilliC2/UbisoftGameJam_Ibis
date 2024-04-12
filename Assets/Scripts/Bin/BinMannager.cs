@@ -17,9 +17,14 @@ public class BinMannager : GameBehaviour
 
     [SerializeField] List<GameObject> BinItemList = new List<GameObject>();
     [SerializeField] int maxListAmount;
+    [SerializeField] Transform particalSpawnTransform;
+
+    VFXManager vFXManager;
+    
 
     private void Start()
     {
+        vFXManager = _VFXM.GetComponent<VFXManager>();
         trashObjectScores = _GM.GetComponent<TrashObjectScores>();
 
         smallScore = trashObjectScores.getScore(0);
@@ -96,6 +101,7 @@ public class BinMannager : GameBehaviour
             BinItemList.Add(item);
             _DM.RemoveItemToDespawnList(item);
             checkDespawn();
+            vFXManager.SpawnParticle(3, particalSpawnTransform);
         }
         else
         {
