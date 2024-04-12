@@ -122,7 +122,7 @@ public class NPCPathfinding : GameBehaviour
             var itemPool = _IS.objectPools[Random.Range(0, _IS.objectPools.Length)];
             itemToDrop = itemPool.GetComponent<ItemPoolMannager>().GetItem(dropTrashGO.transform.position);
 
-            itemToDrop.GetComponent<BlobShadow>().shadow.SetActive(false);
+            //itemToDrop.GetComponent<BlobShadow>().shadow.SetActive(false);
             if(itemToDrop != null)
             {
                 itemToDrop.GetComponent<TrashItem>().readyToBin = false;

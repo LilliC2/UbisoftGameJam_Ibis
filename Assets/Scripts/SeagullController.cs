@@ -63,7 +63,8 @@ public class SeagullController : MonoBehaviour
             // Check if the second point is reached
             if (currentPointIndex >= 3)
             {
-                birdCollectList[0].transform.position = mouthTransform.transform.position;
+                if(birdCollectList[0] != null) birdCollectList[0].transform.position = mouthTransform.transform.position;
+
             }
 
             // Check if the object has reached the target point
