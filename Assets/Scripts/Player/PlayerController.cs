@@ -67,6 +67,7 @@ public class PlayerController : GameBehaviour
     float neckXrotation;
     float neckYrotation;
 
+
     [Header("Pick Up/Drop Items")]
 
     //picking up trash controls
@@ -102,6 +103,7 @@ public class PlayerController : GameBehaviour
 
         groundCheck = transform.Find("GroundCheck").gameObject;
         OnResetHeadRotations();
+
 
     }
 

@@ -28,9 +28,11 @@ public class UIManager : Singleton<UIManager>
     public int readyCountCurrent = 0;
     public TMP_Text readyupText;
     public List<bool> readyPlayer;
+    public List<bool> exitPlayer;
     public bool readyP2;
     public bool readyP3;
     public bool readyP4;
+    public Image[] exitIcon;
 
     [Header("In-Game UI")]
     public GameObject playingCamera;
@@ -92,6 +94,12 @@ public class UIManager : Singleton<UIManager>
             uiState = UIState.GameOver;
             Setup();
         }
+
+        if (Input.GetKeyUp(KeyCode.K))
+        {
+            uiState = UIState.Paused;
+            Setup();
+        }
     }
 
     public void Setup()
@@ -124,7 +132,7 @@ public class UIManager : Singleton<UIManager>
                 gameOverCamera.SetActive(false);
 
                 _GM.timerIsRunning = true;
-
+                
 
                 break;
 
@@ -176,9 +184,21 @@ public class UIManager : Singleton<UIManager>
             Setup();
             _GM.OnGameStart();
         }
+    }
 
+    public void QuitUP()
+    {
+        bool AllPlayersQuit = true;
 
+        foreach (var player in exitPlayer)
+        {
+            if (player == false) AllPlayersQuit = false;
+        }
 
+        if (AllPlayersQuit == true)
+        {
+            _GM.QuitGame();
+        }
     }
 
     public void UpdateReadyUPText(int _PR, int _MP)
@@ -361,5 +381,17 @@ public class UIManager : Singleton<UIManager>
     }
 
     #endregion
+
+    public void OnPause()
+    {
+        uiState = UIState.Paused; 
+        Setup();
+    }
+
+    public void OnResume()
+    {
+        uiState = UIState.Playing; Setup();
+
+    }
 
 }

@@ -10,6 +10,7 @@ public class PlayerInputHandler : GameBehaviour
     public GameObject playerPrefab;
     PlayerController playerControls;
     public bool hasReadyUp = false;
+    public bool isPaused = false;
 
     [SerializeField] Color P1;
     [SerializeField] Color P2;
@@ -44,6 +45,7 @@ public class PlayerInputHandler : GameBehaviour
             transform.position = playerControls.transform.position;
 
             _UI.readyPlayer.Add(false);
+            _UI.exitPlayer.Add(false); 
 
         }
 
@@ -128,5 +130,31 @@ public class PlayerInputHandler : GameBehaviour
         _UI.readyPlayer[playerControls.playerNum] = true;
         _UI.mmIcon[playerControls.playerNum].sprite = _UI.connectionIcon[2];
         _UI.ReadyUp();
+    }
+
+    public void OnGameExit()
+    {
+        _UI.exitPlayer[playerControls.playerNum] = true;
+        _UI.exitIcon[playerControls.playerNum].sprite = _UI.connectionIcon[3];
+        _UI.QuitUP();
+
+        //if (_UI.exitPlayer[playerControls.playerNum]!)
+        //{
+        //    _UI.exitPlayer[playerControls.playerNum] = true;
+        //    _UI.exitIcon[playerControls.playerNum].sprite = _UI.connectionIcon[3];
+        //    _UI.QuitUP();
+        //}
+        //else
+        //{
+        //    _UI.exitPlayer[playerControls.playerNum] = false;
+        //    _UI.exitIcon[playerControls.playerNum].sprite = _UI.connectionIcon[4];
+        //    _UI.QuitUP();
+
+        //}
+    }
+
+    public void OnPause()
+    {
+        _GM.OnPause();
     }
 }
