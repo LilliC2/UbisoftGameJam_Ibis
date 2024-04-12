@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public enum UIState { MainMenu, Playing, Paused, GameOver}
 
@@ -58,6 +59,10 @@ public class UIManager : Singleton<UIManager>
     public TMP_Text player2EndScore;
     public TMP_Text player3EndScore;
     public TMP_Text player4EndScore;
+    public GameObject player1stSpawnPos;
+    public GameObject player2ndSpawnPos;
+    public GameObject player3rdSpawnPos;
+    public GameObject player4thSpawnPos;
 
     // Start is called before the first frame update
     void Start()
@@ -181,7 +186,7 @@ public class UIManager : Singleton<UIManager>
 
     public void UpdateReadyUPText(int _PR, int _MP)
     {
-        readyupText.text = "[" + _PR + "/" + _MP + "]";
+      //  readyupText.text = "[" + _PR + "/" + _MP + "]";
     }
 
     public void ReadyPlayer()
@@ -267,7 +272,69 @@ public class UIManager : Singleton<UIManager>
 
     public void OnGameOver()
     {
-        
+        GameObject firstPlace = new();
+        float firstPlaceScore = new();
+        float secondPlaceScore = new();
+        float thirdPlaceScore = new();
+        float fourthPlaceScore = new();
+        GameObject secondPlace = new();
+        GameObject thirdPlace = new();
+        GameObject fourthPlace = new();
+
+
+        List<int> scoreList = new();
+
+        for (int i = 0; i < _GM.playerBins.Length; i++)
+        {
+            scoreList.Add(_GM.playerBins[i].GetComponent<GetBinScript>().binMannager.binCurrentScore);
+        }
+
+        scoreList.Sort();
+
+
+        for (int i = 0; i < scoreList.Count; i++)
+        {
+            for (int v = 0; v < _GM.playerGameObjList.Count; v++)
+            {
+                if(scoreList[i] == _GM.playerBins[v].GetComponent<GetBinScript>().binMannager.binCurrentScore)
+                {
+                    if (i == scoreList.Count-1)
+                    {
+
+                        firstPlace = _GM.playerGameObjList[v];
+                        print(firstPlace.name + " got score " + scoreList[scoreList.Count - 1]);
+
+                    }
+                    if (i == scoreList.Count-2) secondPlace = _GM.playerGameObjList[v];
+                    if (i == scoreList.Count-3) thirdPlace = _GM.playerGameObjList[v];
+                    if (i == scoreList.Count - 4) fourthPlace = _GM.playerGameObjList[v];
+                }
+            }
+        }
+
+     //  player1EndScore =
+
+    }
+
+
+    public int[] SortArray(int[] array, int length)
+    {
+        for (int i = 1; i < length; i++)
+        {
+            var key = array[i];
+            var flag = 0;
+            for (int j = i - 1; j >= 0 && flag != 1;)
+            {
+                if (key < array[j])
+                {
+                    array[j + 1] = array[j];
+                    j--;
+                    array[j + 1] = key;
+                }
+                else flag = 1;
+            }
+        }
+        return array;
     }
 
     #endregion

@@ -9,7 +9,7 @@ public class BinMannager : GameBehaviour
 
 
     public GameObject assigedPlayer;
-    [SerializeField] int binCurrentScore;
+    public int binCurrentScore;
 
     [SerializeField] int smallScore;
     [SerializeField] int midScore;
@@ -117,17 +117,10 @@ public class BinMannager : GameBehaviour
         }
     }
 
-    public void GetScoreFromBin()
-    {
-        _GM.playerScore[assigedPlayer.GetComponent<PlayerController>().playerNum] = binCurrentScore;
-    }
 
     public void Update()
     {
-        if(_UI.uiState == UIState.GameOver)
-        {
-            GetScoreFromBin();
-        }
+        
     }
 }
 

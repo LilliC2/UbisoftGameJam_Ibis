@@ -92,7 +92,7 @@ public class GameManager : Singleton<GameManager>
 
     public void OnGameStart()
     {
-        mainMenuColliders.SetActive(false);
+       // mainMenuColliders.SetActive(false);
         //spawn trash
         _IS.InitalTrashSpawn();
         //start NPC spawnin
@@ -102,6 +102,11 @@ public class GameManager : Singleton<GameManager>
         for (int i = 0; i < playerGameObjList.Count; i++)
         {
             playerGameObjList[i].transform.position = spawnPoints_InGame[i].transform.position;
+        }
+        foreach (var player in playerInputList)
+        {
+            player.currentActionMap = player.actions.FindActionMap("Gameplay");
+
         }
 
     }
