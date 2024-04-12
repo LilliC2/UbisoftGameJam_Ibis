@@ -29,9 +29,13 @@ public class NPCPathfinding : GameBehaviour
     [SerializeField] GameObject dropTrashGO;
     GameObject itemToDrop;
 
+    VFXManager vFXManager;
+    [SerializeField] Transform particalTransform;
+
     // Start is called before the first frame update
     void Start()
     {
+        vFXManager = _VFXM.GetComponentInChildren<VFXManager>();
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         currentDestination = SearchPatrolPoint();
@@ -108,7 +112,7 @@ public class NPCPathfinding : GameBehaviour
             agent.isStopped = true;
 
             //animation
-            print("trigger animation");
+            //print("trigger animation");
             var itemPool = _IS.objectPools[Random.Range(0, _IS.objectPools.Length)];
             itemToDrop = itemPool.GetComponent<ItemPoolMannager>().GetItem(dropTrashGO.transform.position);
             if(itemToDrop != null)
@@ -133,7 +137,7 @@ public class NPCPathfinding : GameBehaviour
 
     public void DropTrashAnimEvent()
     {
-        print("drop trash from anim event");
+        //print("drop trash from anim event");
         if(itemToDrop != null) itemToDrop.GetComponent<TrashItem>().Dropped();
 
         itemToDrop = null;
@@ -174,6 +178,7 @@ public class NPCPathfinding : GameBehaviour
         {
             print("HONKING");
             ibis = other.gameObject;
+            vFXManager.SpawnParticle(1, particalTransform);
             behaviourStates = BehaviourStates.RunFromIbis;
         }
     }
