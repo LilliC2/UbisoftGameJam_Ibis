@@ -11,9 +11,12 @@ public class GameManager : Singleton<GameManager>
 {
     public GameObject[] spawnPoints_InGame;
     public GameObject[] spawnPoints_MainMenu;
+    public GameObject[] spawnPoints_GameOver;
     public List<PlayerInput> playerInputList = new List<PlayerInput>();
     public List<GameObject> playerGameObjList = new List<GameObject>();
     public GameObject[] playerBins;
+
+    public int[] playerScore;
 
     public int playerCount;
     [SerializeField] GameObject mainMenuColliders;
@@ -64,12 +67,14 @@ public class GameManager : Singleton<GameManager>
         if (_UI.uiState == UIState.Playing)
         {
             timerIsRunning = true;
+            //OnGameStart();
         }
 
         if (timerIsRunning)
         {
-            if(timeRemaining  > 0)
+            if (timeRemaining  > 0)
             {
+                //OnGameStart();
                 timeRemaining -= Time.deltaTime;
                 _UI.UpdateTimerText(timeRemaining);
             }
@@ -78,6 +83,7 @@ public class GameManager : Singleton<GameManager>
                 timeRemaining = 0;
                 timerIsRunning=false;
                 _UI.uiState = UIState.GameOver;
+                _UI.Setup();
             }
         }
 
@@ -167,8 +173,8 @@ public class GameManager : Singleton<GameManager>
         Application.Quit();
     }
 
-    public void Timer()
+    public void OnGameEnd()
     {
-
+        _UI.OnGameOver();
     }
 }

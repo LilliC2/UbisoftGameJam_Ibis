@@ -92,7 +92,7 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    void Setup()
+    public void Setup()
     {
         switch (uiState)
         {
@@ -144,6 +144,8 @@ public class UIManager : Singleton<UIManager>
                 mainMenuCamera.SetActive(false);
                 playingCamera.SetActive(false);
                 gameOverCamera.SetActive(true);
+
+                _GM.OnGameEnd();
 
                 break;
         }
@@ -233,19 +235,23 @@ public class UIManager : Singleton<UIManager>
         {
             case 0:
                 player1Score.text = _score.ToString();
+                player1EndScore.text = _score.ToString();
                 print("p1");
                 break;
 
             case 1:
                 player2Score.text = _score.ToString();
+                player2EndScore.text = _score.ToString();
                 break;
 
             case 2:
                 player3Score.text = _score.ToString();
+                player3EndScore.text = _score.ToString();
                 break;
 
             case 3:
                 player4Score.text = _score.ToString();
+                player4EndScore.text = _score.ToString();
                 break;
         }
     }
@@ -253,6 +259,15 @@ public class UIManager : Singleton<UIManager>
     public void UpdateTimerText(float _timer)
     {
         timerText.text = _timer.ToString("F0");
+    }
+
+    #endregion
+
+    #region Game Over
+
+    public void OnGameOver()
+    {
+        
     }
 
     #endregion
