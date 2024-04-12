@@ -593,6 +593,200 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""EndOfGame"",
+            ""id"": ""54b5e429-f123-4f82-a563-8899282f8f62"",
+            ""actions"": [
+                {
+                    ""name"": ""UpEmote"",
+                    ""type"": ""Button"",
+                    ""id"": ""34923909-1d26-4aff-8687-116d9935eb1a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ExitGame"",
+                    ""type"": ""Button"",
+                    ""id"": ""7bea42a1-6b18-4d17-82ac-1587dde688d2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DownEmote"",
+                    ""type"": ""Button"",
+                    ""id"": ""b8312fab-389a-4fd1-a4f4-054857177b7d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightEmote"",
+                    ""type"": ""Button"",
+                    ""id"": ""a7ef6564-cde0-4d94-bb80-706ba134b317"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftEmote"",
+                    ""type"": ""Button"",
+                    ""id"": ""36982f31-0297-4eaf-8ff9-cd4ef7587689"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Move Ibis Head"",
+                    ""type"": ""Value"",
+                    ""id"": ""03104c3f-962e-45d8-9c1f-7f834cc0dd26"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""b9452c52-3736-4ae8-ab6e-4abc46d1b680"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Ibis Head"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Arrow Key 2D Vector"",
+                    ""id"": ""b9f73b8d-96fe-47ea-93ff-35af75812b98"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Ibis Head"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""e597c3bc-c724-4ec7-bedc-92868833d8b0"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Ibis Head"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""9b8feb68-094e-41fa-9f6b-522bbcfbf3df"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Ibis Head"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""a2e384db-34bc-437e-af7b-e838da698d41"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Ibis Head"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""6fc21d64-0ba4-41d6-8147-8f5c9a873024"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Ibis Head"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8431a511-3e10-4802-b835-944d131f81b5"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftEmote"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""660108f2-d70e-4478-a2e1-8f7d1922bba5"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightEmote"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc38bee0-4b92-4a7c-9487-b210882f3e97"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DownEmote"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a0c3213-a84f-4785-b5af-efdb692ba57f"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UpEmote"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d6ce731-69aa-495d-8442-2420e9babb20"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1ac0a60b-2c79-4363-8e34-4bd84afa60ec"",
+                    ""path"": ""<Keyboard>/period"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ExitGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -615,6 +809,14 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_UI_ReadyUP = m_UI.FindAction("ReadyUP", throwIfNotFound: true);
         m_UI_Movement = m_UI.FindAction("Movement", throwIfNotFound: true);
         m_UI_MoveIbisHead = m_UI.FindAction("Move Ibis Head", throwIfNotFound: true);
+        // EndOfGame
+        m_EndOfGame = asset.FindActionMap("EndOfGame", throwIfNotFound: true);
+        m_EndOfGame_UpEmote = m_EndOfGame.FindAction("UpEmote", throwIfNotFound: true);
+        m_EndOfGame_ExitGame = m_EndOfGame.FindAction("ExitGame", throwIfNotFound: true);
+        m_EndOfGame_DownEmote = m_EndOfGame.FindAction("DownEmote", throwIfNotFound: true);
+        m_EndOfGame_RightEmote = m_EndOfGame.FindAction("RightEmote", throwIfNotFound: true);
+        m_EndOfGame_LeftEmote = m_EndOfGame.FindAction("LeftEmote", throwIfNotFound: true);
+        m_EndOfGame_MoveIbisHead = m_EndOfGame.FindAction("Move Ibis Head", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -860,6 +1062,92 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // EndOfGame
+    private readonly InputActionMap m_EndOfGame;
+    private List<IEndOfGameActions> m_EndOfGameActionsCallbackInterfaces = new List<IEndOfGameActions>();
+    private readonly InputAction m_EndOfGame_UpEmote;
+    private readonly InputAction m_EndOfGame_ExitGame;
+    private readonly InputAction m_EndOfGame_DownEmote;
+    private readonly InputAction m_EndOfGame_RightEmote;
+    private readonly InputAction m_EndOfGame_LeftEmote;
+    private readonly InputAction m_EndOfGame_MoveIbisHead;
+    public struct EndOfGameActions
+    {
+        private @PlayerControls m_Wrapper;
+        public EndOfGameActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @UpEmote => m_Wrapper.m_EndOfGame_UpEmote;
+        public InputAction @ExitGame => m_Wrapper.m_EndOfGame_ExitGame;
+        public InputAction @DownEmote => m_Wrapper.m_EndOfGame_DownEmote;
+        public InputAction @RightEmote => m_Wrapper.m_EndOfGame_RightEmote;
+        public InputAction @LeftEmote => m_Wrapper.m_EndOfGame_LeftEmote;
+        public InputAction @MoveIbisHead => m_Wrapper.m_EndOfGame_MoveIbisHead;
+        public InputActionMap Get() { return m_Wrapper.m_EndOfGame; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(EndOfGameActions set) { return set.Get(); }
+        public void AddCallbacks(IEndOfGameActions instance)
+        {
+            if (instance == null || m_Wrapper.m_EndOfGameActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_EndOfGameActionsCallbackInterfaces.Add(instance);
+            @UpEmote.started += instance.OnUpEmote;
+            @UpEmote.performed += instance.OnUpEmote;
+            @UpEmote.canceled += instance.OnUpEmote;
+            @ExitGame.started += instance.OnExitGame;
+            @ExitGame.performed += instance.OnExitGame;
+            @ExitGame.canceled += instance.OnExitGame;
+            @DownEmote.started += instance.OnDownEmote;
+            @DownEmote.performed += instance.OnDownEmote;
+            @DownEmote.canceled += instance.OnDownEmote;
+            @RightEmote.started += instance.OnRightEmote;
+            @RightEmote.performed += instance.OnRightEmote;
+            @RightEmote.canceled += instance.OnRightEmote;
+            @LeftEmote.started += instance.OnLeftEmote;
+            @LeftEmote.performed += instance.OnLeftEmote;
+            @LeftEmote.canceled += instance.OnLeftEmote;
+            @MoveIbisHead.started += instance.OnMoveIbisHead;
+            @MoveIbisHead.performed += instance.OnMoveIbisHead;
+            @MoveIbisHead.canceled += instance.OnMoveIbisHead;
+        }
+
+        private void UnregisterCallbacks(IEndOfGameActions instance)
+        {
+            @UpEmote.started -= instance.OnUpEmote;
+            @UpEmote.performed -= instance.OnUpEmote;
+            @UpEmote.canceled -= instance.OnUpEmote;
+            @ExitGame.started -= instance.OnExitGame;
+            @ExitGame.performed -= instance.OnExitGame;
+            @ExitGame.canceled -= instance.OnExitGame;
+            @DownEmote.started -= instance.OnDownEmote;
+            @DownEmote.performed -= instance.OnDownEmote;
+            @DownEmote.canceled -= instance.OnDownEmote;
+            @RightEmote.started -= instance.OnRightEmote;
+            @RightEmote.performed -= instance.OnRightEmote;
+            @RightEmote.canceled -= instance.OnRightEmote;
+            @LeftEmote.started -= instance.OnLeftEmote;
+            @LeftEmote.performed -= instance.OnLeftEmote;
+            @LeftEmote.canceled -= instance.OnLeftEmote;
+            @MoveIbisHead.started -= instance.OnMoveIbisHead;
+            @MoveIbisHead.performed -= instance.OnMoveIbisHead;
+            @MoveIbisHead.canceled -= instance.OnMoveIbisHead;
+        }
+
+        public void RemoveCallbacks(IEndOfGameActions instance)
+        {
+            if (m_Wrapper.m_EndOfGameActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IEndOfGameActions instance)
+        {
+            foreach (var item in m_Wrapper.m_EndOfGameActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_EndOfGameActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public EndOfGameActions @EndOfGame => new EndOfGameActions(this);
     public interface IGameplayActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -878,6 +1166,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     {
         void OnReadyUP(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
+        void OnMoveIbisHead(InputAction.CallbackContext context);
+    }
+    public interface IEndOfGameActions
+    {
+        void OnUpEmote(InputAction.CallbackContext context);
+        void OnExitGame(InputAction.CallbackContext context);
+        void OnDownEmote(InputAction.CallbackContext context);
+        void OnRightEmote(InputAction.CallbackContext context);
+        void OnLeftEmote(InputAction.CallbackContext context);
         void OnMoveIbisHead(InputAction.CallbackContext context);
     }
 }

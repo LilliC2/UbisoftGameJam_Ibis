@@ -264,6 +264,11 @@ public class UIManager : Singleton<UIManager>
 
     public void OnGameOver()
     {
+        foreach (var player in _GM.playerInputList)
+        {
+            player.currentActionMap = player.actions.FindActionMap("EndOfGame");
+        }
+
         GameObject firstPlace = new();
         float firstPlaceScore = new();
         float secondPlaceScore = new();

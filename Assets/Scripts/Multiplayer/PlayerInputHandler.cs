@@ -139,6 +139,10 @@ public class PlayerInputHandler : GameBehaviour
         playerControls.OnEmote(emoteNum);
     }
 
+    public void ExitGame()
+    {
+        _GM.QuitGame();
+    }
     public void OnReadyUp()
     {
         _UI.readyPlayer[playerControls.playerNum] = true;
