@@ -50,12 +50,37 @@ public class GameManager : Singleton<GameManager>
         //subscribe method to action
         joinAction.performed += context => JoinAction(context); //pass context to JoinAction()
         leaveAction.performed += context => LeaveAction(context);
+
+        timeRemaining = timerMax;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.Alpha0)) _IS.GetTotalItemCount();
+
+        if (_UI.uiState == UIState.Playing)
+        {
+            timerIsRunning = true;
+        }
+
+        if (timerIsRunning)
+        {
+            if(timeRemaining  > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+                _UI.UpdateTimerText(timeRemaining);
+            }
+            else
+            {
+                timeRemaining = 0;
+                timerIsRunning=false;
+                _UI.uiState = UIState.GameOver;
+            }
+        }
+
+
     }
 
     void OnPlayerJoined(PlayerInput playerInput)
