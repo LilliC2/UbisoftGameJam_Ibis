@@ -63,7 +63,6 @@ public class ItemSpawner : Singleton<ItemSpawner>
         itemToSpawn.transform.position = spawnPos;
         itemToSpawn.SetActive(true);
         itemToSpawn.transform.rotation = Quaternion.identity;
-        print(despawnMannager);
         _DM.AddItemToDespawnList(itemToSpawn);
 
         return itemToSpawn;
