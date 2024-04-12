@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 7441733515590567233, guid: e61e13414bae21344b9a44c3ea6b7c34, type: 3}
   hasReadyUp: 0
+  isPaused: 0
   P1: {r: 1, g: 0.12935324, b: 0, a: 1}
   P2: {r: 0, g: 0.73248386, b: 1, a: 1}
   P3: {r: 1, g: 0.56930697, b: 0, a: 1}
@@ -269,7 +270,19 @@ MonoBehaviour:
     m_ActionId: ae4efb8d-c2fc-4348-9be7-6853779f92c4
     m_ActionName: UI/New action[/XInputControllerWindows/buttonWest]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 48898354041573144}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnPause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 27df7595-58bd-45e8-a1a8-bee370c1dfc6
     m_ActionName: Gameplay/Pause[/XInputControllerWindows/start,/XInputControllerWindows1/start,/Keyboard/c]
   - m_PersistentCalls:

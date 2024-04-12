@@ -40,6 +40,8 @@ public class GameManager : Singleton<GameManager>
     public float timerMax = 120f;
     public float timeRemaining;
 
+    public bool isPaused;
+
 
     void Start()
     {
@@ -104,6 +106,11 @@ public class GameManager : Singleton<GameManager>
             playerGameObjList[i].transform.position = spawnPoints_InGame[i].transform.position;
         }
 
+        foreach (var player in playerInputList)
+        {
+            player.currentActionMap = player.actions.FindActionMap("Gameplay");
+
+        }
     }
 
     void OnPlayerJoined(PlayerInput playerInput)
@@ -176,5 +183,17 @@ public class GameManager : Singleton<GameManager>
     public void OnGameEnd()
     {
         _UI.OnGameOver();
+    }
+
+    public void OnPause()
+    {
+        _UI.OnPause();
+        Time.timeScale = 0;
+    }
+
+    public void OnResume()
+    {
+        _UI.OnResume();
+        Time.timeScale = 1;
     }
 }

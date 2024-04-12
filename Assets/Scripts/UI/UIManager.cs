@@ -92,6 +92,12 @@ public class UIManager : Singleton<UIManager>
             uiState = UIState.GameOver;
             Setup();
         }
+
+        if (Input.GetKeyUp(KeyCode.K))
+        {
+            uiState = UIState.Paused;
+            Setup();
+        }
     }
 
     public void Setup()
@@ -124,7 +130,7 @@ public class UIManager : Singleton<UIManager>
                 gameOverCamera.SetActive(false);
 
                 _GM.timerIsRunning = true;
-
+                
 
                 break;
 
@@ -285,5 +291,17 @@ public class UIManager : Singleton<UIManager>
     }
 
     #endregion
+
+    public void OnPause()
+    {
+        uiState = UIState.Paused; 
+        Setup();
+    }
+
+    public void OnResume()
+    {
+        uiState = UIState.Playing; Setup();
+
+    }
 
 }

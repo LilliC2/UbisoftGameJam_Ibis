@@ -10,6 +10,7 @@ public class PlayerInputHandler : GameBehaviour
     public GameObject playerPrefab;
     PlayerController playerControls;
     public bool hasReadyUp = false;
+    public bool isPaused = false;
 
     [SerializeField] Color P1;
     [SerializeField] Color P2;
@@ -150,11 +151,10 @@ public class PlayerInputHandler : GameBehaviour
         //    _UI.QuitUP();
 
         //}
+    }
 
-
-
-
-
-
+    public void OnPause()
+    {
+        _GM.OnPause();
     }
 }
