@@ -105,7 +105,7 @@ public class SeagullController : MonoBehaviour
     }
 
 
-    public void AddItemToCollectList(GameObject obj)
+    public void AddItemToBirdCollectionList(GameObject obj)
     {
 
         //Debug.Log("AddItemToCollectList Called");

@@ -5,7 +5,7 @@ using UnityEngine;
 public class DespawnMannager : Singleton<DespawnMannager>
 {
     public float itemAliveTime = 20;
-    [SerializeField] SeagullController seagullController;
+    [SerializeField] SeagullControllerMannager seagullControllerMannager;
     [SerializeField] List<GameObject> despawnList = new List<GameObject>();
 
     
@@ -14,7 +14,7 @@ public class DespawnMannager : Singleton<DespawnMannager>
 
     IEnumerator Start()
     {
-        seagullController = _SC.GetComponentInChildren<SeagullController>();
+        seagullControllerMannager = _SC.GetComponentInChildren<SeagullControllerMannager>();
         while (true)
         {
             yield return new WaitForSeconds(1f); // Adjust the delay as needed
@@ -30,7 +30,7 @@ public class DespawnMannager : Singleton<DespawnMannager>
                         RemoveItemToDespawnList(obj);
                         //obj.SetActive(false);
                         //Debug.Log("add Item to de spawn list");
-                        seagullController.AddItemToCollectList(obj); // not calling AddItemToCollectionList?
+                        seagullControllerMannager.RemoveItemToCollectList(obj); // not calling AddItemToCollectionList?
                         break;
                     }
                 }

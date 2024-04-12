@@ -5,21 +5,22 @@ using System.Collections.Generic;
 public class SeagullControllerMannager : Singleton<SeagullControllerMannager>
 {
 
-    [SerializeField] List<SeagullController> seagullControllerList = new List<SeagullController>();
+    [SerializeField] List<SeagullController> seagullControllerList;
     int i = 0;
 
-    public void AddItemToCollectList(GameObject obj)
+    public void SendItemToRandomList(GameObject obj)
     {
+        print("Called");
         if (i != seagullControllerList.Count)
         {
             i = i + 1;
             print(seagullControllerList[i]);
-            seagullControllerList[i].AddItemToCollectList(obj);
+            seagullControllerList[i].AddItemToBirdCollectionList(obj);
         }
         else
         {
             i = 0;
-            seagullControllerList[i].AddItemToCollectList(obj);
+            seagullControllerList[i].AddItemToBirdCollectionList(obj);
         }
     }
 
