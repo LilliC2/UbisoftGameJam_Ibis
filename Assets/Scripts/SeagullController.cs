@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class SeagullController : Singleton<SeagullController>
+
+public class SeagullController : MonoBehaviour
 {
     [SerializeField] GameObject trackingObject;  //source for bird to follow
     [SerializeField] GameObject followerObj;    //smooths transform for bird

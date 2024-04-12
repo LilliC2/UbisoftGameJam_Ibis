@@ -1243,7 +1243,7 @@ MonoBehaviour:
   noramlSpeed: 1
   runningSpeed: 3
   distanceFromIbis: 3
-  dropTrashDelayMin: 20
+  dropTrashDelayMin: 15
   dropTrashDelayMax: 25
   behaviourStates: 1
   currentDestination: {x: 0, y: 0, z: 0}
