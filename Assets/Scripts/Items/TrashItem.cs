@@ -35,7 +35,7 @@ public class TrashItem : GameBehaviour
         holdPos = player_holdPos;
         gameObject.transform.parent = player_holdPos.transform;
         lastToHold = player_holdPos.transform.root.gameObject;
-        if(rb == null) rb = GetComponent<Rigidbody>();
+        if (rb == null) rb = GetComponent<Rigidbody>();
 
         rb.constraints = RigidbodyConstraints.FreezeAll;
 
@@ -44,7 +44,8 @@ public class TrashItem : GameBehaviour
         //rb.Sleep();
         _DM.RemoveItemToDespawnList(gameObject);
 
-        _SC.RemoveItemToCollectList(gameObject);
+        //_SC.RemoveItemToCollectList(gameObject);
+        print("Item Removed From Collect List from here");
 
     }
 

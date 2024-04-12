@@ -18,6 +18,9 @@ public class NPCPathfinding : GameBehaviour
     public BehaviourStates behaviourStates;
     Animator animator;
 
+    AudioSource audioSource;
+    public bool isMale;
+
     [Header("Patrol")]
     bool hasDestination;
     [SerializeField] Vector3 currentDestination;
@@ -29,14 +32,19 @@ public class NPCPathfinding : GameBehaviour
     [SerializeField] GameObject dropTrashGO;
     GameObject itemToDrop;
 
+    VFXManager vFXManager;
+    [SerializeField] Transform particalTransform;
+
     // Start is called before the first frame update
     void Start()
     {
+        vFXManager = _VFXM.GetComponentInChildren<VFXManager>();
         animator = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
         currentDestination = SearchPatrolPoint();
         UpdateAgentSpeed(noramlSpeed);
         ExecuteAfterSeconds(3, () => StartCoroutine(DropTrash()));
+        audioSource = GetComponent<AudioSource>();
     }
 
     void UpdateAgentSpeed(float speed)
@@ -97,6 +105,8 @@ public class NPCPathfinding : GameBehaviour
                     ibis = null;
                     behaviourStates = BehaviourStates.TravelToDestination;
                 }
+
+
                 break;
         }
     }
@@ -108,7 +118,7 @@ public class NPCPathfinding : GameBehaviour
             agent.isStopped = true;
 
             //animation
-            print("trigger animation");
+            //print("trigger animation");
             var itemPool = _IS.objectPools[Random.Range(0, _IS.objectPools.Length)];
             itemToDrop = itemPool.GetComponent<ItemPoolMannager>().GetItem(dropTrashGO.transform.position);
             if(itemToDrop != null)
@@ -119,9 +129,6 @@ public class NPCPathfinding : GameBehaviour
                 animator.SetTrigger("ThrowTrash");
 
             }
-            
-
-
 
         }
 
@@ -133,12 +140,12 @@ public class NPCPathfinding : GameBehaviour
 
     public void DropTrashAnimEvent()
     {
-        print("drop trash from anim event");
+        //print("drop trash from anim event");
         if(itemToDrop != null) itemToDrop.GetComponent<TrashItem>().Dropped();
 
         itemToDrop = null;
         agent.isStopped = false;
-        
+
     }
 
     Vector3 SearchDestinationWalkPoint()
@@ -174,6 +181,16 @@ public class NPCPathfinding : GameBehaviour
         {
             print("HONKING");
             ibis = other.gameObject;
+
+            //Play Scream
+            if (isMale == true)
+                _AM.PlaySound(_AM.maleScreams[Random.Range(0,_AM.maleScreams.Length)], audioSource);
+            else
+                _AM.PlaySound(_AM.femaleScreams[Random.Range(0, _AM.femaleScreams.Length)], audioSource);
+	
+
+            vFXManager.SpawnParticle(1, particalTransform);
+
             behaviourStates = BehaviourStates.RunFromIbis;
         }
     }

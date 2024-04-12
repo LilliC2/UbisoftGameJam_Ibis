@@ -6,10 +6,12 @@ public class AddItemToBinScript : GameBehaviour
 {
     [SerializeField] Transform binTpTransform;
     BinMannager binMannager;
+    AudioSource audioSource;
 
     private void Start()
     {
         binMannager = GetComponentInParent<BinMannager>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -56,9 +58,12 @@ public class AddItemToBinScript : GameBehaviour
     {
         if (other.transform.tag == "SmallTrash" || other.transform.tag == "MediumTrash" || other.transform.tag == "BigTrash")
         {
+
             print("TrashInZone");
             other.transform.position = binTpTransform.position;
             TrashItem trashitem = other.gameObject.GetComponent<TrashItem>();
+            _AM.PlaySound(_AM.trashInBin, audioSource);
+
             if (trashitem != null)
             {
                 trashitem.Dropped();

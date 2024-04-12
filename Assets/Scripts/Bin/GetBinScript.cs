@@ -6,5 +6,7 @@ public class GetBinScript : MonoBehaviour
 {
     public BinMannager binMannager;
     public GameObject binRenderer;
+    public ParticleSystem circlePS;
+
 
 }
