@@ -189,6 +189,19 @@ public class GameManager : Singleton<GameManager>
     {
         _UI.OnPause();
         Time.timeScale = 0;
+
+        if(isPaused!)
+        {
+            _UI.OnPause();
+            Time.timeScale = 0;
+            isPaused = true;
+        }
+        else
+        {
+            _UI.OnResume();
+            Time.timeScale = 1;
+            isPaused = false;
+        }
     }
 
     public void OnResume()
