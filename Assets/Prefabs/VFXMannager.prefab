@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 677447670114229813}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4724813673572039303
 MonoBehaviour:
@@ -92,6 +92,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 677447670114229813}
     m_Modifications:
+    - target: {fileID: 488181432511819748, guid: 51933e37957ae224882fcf4b9a1fe9d5, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4149748094458393869, guid: 51933e37957ae224882fcf4b9a1fe9d5, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5083026994492264589, guid: 51933e37957ae224882fcf4b9a1fe9d5, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -134,6 +142,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5083026994492264589, guid: 51933e37957ae224882fcf4b9a1fe9d5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5707939292832708689, guid: 51933e37957ae224882fcf4b9a1fe9d5, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6234733430014553389, guid: 51933e37957ae224882fcf4b9a1fe9d5, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7744631100782106640, guid: 51933e37957ae224882fcf4b9a1fe9d5, type: 3}

@@ -26,7 +26,7 @@ public class PlayerInputHandler : GameBehaviour
 
         if (playerPrefab != null)
         {
-            playerControls = GameObject.Instantiate(playerPrefab, _GM.spawnPoints[_GM.playerGameObjList.Count].transform.position, transform.rotation).GetComponent<PlayerController>();
+            playerControls = GameObject.Instantiate(playerPrefab, _GM.spawnPoints_MainMenu[_GM.playerGameObjList.Count].transform.position, transform.rotation).GetComponent<PlayerController>();
             var go = playerControls.gameObject;
             _GM.playerGameObjList.Add(go);
             playerControls.playerNum = _GM.playerGameObjList.IndexOf(go);
