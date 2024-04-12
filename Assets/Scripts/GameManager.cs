@@ -41,11 +41,11 @@ public class GameManager : Singleton<GameManager>
     {
         foreach (var bin in playerBins)
         {
-            bin.SetActive(false);
+           bin.SetActive(false);
         }
-       // spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
 
-        joinAction.Enable();
+        joinAction.Enable();                                                       
         leaveAction.Enable();
         //subscribe method to action
         joinAction.performed += context => JoinAction(context); //pass context to JoinAction()

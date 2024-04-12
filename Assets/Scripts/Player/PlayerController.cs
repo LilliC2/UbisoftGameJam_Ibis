@@ -31,7 +31,6 @@ public class PlayerController : GameBehaviour
     Vector3 directionBody;
 
 
-
     [SerializeField]
     public Animator anim;
 
@@ -44,9 +43,13 @@ public class PlayerController : GameBehaviour
     [SerializeField] float maxHonkOverheat;
     [SerializeField] float honkResetTime;
     bool hasHonked;
+    bool postHonkClarity;
+    bool hasAngryied;
     [SerializeField] GameObject honkCollider;
     [SerializeField] float honkFirerate;
 
+    VFXManager vfxManager;
+    [SerializeField] GameObject honkVFXTransform;
 
     [Header("Head and Neck Movement")]
     [SerializeField]
@@ -95,6 +98,8 @@ public class PlayerController : GameBehaviour
         rb = GetComponent<Rigidbody>();
         controls = new PlayerControls();
 
+        vfxManager = _VFXM.GetComponent<VFXManager>();
+
         groundCheck = transform.Find("GroundCheck").gameObject;
         OnResetHeadRotations();
 
@@ -130,30 +135,7 @@ public class PlayerController : GameBehaviour
         else isNeckMoving = false;
 
         //change speed based on current held item
-        if (isHoldingTrash && targetTrash != null)
-        {
-            var tag = targetTrash.tag;
-            //print("change speed");
-            switch (tag)
-            {
-                case "SmallTrash":
-                    //speed stay same
-                    movementSpeed = movementSpeed_smallTrash;
-                    break;
-                case "MediumTrash":
-                    movementSpeed = movementSpeed_mediumTrash;
-                    break;
-                case "BigTrash":
-                    movementSpeed = movementSpeed_LargeTrash;
 
-                    break;
-                default:
-                    movementSpeed = movementSpeed_smallTrash;
-
-                    break;
-            }
-        }
-        else movementSpeed = movementSpeed_smallTrash;
 
         #region Body Movement
         //apply animation
@@ -187,10 +169,38 @@ public class PlayerController : GameBehaviour
 
         #endregion
 
+        UpdateSpeed();
 
 
     }
 
+    public void UpdateSpeed()
+    {
+        if (isHoldingTrash && targetTrash != null)
+        {
+            var tag = targetTrash.tag;
+            //print("change speed");
+            switch (tag)
+            {
+                case "SmallTrash":
+                    //speed stay same
+                    movementSpeed = movementSpeed_smallTrash;
+                    break;
+                case "MediumTrash":
+                    movementSpeed = movementSpeed_mediumTrash;
+                    break;
+                case "BigTrash":
+                    movementSpeed = movementSpeed_LargeTrash;
+
+                    break;
+                default:
+                    movementSpeed = movementSpeed_smallTrash;
+
+                    break;
+            }
+        }
+        else movementSpeed = movementSpeed_smallTrash;
+    }
     private void LateUpdate()
     {
         if(currentAction == Action.Walking)
@@ -427,12 +437,22 @@ public class PlayerController : GameBehaviour
             if (!hasHonked)
             {
                 hasHonked = true;
+                postHonkClarity = true;
                 currentHonkOverheat += 0.5f;
-
+                vfxManager.SpawnParticle(0, honkVFXTransform.transform);
                 if (currentHonkOverheat > maxHonkOverheat) HonkCoolDown();
                 ExecuteAfterSeconds(honkFirerate, () => hasHonked = false);
+                ExecuteAfterSeconds(honkFirerate/4, () => postHonkClarity = false);
             }
-
+            else if (hasHonked == true)
+            {  
+                if (hasAngryied == false && postHonkClarity == false)
+                {
+                    hasAngryied = true;
+                    vfxManager.SpawnParticle(2, honkVFXTransform.transform);
+                    ExecuteAfterSeconds(honkFirerate/4, () => hasAngryied = false);
+                }
+            }
         }
 
     }
@@ -442,6 +462,7 @@ public class PlayerController : GameBehaviour
         var value = context.ReadValue<float>();
         if (value == 0) isHonking = false;
         else if (value == 1) isHonking = true;
+
         print(isHonking);
 
 

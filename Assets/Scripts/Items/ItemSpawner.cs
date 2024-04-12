@@ -22,7 +22,7 @@ public class ItemSpawner : Singleton<ItemSpawner>
     {
         int totalCount = 0;
 
-        foreach (var pool in foodToSpawnPools)
+        foreach (var pool in objectPools)
         {
             totalCount += pool.GetComponent<ItemList>().instantiatedItems.Count;
         }
@@ -63,7 +63,8 @@ public class ItemSpawner : Singleton<ItemSpawner>
         itemToSpawn.transform.position = spawnPos;
         itemToSpawn.SetActive(true);
         itemToSpawn.transform.rotation = Quaternion.identity;
-        despawnMannager.AddItemToDespawnList(itemToSpawn);
+        print(despawnMannager);
+        _DM.AddItemToDespawnList(itemToSpawn);
 
         return itemToSpawn;
     }
