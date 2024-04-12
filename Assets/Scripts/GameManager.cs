@@ -123,6 +123,8 @@ public class GameManager : Singleton<GameManager>
 
         PlayerInputManager.instance.JoinPlayerFromActionIfNotAlreadyJoined(context); //getting controller from button input
         _UI.ReadyPlayer();
+        _UI.readyCountMax = _GM.playerCount;
+        _UI.UpdateReadyUPText(_UI.readyCountMax, _GM.playerCount);
         print("i Join");
 
     }

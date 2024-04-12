@@ -17,11 +17,19 @@ public class UIManager : Singleton<UIManager>
 
     [Header("Main Menu")]
     public GameObject mainMenuCamera;
+    public Image[] mmIcon;
     public Image player1Icon;
     public Image player2Icon;
     public Image player3Icon;
     public Image player4Icon;
-    public Sprite[] connectionIcon; // 0 = disconnected, 1 = connected
+    public Sprite[] connectionIcon; // 0 = disconnected, 1 = connected, 2 = ready
+    public int readyCountMax;
+    public int readyCountCurrent = 0;
+    public TMP_Text readyupText;
+    public List<bool> readyPlayer;
+    public bool readyP2;
+    public bool readyP3;
+    public bool readyP4;
 
     [Header("In-Game UI")]
     public GameObject playingCamera;
@@ -148,11 +156,37 @@ public class UIManager : Singleton<UIManager>
         Setup();
     }
 
+    public void ReadyUp()
+    {
+
+        bool AllPlayersReady = true;
+
+        foreach (var player in readyPlayer)
+        {
+            if(player==false) AllPlayersReady = false;
+        }
+
+        if(AllPlayersReady == true)
+        {
+            uiState = UIState.Playing;
+            Setup();
+            _GM.OnGameStart();
+        }
+
+
+
+    }
+
+    public void UpdateReadyUPText(int _PR, int _MP)
+    {
+        readyupText.text = "[" + _PR + "/" + _MP + "]";
+    }
+
     public void ReadyPlayer()
     {
         print("bin is ready");
         
-        int maxPlayers = Mathf.Min(_GM.playerCount, connectionIcon.Length);
+        int maxPlayers = Mathf.Min(_GM.playerCount, 4);
 
         print(maxPlayers);
 

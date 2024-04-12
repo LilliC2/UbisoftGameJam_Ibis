@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 7441733515590567233, guid: e61e13414bae21344b9a44c3ea6b7c34, type: 3}
+  hasReadyUp: 0
   P1: {r: 1, g: 0.12935324, b: 0, a: 1}
   P2: {r: 0, g: 0.73248386, b: 1, a: 1}
   P3: {r: 1, g: 0.56930697, b: 0, a: 1}
