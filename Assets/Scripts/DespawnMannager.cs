@@ -28,9 +28,7 @@ public class DespawnMannager : Singleton<DespawnMannager>
                     {
                         Debug.Log(obj.name + " has expired!");
                         RemoveItemToDespawnList(obj);
-                        //obj.SetActive(false);
-                        //Debug.Log("add Item to de spawn list");
-                        seagullControllerMannager.RemoveItemToCollectList(obj); // not calling AddItemToCollectionList?
+                        seagullControllerMannager.SendItemToRandomList(obj); 
                         break;
                     }
                 }

@@ -11,16 +11,16 @@ public class SeagullControllerMannager : Singleton<SeagullControllerMannager>
     public void SendItemToRandomList(GameObject obj)
     {
         print("Called");
-        if (i != seagullControllerList.Count)
+        if (seagullControllerList != null && seagullControllerList.Count > 0)
         {
-            i = i + 1;
-            print(seagullControllerList[i]);
+            i = (i + 1) % seagullControllerList.Count; // Increment i in a loop-friendly way
+
+            // Access the seagullControllerList with the corrected index
             seagullControllerList[i].AddItemToBirdCollectionList(obj);
         }
         else
         {
-            i = 0;
-            seagullControllerList[i].AddItemToBirdCollectionList(obj);
+            Debug.LogWarning("SeagullControllerList is null or empty.");
         }
     }
 
