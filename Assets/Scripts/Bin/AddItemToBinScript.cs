@@ -27,6 +27,7 @@ public class AddItemToBinScript : GameBehaviour
                 if (other.transform.tag == "SmallTrash" || other.transform.tag == "MediumTrash" || other.transform.tag == "BigTrash")
                 {
                     BinIt(other);
+                    trashItemScript.lastToHold.GetComponent<PlayerController>().UpdateSpeed();
                 }
             }
 

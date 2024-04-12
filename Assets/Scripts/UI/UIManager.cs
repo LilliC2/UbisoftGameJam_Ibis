@@ -54,18 +54,34 @@ public class UIManager : Singleton<UIManager>
     // Start is called before the first frame update
     void Start()
     {
-        uiState = UIState.MainMenu;
-        Setup();
+        uiState = UIState.Playing;
         player1Score.text = "0";
         player2Score.text = "0";
         player3Score.text = "0";
         player4Score.text = "0";
+        Setup();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyUp(KeyCode.P))
+        {
+            uiState = UIState.Playing;
+            Setup();
+        }
+
+        if (Input.GetKeyUp(KeyCode.M))
+        {
+            uiState = UIState.MainMenu;
+            Setup();
+        }
+
+        if (Input.GetKeyUp(KeyCode.L))
+        {
+            uiState = UIState.GameOver;
+            Setup();
+        }
     }
 
     void Setup()
@@ -97,7 +113,8 @@ public class UIManager : Singleton<UIManager>
                 playingCamera.SetActive(true);
                 gameOverCamera.SetActive(false);
 
-                _GM.OnGameStart();
+                _GM.timerIsRunning = true;
+
 
                 break;
 
@@ -199,9 +216,9 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    public void UpdateTimerText()
+    public void UpdateTimerText(float _timer)
     {
-
+        timerText.text = _timer.ToString("F0");
     }
 
     #endregion
