@@ -29,8 +29,8 @@ public class CarMovement : GameBehaviour
     void SpawnCars()
     {
         //To flip the cars the correct way around
-        Quaternion newRotation = new Quaternion (0, 180, 90, 0);
-        currentCar = Instantiate(cars[Random.Range(0, cars.Count)], gameObject.transform.position, newRotation);
+        currentCar = Instantiate(cars[Random.Range(0, cars.Count)], gameObject.transform.position, Quaternion.identity);
+        currentCar.transform.localEulerAngles = new Vector3(-90, 90, 0);
         //After x amount of seconds, will call next code which is DeleteCar()
         ExecuteAfterSeconds(Random.Range(minTime, maxTime), ()=> DeleteCar());
 
