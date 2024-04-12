@@ -417,6 +417,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""916446d6-cd95-447e-af5c-513f138b8ce6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Move Ibis Head"",
+                    ""type"": ""Value"",
+                    ""id"": ""1610af81-a408-4b62-97c9-d091da030f00"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -441,6 +459,138 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""ReadyUP"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""053d046e-25c6-4f3a-b258-39adbe2cafa8"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD 2D Vector"",
+                    ""id"": ""e96e234d-5800-4f3d-9b65-751491723131"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""c9052181-0285-48d8-ac22-c560997d75ac"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""7ff17883-c642-4a8d-8b1a-da377840d3a9"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""b5c3ab80-1a2f-4c40-a0cd-548b0796c821"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""765bd5b6-fced-43f6-8398-4bb16116ff7a"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b27c7a3c-7535-43fa-8b0f-1dd221154142"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Ibis Head"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Arrow Key 2D Vector"",
+                    ""id"": ""d65a077d-2759-4467-ae92-1cf1cbf32b49"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Ibis Head"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""dfbb4d06-c3e8-41bc-84ab-dece92120d69"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Ibis Head"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""99808e13-8fe4-4d6b-91a3-1c412dcded4b"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Ibis Head"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""eb1207c3-6a6e-49ef-b3c9-c5cfb01072fc"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Ibis Head"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""538b92f0-ae46-4c6f-a133-debf81cfbf99"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Move Ibis Head"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -463,6 +613,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_ReadyUP = m_UI.FindAction("ReadyUP", throwIfNotFound: true);
+        m_UI_Movement = m_UI.FindAction("Movement", throwIfNotFound: true);
+        m_UI_MoveIbisHead = m_UI.FindAction("Move Ibis Head", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -651,11 +803,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_ReadyUP;
+    private readonly InputAction m_UI_Movement;
+    private readonly InputAction m_UI_MoveIbisHead;
     public struct UIActions
     {
         private @PlayerControls m_Wrapper;
         public UIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @ReadyUP => m_Wrapper.m_UI_ReadyUP;
+        public InputAction @Movement => m_Wrapper.m_UI_Movement;
+        public InputAction @MoveIbisHead => m_Wrapper.m_UI_MoveIbisHead;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -668,6 +824,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ReadyUP.started += instance.OnReadyUP;
             @ReadyUP.performed += instance.OnReadyUP;
             @ReadyUP.canceled += instance.OnReadyUP;
+            @Movement.started += instance.OnMovement;
+            @Movement.performed += instance.OnMovement;
+            @Movement.canceled += instance.OnMovement;
+            @MoveIbisHead.started += instance.OnMoveIbisHead;
+            @MoveIbisHead.performed += instance.OnMoveIbisHead;
+            @MoveIbisHead.canceled += instance.OnMoveIbisHead;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -675,6 +837,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ReadyUP.started -= instance.OnReadyUP;
             @ReadyUP.performed -= instance.OnReadyUP;
             @ReadyUP.canceled -= instance.OnReadyUP;
+            @Movement.started -= instance.OnMovement;
+            @Movement.performed -= instance.OnMovement;
+            @Movement.canceled -= instance.OnMovement;
+            @MoveIbisHead.started -= instance.OnMoveIbisHead;
+            @MoveIbisHead.performed -= instance.OnMoveIbisHead;
+            @MoveIbisHead.canceled -= instance.OnMoveIbisHead;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -709,5 +877,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     public interface IUIActions
     {
         void OnReadyUP(InputAction.CallbackContext context);
+        void OnMovement(InputAction.CallbackContext context);
+        void OnMoveIbisHead(InputAction.CallbackContext context);
     }
 }

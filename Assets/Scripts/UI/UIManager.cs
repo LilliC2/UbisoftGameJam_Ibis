@@ -55,14 +55,11 @@ public class UIManager : Singleton<UIManager>
 
     [Header("Game Over")]
     public GameObject gameOverCamera;
-    public TMP_Text player1EndScore;
-    public TMP_Text player2EndScore;
-    public TMP_Text player3EndScore;
-    public TMP_Text player4EndScore;
-    public GameObject player1stSpawnPos;
-    public GameObject player2ndSpawnPos;
-    public GameObject player3rdSpawnPos;
-    public GameObject player4thSpawnPos;
+    public TMP_Text player1stEndScore;
+    public TMP_Text player2ndEndScore;
+    public TMP_Text player3rdEndScore;
+    public TMP_Text player4thEndScore;
+
 
     // Start is called before the first frame update
     void Start()
@@ -240,23 +237,23 @@ public class UIManager : Singleton<UIManager>
         {
             case 0:
                 player1Score.text = _score.ToString();
-                player1EndScore.text = _score.ToString();
+            //    player1stEndScore.text = _score.ToString();
                 print("p1");
                 break;
 
             case 1:
                 player2Score.text = _score.ToString();
-                player2EndScore.text = _score.ToString();
+             //   player2ndEndScore.text = _score.ToString();
                 break;
 
             case 2:
                 player3Score.text = _score.ToString();
-                player3EndScore.text = _score.ToString();
+               // player3rdEndScore.text = _score.ToString();
                 break;
 
             case 3:
                 player4Score.text = _score.ToString();
-                player4EndScore.text = _score.ToString();
+               // player4thEndScore.text = _score.ToString();
                 break;
         }
     }
@@ -291,6 +288,10 @@ public class UIManager : Singleton<UIManager>
 
         scoreList.Sort();
 
+        foreach (var player in _GM.playerGameObjList)
+        {
+            player.GetComponent<CharacterController>().enabled = false;
+        }
 
         for (int i = 0; i < scoreList.Count; i++)
         {
@@ -300,19 +301,41 @@ public class UIManager : Singleton<UIManager>
                 {
                     if (i == scoreList.Count-1)
                     {
-
+                        firstPlaceScore = scoreList[scoreList.Count - 1];
                         firstPlace = _GM.playerGameObjList[v];
-                        print(firstPlace.name + " got score " + scoreList[scoreList.Count - 1]);
+                        firstPlace.transform.position = _GM.spawnPoints_GameOver[0].transform.position;
+                    }
+                    if (i == scoreList.Count - 2)
+                    {
+                        secondPlaceScore = scoreList[scoreList.Count - 2];
+                        secondPlace = _GM.playerGameObjList[v];
+                        secondPlace.transform.position = _GM.spawnPoints_GameOver[1].transform.position;
 
                     }
-                    if (i == scoreList.Count-2) secondPlace = _GM.playerGameObjList[v];
-                    if (i == scoreList.Count-3) thirdPlace = _GM.playerGameObjList[v];
-                    if (i == scoreList.Count - 4) fourthPlace = _GM.playerGameObjList[v];
+                    if (i == scoreList.Count - 3)
+                    {
+                        thirdPlaceScore = scoreList[scoreList.Count - 3];
+                        thirdPlace = _GM.playerGameObjList[v];
+                        thirdPlace.transform.position = _GM.spawnPoints_GameOver[2].transform.position;
+
+                    }
+                    if (i == scoreList.Count - 4)
+                    {
+                        fourthPlaceScore = scoreList[scoreList.Count - 1];
+                        fourthPlace = _GM.playerGameObjList[v];
+                        fourthPlace.transform.position = _GM.spawnPoints_GameOver[3].transform.position;
+
+                    }
                 }
             }
         }
 
-     //  player1EndScore =
+        //set scores to tmp
+        player1stEndScore.text = firstPlaceScore.ToString();
+        player2ndEndScore.text = secondPlaceScore.ToString();
+        player3rdEndScore.text = thirdPlaceScore.ToString();
+        player4thEndScore.text = fourthPlaceScore.ToString();
+
 
     }
 
