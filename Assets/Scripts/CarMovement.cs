@@ -35,7 +35,7 @@ public class CarMovement : GameBehaviour
         if (gameObject.transform.localEulerAngles.y == 270)
         {
             print("is running");
-            currentCar.transform.localEulerAngles = new Vector3(90, 90, 0);
+            currentCar.transform.localEulerAngles = new Vector3(-90, 180, 90);
         }
         else currentCar.transform.localEulerAngles = new Vector3(-90, 90, 0);
 
