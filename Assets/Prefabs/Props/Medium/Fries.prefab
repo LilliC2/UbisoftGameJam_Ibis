@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1687654217803505908}
   - component: {fileID: 7299983105211157444}
   - component: {fileID: 8760928710943780492}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fires
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 4783175262776625081}
   - component: {fileID: 3095112546302871870}
   - component: {fileID: 9185428467532341601}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cup_
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 7756912799843598785}
   - component: {fileID: 4451020940613383443}
   - component: {fileID: 6543248524895332572}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -286,9 +286,9 @@ GameObject:
   - component: {fileID: 7322216921617880544}
   - component: {fileID: 5776121753798519989}
   - component: {fileID: 5587430869225194691}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fries
-  m_TagString: Untagged
+  m_TagString: MediumTrash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -417,7 +417,7 @@ GameObject:
   - component: {fileID: 2563291280031319182}
   - component: {fileID: 523570359296976569}
   - component: {fileID: 6790533373485749278}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
