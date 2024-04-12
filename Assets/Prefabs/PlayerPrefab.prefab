@@ -176,8 +176,8 @@ MonoBehaviour:
   isHonking: 0
   isOnHonkCooldown: 0
   currentHonkOverheat: 0
-  maxHonkOverheat: 5
-  honkResetTime: 0.5
+  maxHonkOverheat: 3
+  honkResetTime: 0.2
   honkCollider: {fileID: 5737535947934061447}
   honkFirerate: 3
   honkVFXTransform: {fileID: 7862637457977071474}
