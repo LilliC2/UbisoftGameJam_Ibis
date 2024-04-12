@@ -30,7 +30,16 @@ public class CarMovement : GameBehaviour
     {
         //To flip the cars the correct way around
         currentCar = Instantiate(cars[Random.Range(0, cars.Count)], gameObject.transform.position, Quaternion.identity);
-        currentCar.transform.localEulerAngles = new Vector3(-90, 90, 0);
+        
+        print(gameObject.transform.rotation.y);
+        if (gameObject.transform.localEulerAngles.y == 270)
+        {
+            print("is running");
+            currentCar.transform.localEulerAngles = new Vector3(90, 90, 0);
+        }
+        else currentCar.transform.localEulerAngles = new Vector3(-90, 90, 0);
+
+
         //After x amount of seconds, will call next code which is DeleteCar()
         ExecuteAfterSeconds(Random.Range(minTime, maxTime), ()=> DeleteCar());
 
