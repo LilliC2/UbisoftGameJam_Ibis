@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class SeagullController : Singleton<SeagullController>
+
+public class SeagullController : MonoBehaviour
 {
     [SerializeField] GameObject trackingObject;  //source for bird to follow
     [SerializeField] GameObject followerObj;    //smooths transform for bird
@@ -70,7 +71,7 @@ public class SeagullController : Singleton<SeagullController>
             {
                 // Move to the next point
                 MoveToNextPoint();
-                seaGullAnimator.SetInteger("FlyState" , currentPointIndex);
+                seaGullAnimator.SetInteger("FlyState", currentPointIndex);
 
 
             }
@@ -97,23 +98,34 @@ public class SeagullController : Singleton<SeagullController>
             // Stop movement
             isMoving = false;
             birdCollectList[0].SetActive(false);
+            print("Item Removed From Collect List from here");
             birdCollectList.RemoveAt(0);
             StartFlight();
         }
     }
 
 
-    public void AddItemToCollectList(GameObject obj)
+    public void AddItemToBirdCollectionList(GameObject obj)
     {
-        birdCollectList.Add(obj);
-        //print("item added");
+
+        //Debug.Log("AddItemToCollectList Called");
+        if (obj != null && obj.activeSelf)
+        {
+            birdCollectList.Add(obj);
+            //Debug.Log("Item added to collect list: " + obj.name);
+        }
+        else
+        {
+            //Debug.LogWarning("Attempted to add null or inactive object to collect list.");
+        }
         StartFlight();
     }
+
 
     public void RemoveItemToCollectList(GameObject obj)
     {
         birdCollectList.Remove(obj);
-
+        //print("Item Removed From Collect List from here");
     }
-   
+
 }

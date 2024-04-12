@@ -47,7 +47,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 7441733515590567233, guid: e61e13414bae21344b9a44c3ea6b7c34, type: 3}
   hasReadyUp: 0
-  isPaused: 0
   P1: {r: 1, g: 0.12935324, b: 0, a: 1}
   P2: {r: 0, g: 0.73248386, b: 1, a: 1}
   P3: {r: 1, g: 0.56930697, b: 0, a: 1}
@@ -273,8 +272,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 48898354041573144}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: OnPause
-        m_Mode: 1
+        m_MethodName: OnMove
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -283,14 +282,14 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 27df7595-58bd-45e8-a1a8-bee370c1dfc6
-    m_ActionName: Gameplay/Pause[/XInputControllerWindows/start,/XInputControllerWindows1/start,/Keyboard/c]
+    m_ActionId: 916446d6-cd95-447e-af5c-513f138b8ce6
+    m_ActionName: UI/Movement[/SwitchProControllerHID/leftStick,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 48898354041573144}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: OnGameExit
-        m_Mode: 1
+        m_MethodName: OnMoveHead
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -299,8 +298,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 8a7bef35-d6b2-42b7-ba64-8cae06ed8029
-    m_ActionName: UI/Quit[/XInputControllerWindows/buttonNorth,/XInputControllerWindows1/buttonNorth,/Keyboard/x]
+    m_ActionId: 1610af81-a408-4b62-97c9-d091da030f00
+    m_ActionName: UI/Move Ibis Head[/SwitchProControllerHID/rightStick,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI

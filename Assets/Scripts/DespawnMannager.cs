@@ -5,11 +5,16 @@ using UnityEngine;
 public class DespawnMannager : Singleton<DespawnMannager>
 {
     public float itemAliveTime = 20;
-    [SerializeField] SeagullController seagullController;
+    [SerializeField] SeagullControllerMannager seagullControllerMannager;
     [SerializeField] List<GameObject> despawnList = new List<GameObject>();
+
+    
+
+
 
     IEnumerator Start()
     {
+        seagullControllerMannager = _SC.GetComponentInChildren<SeagullControllerMannager>();
         while (true)
         {
             yield return new WaitForSeconds(1f); // Adjust the delay as needed
@@ -21,10 +26,9 @@ public class DespawnMannager : Singleton<DespawnMannager>
                     trashItem.aliveTime -= 1f; // Subtract 1 from alive time
                     if (trashItem.aliveTime <= 0f)
                     {
-                        //Debug.Log(obj.name + " has expired!");
+                        Debug.Log(obj.name + " has expired!");
                         RemoveItemToDespawnList(obj);
-                        //obj.SetActive(false);
-                        seagullController.AddItemToCollectList(obj);
+                        seagullControllerMannager.SendItemToRandomList(obj); 
                         break;
                     }
                 }
@@ -34,6 +38,7 @@ public class DespawnMannager : Singleton<DespawnMannager>
 
     public void AddItemToDespawnList(GameObject obj)
     {
+
         despawnList.Add(obj);
         TrashItem trashItem = obj.GetComponent<TrashItem>();
        // Debug.Log(obj.name + " has been Added to list");

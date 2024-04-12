@@ -14338,7 +14338,7 @@ MonoBehaviour:
   ingameUI: {fileID: 2599386415530411047}
   pauseUI: {fileID: 5112656636869917759}
   gameOverUI: {fileID: 748041877141140904}
-  mainMenuCamera: {fileID: 4163986639514959244}
+  mainMenuCamera: {fileID: 1564822667320847218}
   player1Icon: {fileID: 467522283473588224}
   player2Icon: {fileID: 1257669639172684846}
   player3Icon: {fileID: 9094101531110532674}
@@ -14364,7 +14364,7 @@ MonoBehaviour:
   readyIcon:
   - {fileID: 21300000, guid: e2dbd9fa44e7c4e248163582b7a5ed97, type: 3}
   - {fileID: 21300000, guid: 75530c3d3e5b344a0ab8d988c3cd0caf, type: 3}
-  gameOverCamera: {fileID: 8768465672228283327}
+  gameOverCamera: {fileID: 7996444406362287220}
   player1EndScore: {fileID: 5066312060833917679}
   player2EndScore: {fileID: 8719422077717130490}
   player3EndScore: {fileID: 5914630189222422527}

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public enum UIState { MainMenu, Playing, Paused, GameOver}
 
@@ -27,11 +28,9 @@ public class UIManager : Singleton<UIManager>
     public int readyCountCurrent = 0;
     public TMP_Text readyupText;
     public List<bool> readyPlayer;
-    public List<bool> exitPlayer;
     public bool readyP2;
     public bool readyP3;
     public bool readyP4;
-    public Image[] exitIcon;
 
     [Header("In-Game UI")]
     public GameObject playingCamera;
@@ -56,10 +55,11 @@ public class UIManager : Singleton<UIManager>
 
     [Header("Game Over")]
     public GameObject gameOverCamera;
-    public TMP_Text player1EndScore;
-    public TMP_Text player2EndScore;
-    public TMP_Text player3EndScore;
-    public TMP_Text player4EndScore;
+    public TMP_Text player1stEndScore;
+    public TMP_Text player2ndEndScore;
+    public TMP_Text player3rdEndScore;
+    public TMP_Text player4thEndScore;
+
 
     // Start is called before the first frame update
     void Start()
@@ -90,12 +90,6 @@ public class UIManager : Singleton<UIManager>
         if (Input.GetKeyUp(KeyCode.L))
         {
             uiState = UIState.GameOver;
-            Setup();
-        }
-
-        if (Input.GetKeyUp(KeyCode.K))
-        {
-            uiState = UIState.Paused;
             Setup();
         }
     }
@@ -130,7 +124,7 @@ public class UIManager : Singleton<UIManager>
                 gameOverCamera.SetActive(false);
 
                 _GM.timerIsRunning = true;
-                
+
 
                 break;
 
@@ -182,26 +176,14 @@ public class UIManager : Singleton<UIManager>
             Setup();
             _GM.OnGameStart();
         }
-    }
 
-    public void QuitUP()
-    {
-        bool AllPlayersQuit = true;
 
-        foreach (var player in exitPlayer)
-        {
-            if (player == false) AllPlayersQuit = false;
-        }
 
-        if (AllPlayersQuit == true)
-        {
-            _GM.QuitGame();
-        }
     }
 
     public void UpdateReadyUPText(int _PR, int _MP)
     {
-        readyupText.text = "[" + _PR + "/" + _MP + "]";
+      //  readyupText.text = "[" + _PR + "/" + _MP + "]";
     }
 
     public void ReadyPlayer()
@@ -255,23 +237,23 @@ public class UIManager : Singleton<UIManager>
         {
             case 0:
                 player1Score.text = _score.ToString();
-                player1EndScore.text = _score.ToString();
+            //    player1stEndScore.text = _score.ToString();
                 print("p1");
                 break;
 
             case 1:
                 player2Score.text = _score.ToString();
-                player2EndScore.text = _score.ToString();
+             //   player2ndEndScore.text = _score.ToString();
                 break;
 
             case 2:
                 player3Score.text = _score.ToString();
-                player3EndScore.text = _score.ToString();
+               // player3rdEndScore.text = _score.ToString();
                 break;
 
             case 3:
                 player4Score.text = _score.ToString();
-                player4EndScore.text = _score.ToString();
+               // player4thEndScore.text = _score.ToString();
                 break;
         }
     }
@@ -287,21 +269,97 @@ public class UIManager : Singleton<UIManager>
 
     public void OnGameOver()
     {
-        
+        GameObject firstPlace = new();
+        float firstPlaceScore = new();
+        float secondPlaceScore = new();
+        float thirdPlaceScore = new();
+        float fourthPlaceScore = new();
+        GameObject secondPlace = new();
+        GameObject thirdPlace = new();
+        GameObject fourthPlace = new();
+
+
+        List<int> scoreList = new();
+
+        for (int i = 0; i < _GM.playerBins.Length; i++)
+        {
+            scoreList.Add(_GM.playerBins[i].GetComponent<GetBinScript>().binMannager.binCurrentScore);
+        }
+
+        scoreList.Sort();
+
+        foreach (var player in _GM.playerGameObjList)
+        {
+            player.GetComponent<CharacterController>().enabled = false;
+        }
+
+        for (int i = 0; i < scoreList.Count; i++)
+        {
+            for (int v = 0; v < _GM.playerGameObjList.Count; v++)
+            {
+                if(scoreList[i] == _GM.playerBins[v].GetComponent<GetBinScript>().binMannager.binCurrentScore)
+                {
+                    if (i == scoreList.Count-1)
+                    {
+                        firstPlaceScore = scoreList[scoreList.Count - 1];
+                        firstPlace = _GM.playerGameObjList[v];
+                        firstPlace.transform.position = _GM.spawnPoints_GameOver[0].transform.position;
+                    }
+                    if (i == scoreList.Count - 2)
+                    {
+                        secondPlaceScore = scoreList[scoreList.Count - 2];
+                        secondPlace = _GM.playerGameObjList[v];
+                        secondPlace.transform.position = _GM.spawnPoints_GameOver[1].transform.position;
+
+                    }
+                    if (i == scoreList.Count - 3)
+                    {
+                        thirdPlaceScore = scoreList[scoreList.Count - 3];
+                        thirdPlace = _GM.playerGameObjList[v];
+                        thirdPlace.transform.position = _GM.spawnPoints_GameOver[2].transform.position;
+
+                    }
+                    if (i == scoreList.Count - 4)
+                    {
+                        fourthPlaceScore = scoreList[scoreList.Count - 1];
+                        fourthPlace = _GM.playerGameObjList[v];
+                        fourthPlace.transform.position = _GM.spawnPoints_GameOver[3].transform.position;
+
+                    }
+                }
+            }
+        }
+
+        //set scores to tmp
+        player1stEndScore.text = firstPlaceScore.ToString();
+        player2ndEndScore.text = secondPlaceScore.ToString();
+        player3rdEndScore.text = thirdPlaceScore.ToString();
+        player4thEndScore.text = fourthPlaceScore.ToString();
+
+
+    }
+
+
+    public int[] SortArray(int[] array, int length)
+    {
+        for (int i = 1; i < length; i++)
+        {
+            var key = array[i];
+            var flag = 0;
+            for (int j = i - 1; j >= 0 && flag != 1;)
+            {
+                if (key < array[j])
+                {
+                    array[j + 1] = array[j];
+                    j--;
+                    array[j + 1] = key;
+                }
+                else flag = 1;
+            }
+        }
+        return array;
     }
 
     #endregion
-
-    public void OnPause()
-    {
-        uiState = UIState.Paused; 
-        Setup();
-    }
-
-    public void OnResume()
-    {
-        uiState = UIState.Playing; Setup();
-
-    }
 
 }
