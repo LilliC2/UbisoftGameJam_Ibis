@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public enum GameState { Menu, Playing, Paused, GameOver}
 
@@ -40,6 +41,7 @@ public class GameManager : Singleton<GameManager>
     public float timerMax = 120f;
     public float timeRemaining;
 
+    public bool isPaused = false;
 
     void Start()
     {
