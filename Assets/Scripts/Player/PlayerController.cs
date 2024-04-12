@@ -13,9 +13,7 @@ public class PlayerController : GameBehaviour
     public enum Action { Walking, Throwing, Honking, Attacking, Hit};
     public Action currentAction;
     [Header("Player Controls")]
-
     Rigidbody rb;
-
     [SerializeField] float movementSpeed;
     [SerializeField] float movementSpeed_smallTrash;
     [SerializeField] float movementSpeed_mediumTrash;
@@ -87,7 +85,10 @@ public class PlayerController : GameBehaviour
     bool hasAttacked;
     [SerializeField] float attackRate;
     bool hasBeenHit = false;
-
+     
+    [Header("Particles")]
+    public ParticleSystem playerCirlce_PS;
+    public ParticleSystem playerArrow_PS;
 
     // Start is called before the first frame update
     void Start()
@@ -168,6 +169,8 @@ public class PlayerController : GameBehaviour
         }
 
         #endregion
+
+        _GM.playerBins[playerNum].GetComponent<GetBinScript>().circlePS.gameObject.SetActive(isHoldingTrash);
 
         UpdateSpeed();
 
