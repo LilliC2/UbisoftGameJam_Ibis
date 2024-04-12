@@ -9,13 +9,14 @@ public enum GameState { Menu, Playing, Paused, GameOver}
 
 public class GameManager : Singleton<GameManager>
 {
-    public GameObject[] spawnPoints;
+    public GameObject[] spawnPoints_InGame;
+    public GameObject[] spawnPoints_MainMenu;
     public List<PlayerInput> playerInputList = new List<PlayerInput>();
     public List<GameObject> playerGameObjList = new List<GameObject>();
     public GameObject[] playerBins;
 
     public int playerCount;
-
+    [SerializeField] GameObject mainMenuColliders;
 
     //bind action
     public InputAction joinAction;
@@ -39,7 +40,7 @@ public class GameManager : Singleton<GameManager>
         {
            bin.SetActive(false);
         }
-        spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        //spawnPoints_InGame = GameObject.FindGameObjectsWithTag("SpawnPoint");
 
         joinAction.Enable();                                                       
         leaveAction.Enable();
@@ -56,10 +57,17 @@ public class GameManager : Singleton<GameManager>
 
     public void OnGameStart()
     {
+        mainMenuColliders.SetActive(false);
         //spawn trash
         _IS.InitalTrashSpawn();
         //start NPC spawnin
         _NPC.SpawnChance();
+
+        //put players in right spawn pos
+        for (int i = 0; i < playerGameObjList.Count; i++)
+        {
+            playerGameObjList[i].transform.position = spawnPoints_InGame[i].transform.position;
+        }
 
     }
 
