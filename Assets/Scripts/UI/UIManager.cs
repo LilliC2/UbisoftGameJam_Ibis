@@ -27,9 +27,11 @@ public class UIManager : Singleton<UIManager>
     public int readyCountCurrent = 0;
     public TMP_Text readyupText;
     public List<bool> readyPlayer;
+    public List<bool> exitPlayer;
     public bool readyP2;
     public bool readyP3;
     public bool readyP4;
+    public Image[] exitIcon;
 
     [Header("In-Game UI")]
     public GameObject playingCamera;
@@ -174,9 +176,21 @@ public class UIManager : Singleton<UIManager>
             Setup();
             _GM.OnGameStart();
         }
+    }
 
+    public void QuitUP()
+    {
+        bool AllPlayersQuit = true;
 
+        foreach (var player in exitPlayer)
+        {
+            if (player == false) AllPlayersQuit = false;
+        }
 
+        if (AllPlayersQuit == true)
+        {
+            _GM.QuitGame();
+        }
     }
 
     public void UpdateReadyUPText(int _PR, int _MP)

@@ -268,6 +268,26 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: ae4efb8d-c2fc-4348-9be7-6853779f92c4
     m_ActionName: UI/New action[/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 27df7595-58bd-45e8-a1a8-bee370c1dfc6
+    m_ActionName: Gameplay/Pause[/XInputControllerWindows/start,/XInputControllerWindows1/start,/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 48898354041573144}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnGameExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8a7bef35-d6b2-42b7-ba64-8cae06ed8029
+    m_ActionName: UI/Quit[/XInputControllerWindows/buttonNorth,/XInputControllerWindows1/buttonNorth,/Keyboard/x]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI

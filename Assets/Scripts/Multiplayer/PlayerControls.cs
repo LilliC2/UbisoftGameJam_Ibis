@@ -125,6 +125,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""27df7595-58bd-45e8-a1a8-bee370c1dfc6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -402,6 +411,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""RightEmote"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d1e14866-c8bb-4532-8218-09ceda68f02d"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7943b553-ad07-41b2-abe5-9acc758d2775"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -413,6 +444,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""name"": ""ReadyUP"",
                     ""type"": ""Button"",
                     ""id"": ""ae4efb8d-c2fc-4348-9be7-6853779f92c4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Quit"",
+                    ""type"": ""Button"",
+                    ""id"": ""8a7bef35-d6b2-42b7-ba64-8cae06ed8029"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -441,6 +481,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""ReadyUP"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b86e473a-5681-46cb-824c-fb550f8c88f3"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b864536-a660-4fbc-b2ff-46f5a000be65"",
+                    ""path"": ""<Keyboard>/x"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Quit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -460,9 +522,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Gameplay_DownEmote = m_Gameplay.FindAction("DownEmote", throwIfNotFound: true);
         m_Gameplay_LeftEmote = m_Gameplay.FindAction("LeftEmote", throwIfNotFound: true);
         m_Gameplay_RightEmote = m_Gameplay.FindAction("RightEmote", throwIfNotFound: true);
+        m_Gameplay_Pause = m_Gameplay.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_ReadyUP = m_UI.FindAction("ReadyUP", throwIfNotFound: true);
+        m_UI_Quit = m_UI.FindAction("Quit", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -535,6 +599,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Gameplay_DownEmote;
     private readonly InputAction m_Gameplay_LeftEmote;
     private readonly InputAction m_Gameplay_RightEmote;
+    private readonly InputAction m_Gameplay_Pause;
     public struct GameplayActions
     {
         private @PlayerControls m_Wrapper;
@@ -550,6 +615,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @DownEmote => m_Wrapper.m_Gameplay_DownEmote;
         public InputAction @LeftEmote => m_Wrapper.m_Gameplay_LeftEmote;
         public InputAction @RightEmote => m_Wrapper.m_Gameplay_RightEmote;
+        public InputAction @Pause => m_Wrapper.m_Gameplay_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Gameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -592,6 +658,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RightEmote.started += instance.OnRightEmote;
             @RightEmote.performed += instance.OnRightEmote;
             @RightEmote.canceled += instance.OnRightEmote;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IGameplayActions instance)
@@ -629,6 +698,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RightEmote.started -= instance.OnRightEmote;
             @RightEmote.performed -= instance.OnRightEmote;
             @RightEmote.canceled -= instance.OnRightEmote;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IGameplayActions instance)
@@ -651,11 +723,13 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_UI;
     private List<IUIActions> m_UIActionsCallbackInterfaces = new List<IUIActions>();
     private readonly InputAction m_UI_ReadyUP;
+    private readonly InputAction m_UI_Quit;
     public struct UIActions
     {
         private @PlayerControls m_Wrapper;
         public UIActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @ReadyUP => m_Wrapper.m_UI_ReadyUP;
+        public InputAction @Quit => m_Wrapper.m_UI_Quit;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -668,6 +742,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ReadyUP.started += instance.OnReadyUP;
             @ReadyUP.performed += instance.OnReadyUP;
             @ReadyUP.canceled += instance.OnReadyUP;
+            @Quit.started += instance.OnQuit;
+            @Quit.performed += instance.OnQuit;
+            @Quit.canceled += instance.OnQuit;
         }
 
         private void UnregisterCallbacks(IUIActions instance)
@@ -675,6 +752,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @ReadyUP.started -= instance.OnReadyUP;
             @ReadyUP.performed -= instance.OnReadyUP;
             @ReadyUP.canceled -= instance.OnReadyUP;
+            @Quit.started -= instance.OnQuit;
+            @Quit.performed -= instance.OnQuit;
+            @Quit.canceled -= instance.OnQuit;
         }
 
         public void RemoveCallbacks(IUIActions instance)
@@ -705,9 +785,11 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnDownEmote(InputAction.CallbackContext context);
         void OnLeftEmote(InputAction.CallbackContext context);
         void OnRightEmote(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
         void OnReadyUP(InputAction.CallbackContext context);
+        void OnQuit(InputAction.CallbackContext context);
     }
 }
